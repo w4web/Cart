@@ -1,1 +1,18 @@
-<h1>header</h1>
+<header class="mb-5">
+    <div class="container">
+        <div class="grid py-2">
+            <div class="md:col-6 col-12">
+                <div class="logo flex align-items-center">
+                    <img src="assets/images/primeng.svg" height="40" class="mr-3"><span>Prime cart</span>
+                </div>
+            </div>
+            <div class="md:col-6 col-12 flex align-items-center justify-content-end">
+                <button type="button" pButton icon="pi pi-user" label="Account" class="p-button-secondary p-button-text no-box" (click)="menu.toggle($event)"></button>
+                <p-menu #menu [popup]="true" [model]="accountItems"></p-menu>
+                <i class="pi pi-heart mr-4 p-text-secondary" pBadge style="font-size: 1.5rem" value="2"></i>
+                <i class="pi pi-shopping-cart mr-4 p-text-secondary" pBadge style="font-size: 1.5rem" value="2" severity="danger"></i>
+            </div>
+        </div>
+        <p-menubar [model]="items"></p-menubar>
+    </div>
+</header>

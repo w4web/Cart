@@ -14,6 +14,11 @@ import { PanelModule } from 'primeng/panel';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
+import { MenubarModule } from 'primeng/menubar';
+import { MenuModule } from 'primeng/menu';
+import { BadgeModule } from 'primeng/badge';
+import { TieredMenuModule } from 'primeng/tieredmenu';
+import { CarouselModule } from 'primeng/carousel';
 
 @NgModule({
   exports: [
@@ -28,7 +33,12 @@ import { DropdownModule } from 'primeng/dropdown';
     MessagesModule,
     PanelModule,
     InputSwitchModule,
-    DropdownModule
+    DropdownModule,
+    MenubarModule,
+    MenuModule,
+    TieredMenuModule,
+    BadgeModule,
+    CarouselModule
   ]
 })
 export class PrimengLibModule { }

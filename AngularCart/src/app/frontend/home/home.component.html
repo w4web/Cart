@@ -1,11 +1,32 @@
-<div class="landing-page">
-    <div class="landing-box">
+<div class="home-page">
+    <div class="container">
 
-        <p-card styleClass="p-card-shadow shadow-3">
-            <h1>Welcome to musicjunki.es</h1>
+        <div class="banner mb-5">
+            <img src="./assets/images/banner.jpg" alt="img" />
+        </div>
+
+        <!-- <p-card header="Header content here" styleClass="shadow-3">
             <p>Promote your latest musicvideos, get your fans to boost your video up your local</p>
             <p>music charts and receive donations and support for all your work!</p>
-            <button pButton type="button" label="Enter"></button>
+            <ng-template pTemplate="footer">
+                <button pButton type="button" label="Enter"></button>
+            </ng-template>
+        </p-card> -->
+
+        <p-card styleClass="shadow-2 card-content">
+            <div class="grid">
+                <div class="md:col-3 col-12">
+                    <h2><i class="pi pi-bars mr-2" style="font-size: 1.3rem"></i> All products</h2>
+                    <p-tieredMenu [model]="allProducts" styleClass="w-full"></p-tieredMenu>
+                </div>
+                <div class="md:col-9 col-12">
+                    <p-carousel [value]="offers">
+                        <ng-template let-offer pTemplate="item">
+                            <img src="{{offer.img}}" alt="img" />
+                        </ng-template>
+                    </p-carousel>
+                </div>
+            </div>
         </p-card>
 
     </div>

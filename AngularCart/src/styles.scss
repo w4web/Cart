@@ -1,1 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body {
+    font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+}
+
+p {
+    margin-top: 0;
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.logo {
+    span {
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+}
+
+.p-button.p-button-text.no-box {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.p-badge {
+	font-size: 0.60rem;
+	min-width: 1.3rem;
+	height: 1.3rem;
+	line-height: 1.3rem;
+}
+
+.p-overlay-badge .p-badge {
+    right: -3px !important;
+}
+
+.card-content {
+    .p-card-content {
+        padding: 0;
+    }
+}
