@@ -5,21 +5,13 @@
             <img src="./assets/images/banner.jpg" alt="img" />
         </div>
 
-        <!-- <p-card header="Header content here" styleClass="shadow-3">
-            <p>Promote your latest musicvideos, get your fans to boost your video up your local</p>
-            <p>music charts and receive donations and support for all your work!</p>
-            <ng-template pTemplate="footer">
-                <button pButton type="button" label="Enter"></button>
-            </ng-template>
-        </p-card> -->
-
-        <p-card styleClass="shadow-2 card-content">
+        <p-card styleClass="shadow-1 card-content mb-5">
             <div class="grid">
                 <div class="md:col-3 col-12">
                     <h2><i class="pi pi-bars mr-2" style="font-size: 1.3rem"></i> All products</h2>
                     <p-tieredMenu [model]="allProducts" styleClass="w-full"></p-tieredMenu>
                 </div>
-                <div class="md:col-9 col-12">
+                <div class="md:col-9 col-12 offer-carousel">
                     <p-carousel [value]="offers">
                         <ng-template let-offer pTemplate="item">
                             <img src="{{offer.img}}" alt="img" />
@@ -28,6 +20,45 @@
                 </div>
             </div>
         </p-card>
+
+        <div class="grid gutter-10 p-categories mb-5">
+            <div class="lg:col-20 md:col-6 col-12" *ngFor="let category of categories; let i = index">
+                <p-card styleClass="shadow-1 card-content">
+                    <img src="{{category.img}}" alt="img" />
+                    <div class="category-text">
+                        <h4>Sports</h4>
+                        <p>Get 10% Off Your Order</p>
+                    </div>
+                </p-card>
+            </div>
+        </div>
+
+        <h2>Best Selling Products</h2>
+
+        <div class="product-carousel">
+            <p-carousel [value]="products" [numVisible]="5" [numScroll]="1" [showIndicators]="false">
+                <ng-template let-product pTemplate="item">
+                    <div class="item-wrap">
+                        <p-card styleClass="shadow-1 product-card">
+                            <ng-template pTemplate="header">
+                                <img src="{{product.img}}" alt="img" />
+                            </ng-template>
+                            <h4>{{product.title}}</h4>
+                            <div class="price">
+                                <span>{{product.price}}</span>
+                                <span><del>{{product.originalPrice}}</del></span>
+                            </div>
+                            <div class="product-item-action">
+                                <button pButton pRipple type="button" icon="pi pi-shopping-cart" label="Add to cart" class="p-button-sm p-button-outlined p-button-secondary mr-2"></button>
+                                <button pButton pRipple type="button" icon="pi pi-heart" class="p-button-sm p-button-outlined p-button-secondary"></button>
+                            </div>
+                            
+                        </p-card>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+
 
     </div>
 </div>
