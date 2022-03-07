@@ -35,7 +35,7 @@
 
         <h2>Best Selling Products</h2>
 
-        <div class="product-carousel">
+        <div class="product-carousel mb-5">
             <p-carousel [value]="products" [numVisible]="5" [numScroll]="1" [showIndicators]="false">
                 <ng-template let-product pTemplate="item">
                     <div class="item-wrap">
@@ -49,11 +49,21 @@
                                 <span><del>{{product.originalPrice}}</del></span>
                             </div>
                             <div class="product-item-action">
-                                <button pButton pRipple type="button" icon="pi pi-shopping-cart" label="Add to cart" class="p-button-sm p-button-outlined p-button-secondary mr-2"></button>
-                                <button pButton pRipple type="button" icon="pi pi-heart" class="p-button-sm p-button-outlined p-button-secondary"></button>
+                                <button pButton pRipple type="button" icon="pi pi-shopping-cart" label="Add to cart" class="btn-cart p-button-outlined p-button-secondary"></button>
+                                <button pButton pRipple type="button" icon="pi pi-heart" class="btn-fav p-button-outlined p-button-secondary"></button>
                             </div>
                             
                         </p-card>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+
+        <div class="brand-carousel mb-5">
+            <p-carousel [value]="brands" [numVisible]="6" [numScroll]="1" [showIndicators]="false">
+                <ng-template let-brand pTemplate="item">
+                    <div class="item-wrap">
+                        <img src="{{brand.img}}" alt="img" />
                     </div>
                 </ng-template>
             </p-carousel>
