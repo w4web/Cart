@@ -8,6 +8,8 @@ const shopRoutes = require('./routes/shop-route');
 const adminRoutes = require('./routes/admin-route');
 const imageUpload = require('./util/image-upload');
 
+// Middlewares
+
 server.use(express.static(path.join(__dirname, 'public')));
 server.use(multer({ 
     storage: imageUpload.fileStorage, 
