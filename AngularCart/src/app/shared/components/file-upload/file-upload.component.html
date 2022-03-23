@@ -1,0 +1,15 @@
+<div class="card imgUpload-card">
+  <div class="card-body">
+    <button class="imgUploadBtn" [class.image-selected]="imgSelected" type="button" (click)="fileInput.click()">
+      <i class="fa fa-plus"></i>
+      <img [src]="imageSrc" alt="img" />
+      <input
+        #fileInput
+        style="display:none;"
+        type="file"
+        (change)="onFileChange($event)"
+      />
+    </button>
+    <button class="btn btn-primary" [disabled]="!imgSelected" (click)="onSubmit()">Upload</button>
+  </div>
+</div>

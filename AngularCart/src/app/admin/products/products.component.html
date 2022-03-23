@@ -1,16 +1,47 @@
-<p-table [columns]="cols" [value]="products" responsiveLayout="scroll">
-    <ng-template pTemplate="header" let-columns>
-        <tr>
-            <th *ngFor="let col of columns">
-                {{col.header}}
-            </th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr>
-            <td *ngFor="let col of columns">
-                {{rowData[col.field]}}
-            </td>
-        </tr>
-    </ng-template>
-</p-table>
+<button 
+    pButton pRipple 
+    icon="pi pi-plus" 
+    class="p-button-raised p-button-secondary p-button-text mb-4" 
+    routerLink="/admin/product/add"
+    label="add new">
+</button>
+
+<p-card styleClass="shadow-2 card-content">
+    <p-table [value]="products" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th style="width: 130px;"></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{product.name}}</td>
+                <td>
+                    <img [src]="product.image" alt="img" width="70" class="shadow-3 p-2" />
+                </td>
+                <td>{{product.description}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.category}}</td>
+                <td>
+                    <button 
+                        pButton pRipple 
+                        icon="pi pi-pencil" 
+                        class="p-button-raised p-button-warning p-button-text mr-2" 
+                        (click)="editProduct(product)">
+                    </button>
+                    <button 
+                        pButton pRipple 
+                        icon="pi pi-trash" 
+                        class="p-button-raised p-button-danger p-button-text" 
+                        (click)="deleteProduct(product)">
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>

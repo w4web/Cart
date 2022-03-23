@@ -10,23 +10,22 @@ export class ProductsComponent implements OnInit {
 
   products!: Product[];
 
-  cols!: any[];
-
   constructor( public productService: ProductService ) { }
 
   ngOnInit(): void {
 
-    this.productService.allProducts().subscribe((data: any) => {
-      this.products = data;
+    this.productService.allProducts().subscribe((res: any) => {
+      this.products = res['data'];
     });
 
-    this.cols = [
-      { field: 'code', header: 'Code' },
-      { field: 'name', header: 'Name' },
-      { field: 'category', header: 'Category' },
-      { field: 'quantity', header: 'Quantity' }
-    ];
+  }
 
+  editProduct(product: any) {
+
+  }
+
+  deleteProduct(product: any) {
+    
   }
 
 }

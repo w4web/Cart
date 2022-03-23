@@ -17,16 +17,18 @@ exports.getProducts = (req, res, next) => {
 
 exports.addProduct = (req, res, next) => {
 
-    const title = req.body.title;
-    const content = req.body.content;
-    const imageUrl = req.body.imageUrl;
+    const name = req.body.name;
+    const description = req.body.description;
+    const image = req.body.image;
     const price = req.body.price;
+    const category = req.body.category;
 
     const productModel = new ProductModel({
-        title: title,
-        content: content,
-        imageUrl: imageUrl,
-        price: price
+        name: name,
+        description: description,
+        image: image,
+        price: price,
+        category: category
     });
 
     productModel

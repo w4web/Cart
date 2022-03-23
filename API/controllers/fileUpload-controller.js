@@ -11,7 +11,7 @@ exports.uploadFile = (req, res, next) => {
     const imageUrl = req.file.path;
 
     const fileUploadModel = new FileUploadModel({
-        imageUrl: imageUrl
+        image: imageUrl
     });
 
     fileUploadModel

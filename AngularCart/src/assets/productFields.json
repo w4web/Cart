@@ -1,0 +1,62 @@
+[
+  {
+    "fieldGroupClassName": "grid gutter-10",
+    "fieldGroup": [
+      {
+        "key": "image",
+        "type": "input",
+        "className": "md:col-6 col-12",
+        "templateOptions": {
+          "label": "Image",
+          "required": true
+        }
+      },
+      {
+        "key": "name",
+        "type": "input",
+        "className": "md:col-6 col-12",
+        "templateOptions": {
+          "label": "Name",
+          "required": true
+        }
+      },
+      {
+        "key": "price",
+        "type": "input",
+        "className": "md:col-6 col-12",
+        "templateOptions": {
+          "label": "Price",
+          "required": true
+        }
+      },
+      {
+        "key": "category",
+        "type": "select",
+        "className": "md:col-6 col-12",
+        "templateOptions": {
+          "label": "Category",
+          "options": [
+            {
+              "label": "Shirt",
+              "value": "Shirt"
+            },
+            {
+              "label": "T-shirt",
+              "value": "T-shirt"
+            }
+          ],
+          "required": true
+        }
+      },
+      {
+        "key": "description",
+        "type": "textarea",
+        "className": "col-12",
+        "templateOptions": {
+          "label": "Description",
+          "required": true
+        }
+      }
+    ]
+  }
+]

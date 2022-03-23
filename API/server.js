@@ -10,6 +10,7 @@ const imageUpload = require('./util/image-upload');
 
 // Middlewares
 
+server.use(express.json());
 server.use(express.static(path.join(__dirname, 'public')));
 server.use(multer({ 
     storage: imageUpload.fileStorage, 

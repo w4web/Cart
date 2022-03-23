@@ -16,4 +16,14 @@ export class ProductService {
     return this.http.get<any>(`${this.apiUrl}/products`);
   }
 
+  create(data: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/product/add`, data, { observe: 'response' });
+  }
+
+  // Formly fileds
+
+  getProductFields(): any {
+    return this.http.get<any>('./assets/productFields.json');
+  }
+
 }
