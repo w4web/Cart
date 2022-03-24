@@ -3,24 +3,21 @@ const FileUploadModel = require('../models/fileUpload-model');
 exports.uploadFile = (req, res, next) => {
 
     if (!req.file) {
-        const error = new Error('No image provided.');
+        const error = new Error('No file provided.');
         error.statusCode = 422;
         throw error;
     }
 
-    const imageUrl = req.file.path;
+    const fileUrl = baseUrl+req.file.path;
 
     const fileUploadModel = new FileUploadModel({
-        image: imageUrl
+        file: fileUrl
     });
 
     fileUploadModel
     .save()
     .then(result => {
-        res.status(201).json({
-            message: "Your image is added successfully..",
-            data: fileUploadModel
-        })
+        res.status(201).json(fileUploadModel);
     })
     .catch(err => {
         console.log(err);

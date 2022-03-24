@@ -1,15 +1,41 @@
-<div class="card imgUpload-card">
-  <div class="card-body">
-    <button class="imgUploadBtn" [class.image-selected]="imgSelected" type="button" (click)="fileInput.click()">
-      <i class="fa fa-plus"></i>
-      <img [src]="imageSrc" alt="img" />
-      <input
-        #fileInput
-        style="display:none;"
-        type="file"
-        (change)="onFileChange($event)"
-      />
-    </button>
-    <button class="btn btn-primary" [disabled]="!imgSelected" (click)="onSubmit()">Upload</button>
+<div class="img-upload-wrap">
+
+  <div class="flex img-upload">
+    <div class="col-file">
+      <button 
+        class="imgUploadBtn" 
+        [class.image-selected]="imgSelected" 
+        type="button" 
+        (click)="fileInput.click()">
+    
+        <i class="pi pi-plus"></i>
+        <img [src]="imageSrc" alt="img" />
+        <input
+          #fileInput
+          style="display:none;"
+          type="file"
+          (change)="onFileChange($event)"
+        />
+    
+      </button>
+    </div>
+    <div class="col-btn">
+      <button 
+        pButton pRipple 
+        icon="pi pi-cloud-upload" 
+        class="p-button-raised p-button-secondary p-button-text mb-2" 
+        [disabled]="!imgSelected"
+        (click)="onSubmit()"
+        label="Upload">
+      </button>
+      <button 
+        pButton pRipple 
+        icon="pi pi-times" 
+        class="p-button-raised p-button-secondary p-button-text" 
+        (click)="onCancel()"
+        label="Cancel">
+      </button>
+    </div>
   </div>
+
 </div>
