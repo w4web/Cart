@@ -4,8 +4,6 @@
 
     <p-messages *ngIf="success" [(value)]="msgs"></p-messages>
 
-    <file-upload></file-upload>
-
     <form [formGroup]="form" (ngSubmit)="save()">
         <formly-form 
             [model]="model" 

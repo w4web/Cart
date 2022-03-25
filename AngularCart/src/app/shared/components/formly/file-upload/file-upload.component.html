@@ -7,8 +7,6 @@
         [class.image-selected]="imgSelected" 
         type="button" 
         (click)="fileInput.click()">
-    
-        <i class="pi pi-plus"></i>
         <img [src]="imageSrc" alt="img" />
         <input
           #fileInput
@@ -37,5 +35,9 @@
       </button>
     </div>
   </div>
+
+  <!-- Main input -->
+
+  <input type="text" [formControl]="formControl" [formlyAttributes]="field" />
 
 </div>

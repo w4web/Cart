@@ -6,6 +6,7 @@ import { ProductsComponent } from './products.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { FormlyModule } from '@ngx-formly/core';
 import { EmailValidator, fieldMatchValidator, minlengthValidationMessages } from 'src/app/shared/formly-custom.module';
+import { fileUploadComponent } from 'src/app/shared/components/formly/file-upload/file-upload.component';
 
 const routes: Routes = [
   { path: '', component: ProductsComponent },
@@ -14,13 +15,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ ProductsComponent, EditProductComponent ],
+  declarations: [ ProductsComponent, EditProductComponent, fileUploadComponent ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
     FormlyModule.forRoot({
       types: [
+        { name: 'file', component: fileUploadComponent }
         // { name: 'custom-input', component: CustomInputComponent, extends: 'input' }
       ],
       validators: [

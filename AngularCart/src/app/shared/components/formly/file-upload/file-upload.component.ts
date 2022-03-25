@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FieldType, FieldTypeConfig } from '@ngx-formly/core';
 
 @Component({
   selector: 'file-upload',
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.scss']
 })
-export class fileUploadComponent implements OnInit {
+export class fileUploadComponent extends FieldType<FieldTypeConfig> implements OnInit {
 
   imgSelected = false;
-  imageSrc = '../../../assets/images/avatar.png';
+  imageSrc = '../../../assets/images/upload.png';
   alert = false;
   file: any;
 
   constructor( protected http: HttpClient ) {
+    super();
   }
 
   ngOnInit(): void {}

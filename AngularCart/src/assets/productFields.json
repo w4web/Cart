@@ -4,7 +4,7 @@
     "fieldGroup": [
       {
         "key": "image",
-        "type": "input",
+        "type": "file",
         "className": "md:col-6 col-12",
         "templateOptions": {
           "label": "Image",

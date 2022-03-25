@@ -4,12 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormlyPrimeNGModule } from '@ngx-formly/primeng';
 import { PrimengLibModule } from './primeng-lib.module';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { fileUploadComponent } from './components/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
-    PageNotFoundComponent,
-    fileUploadComponent
+    PageNotFoundComponent
   ],
   imports: [
     FormsModule,
@@ -24,8 +22,7 @@ import { fileUploadComponent } from './components/file-upload/file-upload.compon
     FormlyPrimeNGModule,
     PrimengLibModule,
 
-    PageNotFoundComponent,
-    fileUploadComponent
+    PageNotFoundComponent
   ],
 })
 
