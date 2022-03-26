@@ -8,7 +8,7 @@ exports.uploadFile = (req, res, next) => {
         throw error;
     }
 
-    const fileUrl = baseUrl+req.file.path;
+    const fileUrl = req.file.path;
 
     const fileUploadModel = new FileUploadModel({
         file: fileUrl

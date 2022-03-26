@@ -1,5 +1,7 @@
 <div class="img-upload-wrap">
 
+  <label class="custom-label mb-3">{{to.label}}</label>
+
   <div class="flex img-upload">
     <div class="col-file">
       <button 
@@ -14,12 +16,12 @@
           type="file"
           (change)="onFileChange($event)"
         />
-    
       </button>
     </div>
     <div class="col-btn">
       <button 
         pButton pRipple 
+        type="button" 
         icon="pi pi-cloud-upload" 
         class="p-button-raised p-button-secondary p-button-text mb-2" 
         [disabled]="!imgSelected"
@@ -28,16 +30,29 @@
       </button>
       <button 
         pButton pRipple 
+        type="button" 
         icon="pi pi-times" 
         class="p-button-raised p-button-secondary p-button-text" 
         (click)="onCancel()"
         label="Cancel">
       </button>
+
+      <!-- patch -->
+
+      <button #toSetImg type="button" style="display: none;" (click)="toSet()"></button>
+
     </div>
   </div>
 
+  <p-message *ngIf="alert" [severity]="alertType" [text]="alertMessage"></p-message>
+
   <!-- Main input -->
 
-  <input type="text" [formControl]="formControl" [formlyAttributes]="field" />
+  <input 
+    pInputText
+    type="text" 
+    [value]="imageUrl" 
+    [formControl]="formControl" 
+    [formlyAttributes]="field" />
 
 </div>

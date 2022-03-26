@@ -7,8 +7,7 @@
         "type": "file",
         "className": "md:col-6 col-12",
         "templateOptions": {
-          "label": "Image",
-          "required": true
+          "label": "Upload product image.."
         }
       },
       {

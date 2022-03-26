@@ -36,9 +36,15 @@ export class EditProductComponent implements OnInit {
   }
 
   save() {
-    this.productService.create(this.model).subscribe((data) => {
-      this.router.navigate(['/admin/product']);
-    })
+    console.warn(this.model);
+    this.productService.create(this.model).subscribe({
+      next: (data) => {
+        this.router.navigate(['/admin/product']);
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    });
   }
 
 }
