@@ -16,4 +16,10 @@ import { FieldType, FieldTypeConfig } from '@ngx-formly/core';
   `,
 })
 
-export class CustomInputComponent extends FieldType<FieldTypeConfig> {}
+export class CustomInputComponent extends FieldType<FieldTypeConfig> {
+
+  constructor() {
+    super();
+  }
+
+}

@@ -14,7 +14,6 @@ export class fileUploadComponent extends FieldType<FieldTypeConfig> implements O
 
   imgSelected = false;
   imageSrc = '../../../assets/images/upload.png';
-  imageUrl = "";
 
   alert = false;
   alertType: any;
@@ -58,7 +57,7 @@ export class fileUploadComponent extends FieldType<FieldTypeConfig> implements O
     setTimeout(() => {
       this.alert = false;
       this.toSet();
-    }, 2000);
+    }, 3000);
   }
 
   onSubmit(): void {
@@ -67,7 +66,7 @@ export class fileUploadComponent extends FieldType<FieldTypeConfig> implements O
 
     this.http.post<any>(`${this.apiUrl}/uploadFile`, formData).subscribe(res => {
       this.imageSrc = this.apiUrl+'/'+res.file;
-      this.imageUrl = res.file;
+      this.formControl.setValue(res.file);
       this._alert('success', 'Image uploaded successfully..');
       this.imgSelected = false;
     });

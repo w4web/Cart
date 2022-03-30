@@ -12,7 +12,7 @@
         <img [src]="imageSrc" alt="img" />
         <input
           #fileInput
-          style="display:none;"
+          class="hidden"
           type="file"
           (change)="onFileChange($event)"
         />
@@ -39,19 +39,19 @@
 
       <!-- patch -->
 
-      <button #toSetImg type="button" style="display: none;" (click)="toSet()"></button>
+      <button #toSetImg type="button" class="hidden" (click)="toSet()"></button>
 
     </div>
   </div>
 
-  <p-message *ngIf="alert" [severity]="alertType" [text]="alertMessage"></p-message>
+  <p-message *ngIf="alert" [severity]="alertType" styleClass="mt-3" [text]="alertMessage"></p-message>
 
   <!-- Main input -->
 
   <input 
     pInputText
     type="text" 
-    [value]="imageUrl" 
+    class="hidden"
     [formControl]="formControl" 
     [formlyAttributes]="field" />
 

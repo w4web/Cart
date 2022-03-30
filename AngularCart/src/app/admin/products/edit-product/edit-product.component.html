@@ -15,8 +15,18 @@
             <button 
                 pButton 
                 type="submit" 
-                class="p-button-secondary" 
-                [disabled]="!form.valid">Save
+                icon="pi pi-plus" 
+                class="p-button-secondary mr-2" 
+                [disabled]="!form.valid"
+                label="Save">
+            </button>
+            <button 
+                pButton 
+                type="button" 
+                icon="pi pi-angle-left" 
+                routerLink="/admin/product"
+                class="p-button-secondary"
+                label="Back">
             </button>
         </div>
     </form>
