@@ -32,7 +32,7 @@
                         pButton pRipple 
                         icon="pi pi-pencil" 
                         class="p-button-raised p-button-warning p-button-text mr-2" 
-                        (click)="editProduct(product)">
+                        [routerLink]="['/admin/product/edit', product._id]">
                     </button>
                     <button 
                         pButton pRipple 

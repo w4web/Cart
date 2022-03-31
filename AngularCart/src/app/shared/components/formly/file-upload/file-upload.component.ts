@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FieldType, FieldTypeConfig } from '@ngx-formly/core';
 import { environment } from 'src/environments/environment';
@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.scss']
 })
-export class fileUploadComponent extends FieldType<FieldTypeConfig> implements OnInit {
+export class fileUploadComponent extends FieldType<FieldTypeConfig> implements OnInit, AfterViewInit {
 
   private apiUrl = environment.baseUrl;
 
@@ -28,6 +28,21 @@ export class fileUploadComponent extends FieldType<FieldTypeConfig> implements O
   }
 
   ngOnInit(): void {}
+
+  ngAfterViewInit(): void {
+
+    this.checkToLoad();
+
+  }
+
+  checkToLoad () {
+    setTimeout(() => {
+      if( this.form && this.form.get('image')?.value ) {
+        this.imageSrc = this.form.get('image')?.value;
+        this.toSet();
+      }
+    }, 1000);
+  }
 
   onFileChange(event: any): void {
     const reader = new FileReader();
@@ -66,7 +81,7 @@ export class fileUploadComponent extends FieldType<FieldTypeConfig> implements O
 
     this.http.post<any>(`${this.apiUrl}/uploadFile`, formData).subscribe(res => {
       this.imageSrc = this.apiUrl+'/'+res.file;
-      this.formControl.setValue(res.file);
+      this.formControl.setValue(this.apiUrl+'/'+res.file);
       this._alert('success', 'Image uploaded successfully..');
       this.imgSelected = false;
     });
@@ -74,6 +89,7 @@ export class fileUploadComponent extends FieldType<FieldTypeConfig> implements O
 
   onCancel(): void {
     this.imageSrc = '../../../assets/images/upload.png';
+    this.formControl.setValue('');
     this.imgSelected = false;
   }
 

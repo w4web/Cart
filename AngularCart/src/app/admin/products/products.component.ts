@@ -13,19 +13,27 @@ export class ProductsComponent implements OnInit {
   constructor( public productService: ProductService ) { }
 
   ngOnInit(): void {
-
-    this.productService.allProducts().subscribe((res: any) => {
-      this.products = res['data'];
-    });
-
+    this.load();
   }
 
-  editProduct(product: any) {
-
+  load() {
+    this.productService.allProducts().subscribe((res: any) => {
+      this.products = res['data'];
+      console.log(this.products);
+    });
   }
 
   deleteProduct(product: any) {
-    
+    if (confirm("Are you sure to delete " + product.name)) {
+      this.productService.delete(product._id).subscribe({
+        next: (data) => {
+          this.load();
+        },
+        error: (err: any) => {
+          console.log(err);
+        }
+      });
+    }
   }
 
 }
