@@ -6,6 +6,7 @@ const multer = require('multer');
 const fileUpload = require('./util/file-upload');
 const connectionString = "mongodb+srv://manish:2VqFMEw4xxshrT8F@cluster0.80yfn.mongodb.net/MyCart?retryWrites=true&w=majority"
 const shopRoutes = require('./routes/shop-route');
+const userRoutes = require('./routes/user-route');
 const adminRoutes = require('./routes/admin-route');
 const fileUploadController = require('./controllers/fileUpload-controller');
 const myFile = multer({ storage: fileUpload.fileStorage }).single('file');
@@ -23,6 +24,7 @@ server.post('/uploadFile', myFile, fileUploadController.uploadFile);
 
 server.use('/admin', adminRoutes);
 server.use(shopRoutes);
+server.use(userRoutes);
 
 // Connection
 
