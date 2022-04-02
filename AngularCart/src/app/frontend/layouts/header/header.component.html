@@ -7,7 +7,8 @@
                 </div>
             </div>
             <div class="md:col-6 col-12 flex align-items-center justify-content-end">
-                <button type="button" pButton icon="pi pi-user" label="Account" class="p-button-secondary p-button-text no-box" (click)="menu.toggle($event)"></button>
+                <button routerLink="/user" type="button" pButton icon="pi pi-user" label="Login now!" class="p-button-secondary p-button-text no-box"></button>
+                <button (click)="menu.toggle($event)" type="button" pButton icon="pi pi-user" label="Account" class="p-button-secondary p-button-text no-box"></button>
                 <p-menu #menu [popup]="true" [model]="accountItems"></p-menu>
                 <i class="pi pi-heart mr-4 p-text-secondary" pBadge style="font-size: 1.5rem" value="2"></i>
                 <i class="pi pi-shopping-cart mr-4 p-text-secondary" pBadge style="font-size: 1.5rem" value="2" severity="danger"></i>

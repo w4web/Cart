@@ -27,16 +27,16 @@ export class UserService {
 
   // API Calls
 
-  login(data: any): Observable<{}> {
-    return this.http.post(this.apiUrl + 'login', data);
+  login(data: any): Observable<any> {
+    return this.http.post(this.apiUrl + '/login', data);
   }
 
-  register(data: any): Observable<{}> {
-    return this.http.post(this.apiUrl + '/api/auth/register', data);
+  register(data: any): Observable<any> {
+    return this.http.post(this.apiUrl + '/register', data);
   }
 
-  activate(key: string): Observable<{}> {
-    return this.http.get(this.apiUrl + 'activate', {
+  activate(key: string): Observable<any> {
+    return this.http.get(this.apiUrl + '/activate', {
       params: new HttpParams().set('key', key),
     });
   }
@@ -47,16 +47,16 @@ export class UserService {
     return this.http.get<any>('./assets/passwordReset.json');
   }
 
-  resetByEmail(mail: string): Observable<{}> {
-    return this.http.post(this.apiUrl + 'account/reset-password/init', mail);
+  resetByEmail(mail: string): Observable<any> {
+    return this.http.post(this.apiUrl + '/reset-password-init', mail);
   }
 
   resetPasswordFields(): any {
     return this.http.get<any>('./assets/passwordResetFinish.json');
   }
 
-  resetPassword(key: string, newPassword: string): Observable<{}> {
-    return this.http.post(this.apiUrl + 'account/reset-password/finish', { key, newPassword });
+  resetPassword(key: string, newPassword: string): Observable<any> {
+    return this.http.post(this.apiUrl + '/reset-password-finish', { key, newPassword });
   }
 
 }

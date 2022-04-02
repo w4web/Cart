@@ -2,19 +2,16 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
 import { UserService } from '../user.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['../user.component.scss']
+  styleUrls: ['../user.component.scss'],
+  providers: [ MessageService ]
 })
 
 export class RegisterComponent implements OnInit {
-
-  success = false;
-  error = false;
-  errorEmailExists = false;
-  msgs: any = [{severity:'success', summary:'Product saved!', detail:'Your Product is saved!'}];
 
   form = new FormGroup({});
   model: any = {};
@@ -23,7 +20,7 @@ export class RegisterComponent implements OnInit {
 
   @ViewChild('reset', { static: false }) reset?: ElementRef<HTMLElement>;
 
-  constructor( public userService: UserService ) {
+  constructor( public userService: UserService, private messageService: MessageService ) {
     this.userService.getRegisterFields().subscribe((fields: any) => {
       this.form = new FormGroup({});
       this.fields = fields;
@@ -33,17 +30,14 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {}
 
   submit() {
-    this.error = false;
-    this.errorEmailExists = false;
-    this.success = false;
 
     this.userService.register( this.model ).subscribe({
       next: (data) => {
-        this.success = true;
+        this.messageService.add({severity:'success', summary:'User registered!', detail:'User registered successfully!'});
         this.resetFields();
       },
       error: (err: any) => {
-        this.error = true
+        this.errorHandle(err);
       }
     });
   }
@@ -53,6 +47,24 @@ export class RegisterComponent implements OnInit {
       const el: HTMLElement = this.reset.nativeElement;
       el.click();
     }
+  }
+
+  errorHandle (err:any) {
+
+    if ( err.status === 409 ) {
+
+      this.messageService.add({
+        severity: 'error', 
+        summary: err.error.type, 
+        detail: err.error.message
+      });
+
+    } else {
+
+      this.messageService.add({severity: 'error', summary: 'Error', detail: 'Something went wrong!'});
+
+    }
+
   }
 
 }

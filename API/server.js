@@ -23,8 +23,8 @@ server.use('/public', express.static('public'));
 server.post('/uploadFile', myFile, fileUploadController.uploadFile);
 
 server.use('/admin', adminRoutes);
+server.use('/user', userRoutes);
 server.use(shopRoutes);
-server.use(userRoutes);
 
 // Connection
 
