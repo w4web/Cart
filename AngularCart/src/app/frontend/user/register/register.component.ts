@@ -67,4 +67,8 @@ export class RegisterComponent implements OnInit {
 
   }
 
+  msg() {
+    
+  }
+
 }
