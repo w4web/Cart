@@ -5,12 +5,14 @@ const UserModel = require('../models/user-model');
 
 exports.register = (req, res, next) => {
 
-    const { username, password } = req.body;
+    const { firstName, lastName, email, password } = req.body;
 
     bcrypt.hash(password, 10).then( hashPassword => {
 
         const userModel = new UserModel({
-            username: username,
+            firstName,
+            lastName,
+            email,
             password: hashPassword,
         });
     
@@ -24,7 +26,7 @@ exports.register = (req, res, next) => {
         })
         .catch(err => {
             if (err.code === 11000) {
-                res.status(409).json({ type: 'error', message: 'Username already in use' });
+                res.status(409).json({ type: 'error', message: 'Email already in use' });
             }
             if (!err.statusCode) {
                 err.statusCode = 500;
@@ -41,13 +43,13 @@ exports.register = (req, res, next) => {
 
 exports.login = (req, res, next) => {
 
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
-    UserModel.findOne({ username })
+    UserModel.findOne({ email })
     .then(user => {
 
       if (!user) {
-        res.status(403).json({ type: 'error', message: 'Invalid username/password' });
+        res.status(403).json({ type: 'error', message: 'Invalid email/password' });
       }
 
       bcrypt
@@ -55,18 +57,18 @@ exports.login = (req, res, next) => {
         .then(doMatch => {
 
           if (doMatch) {
-            const token = jwt.sign({id: user._id, username: user.username}, process.env.JWT_SECRET);
+            const token = jwt.sign({id: user._id, email: user.email}, process.env.JWT_SECRET);
             res.status(201).json({
                 message: "logged in..",
                 data: {
                     id: user._id, 
-                    username: user.username,
+                    email: user.email,
                     token: token
                 }
             })
           }
 
-          res.status(403).json({ type: 'error', message: 'Invalid username/password' });
+          res.status(403).json({ type: 'error', message: 'Invalid email/password' });
 
         })
         .catch(err => {

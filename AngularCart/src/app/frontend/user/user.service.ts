@@ -27,11 +27,11 @@ export class UserService {
 
   // API Calls
 
-  signIn(data: any): Observable<{}> {
+  login(data: any): Observable<{}> {
     return this.http.post(this.apiUrl + 'login', data);
   }
 
-  signUp(data: any): Observable<{}> {
+  register(data: any): Observable<{}> {
     return this.http.post(this.apiUrl + '/api/auth/register', data);
   }
 

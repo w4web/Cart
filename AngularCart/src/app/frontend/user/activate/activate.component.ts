@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-activate',
   templateUrl: './activate.component.html',
-  styleUrls: ['./activate.component.scss']
+  styleUrls: ['../user.component.scss']
 })
 export class ActivateComponent implements OnInit {
 
