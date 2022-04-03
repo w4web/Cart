@@ -35,7 +35,7 @@ export class ProductService {
   // Formly fileds
 
   getProductFields(): any {
-    return this.http.get<any>('./assets/productFields.json');
+    return this.http.get<any>('./assets/formFields/product.json');
   }
 
 }

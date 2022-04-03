@@ -7,6 +7,7 @@ import { SharedModule } from './shared/shared.module';
 import { FormlyModule } from '@ngx-formly/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
+import { MessageService } from 'primeng/api';
 
 const routes: Routes = [
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
@@ -26,7 +27,7 @@ const routes: Routes = [
     FormlyModule.forRoot(),
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

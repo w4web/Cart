@@ -14,22 +14,18 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   getLoginFields(): any {
-    return this.http.get<any>('./assets/loginFormFields.json');
+    return this.http.get<any>('./assets/formFields/login.json');
   }
 
   getRegisterFields(): any {
-    return this.http.get<any>('./assets/registerFormFields.json');
+    return this.http.get<any>('./assets/formFields/register.json');
   }
 
   editUserFields(): any {
-    return this.http.get<any>('./assets/editUserFields.json');
+    return this.http.get<any>('./assets/formFields/editUser.json');
   }
 
   // API Calls
-
-  login(data: any): Observable<any> {
-    return this.http.post(this.apiUrl + '/login', data);
-  }
 
   register(data: any): Observable<any> {
     return this.http.post(this.apiUrl + '/register', data);
@@ -44,7 +40,7 @@ export class UserService {
   // Password reset
 
   resetEmailField(): any {
-    return this.http.get<any>('./assets/passwordReset.json');
+    return this.http.get<any>('./assets/formFields/passwordReset.json');
   }
 
   resetByEmail(mail: string): Observable<any> {
@@ -52,7 +48,7 @@ export class UserService {
   }
 
   resetPasswordFields(): any {
-    return this.http.get<any>('./assets/passwordResetFinish.json');
+    return this.http.get<any>('./assets/formFields/passwordResetFinish.json');
   }
 
   resetPassword(key: string, newPassword: string): Observable<any> {

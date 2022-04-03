@@ -1,14 +1,13 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
+import { MsgService } from 'src/app/shared/services/msg.service';
 import { UserService } from '../user.service';
-import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['../user.component.scss'],
-  providers: [ MessageService ]
+  styleUrls: ['../user.component.scss']
 })
 
 export class RegisterComponent implements OnInit {
@@ -20,7 +19,7 @@ export class RegisterComponent implements OnInit {
 
   @ViewChild('reset', { static: false }) reset?: ElementRef<HTMLElement>;
 
-  constructor( public userService: UserService, private messageService: MessageService ) {
+  constructor( public userService: UserService, public msgService: MsgService ) {
     this.userService.getRegisterFields().subscribe((fields: any) => {
       this.form = new FormGroup({});
       this.fields = fields;
@@ -33,11 +32,11 @@ export class RegisterComponent implements OnInit {
 
     this.userService.register( this.model ).subscribe({
       next: (data) => {
-        this.msg('success', 'User registered!', 'User registered successfully!');
+        this.msgService.msg('success', 'User registered!', 'User registered successfully!');
         this.resetFields();
       },
       error: (err: any) => {
-        this.errorHandle(err);
+        this.msgService.errorHandle(err);
       }
     });
   }
@@ -47,32 +46,6 @@ export class RegisterComponent implements OnInit {
       const el: HTMLElement = this.reset.nativeElement;
       el.click();
     }
-  }
-
-  errorHandle (err:any) {
-
-    if ( err.status === 409 ) {
-
-      this.msg('error', err.error.summary, err.error.detail, 5000);
-
-    } else {
-
-      this.msg('error', 'Error', 'Something went wrong!');
-
-    }
-
-  }
-
-  msg( severity: any, summary: any, detail: any, life?:any ) {
-
-    this.messageService.add({severity, summary, detail});
-
-    if ( life ) {
-      setTimeout(() => {
-        this.messageService.clear();
-      }, life);
-    }
-
   }
 
 }

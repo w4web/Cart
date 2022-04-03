@@ -1,0 +1,28 @@
+[
+  {
+    "fieldGroupClassName": "grid gutter-10",
+    "fieldGroup": [
+      {
+        "key": "email",
+        "type": "input",
+        "className": "col-12",
+        "templateOptions": {
+          "type": "email",
+          "label": "Email",
+          "required": true,
+          "maxLength": 100
+        }
+      },
+      {
+        "key": "password",
+        "type": "input",
+        "className": "col-12",
+        "templateOptions": {
+          "type": "password",
+          "label": "Password",
+          "required": true
+        }
+      }
+    ]
+  }
+]

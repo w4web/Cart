@@ -66,9 +66,9 @@ exports.login = (req, res, next) => {
                     token: token
                 }
             })
+          } else {
+            res.status(403).json({ summary: 'Invalid email/password', detail: 'Your entered email/password is Invalid' });
           }
-
-          res.status(403).json({ summary: 'Invalid email/password', detail: 'Your entered email/password is Invalid' });
 
         })
         .catch(err => {
