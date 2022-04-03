@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
 
     this.userService.register( this.model ).subscribe({
       next: (data) => {
-        this.messageService.add({severity:'success', summary:'User registered!', detail:'User registered successfully!'});
+        this.msg('success', 'User registered!', 'User registered successfully!');
         this.resetFields();
       },
       error: (err: any) => {
@@ -53,22 +53,26 @@ export class RegisterComponent implements OnInit {
 
     if ( err.status === 409 ) {
 
-      this.messageService.add({
-        severity: 'error', 
-        summary: err.error.type, 
-        detail: err.error.message
-      });
+      this.msg('error', err.error.summary, err.error.detail, 5000);
 
     } else {
 
-      this.messageService.add({severity: 'error', summary: 'Error', detail: 'Something went wrong!'});
+      this.msg('error', 'Error', 'Something went wrong!');
 
     }
 
   }
 
-  msg() {
-    
+  msg( severity: any, summary: any, detail: any, life?:any ) {
+
+    this.messageService.add({severity, summary, detail});
+
+    if ( life ) {
+      setTimeout(() => {
+        this.messageService.clear();
+      }, life);
+    }
+
   }
 
 }

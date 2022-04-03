@@ -26,7 +26,7 @@ exports.register = (req, res, next) => {
         })
         .catch(err => {
             if (err.code === 11000) {
-                res.status(409).json({ type: 'error', message: 'Email already in use' });
+                res.status(409).json({ summary: 'Email already in use', detail: 'Your entered email is already in use!' });
             }
             if (!err.statusCode) {
                 err.statusCode = 500;
@@ -49,7 +49,7 @@ exports.login = (req, res, next) => {
     .then(user => {
 
       if (!user) {
-        res.status(403).json({ type: 'error', message: 'Invalid email/password' });
+        res.status(403).json({ summary: 'Invalid email/password', detail: 'Your entered email/password is Invalid' });
       }
 
       bcrypt
@@ -68,7 +68,7 @@ exports.login = (req, res, next) => {
             })
           }
 
-          res.status(403).json({ type: 'error', message: 'Invalid email/password' });
+          res.status(403).json({ summary: 'Invalid email/password', detail: 'Your entered email/password is Invalid' });
 
         })
         .catch(err => {
