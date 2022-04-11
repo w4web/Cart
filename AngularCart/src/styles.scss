@@ -6,6 +6,7 @@ html,
 body {
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
+    line-height: 1.4;
     margin: 0;
 }
 
@@ -35,6 +36,12 @@ img {
     max-width: 100%;
 }
 
+.ls-none {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
 .main-content {
     background-color: #f3f4f8;
     padding: 30px 0;
@@ -44,6 +51,14 @@ img {
     max-width: 1330px;
     margin: 0 auto;
     padding: 0 15px;
+}
+
+header {
+    > .container {
+        > .grid {
+            margin-top: 0;
+        }
+    }
 }
 
 .logo {
@@ -83,6 +98,15 @@ img {
     > .col,
     > [class*="col"] {
         padding: 0 10px;
+        margin-bottom: 20px;
+    }
+}
+
+.grid.gutter-15 {
+    margin: 0 -15px;
+    > .col,
+    > [class*="col"] {
+        padding: 0 15px;
         margin-bottom: 20px;
     }
 }
@@ -169,7 +193,7 @@ img {
     .p-card-content {
         h4 {
             font-weight: 500;
-            margin-bottom: 10px;
+            margin-bottom: 7px;
         }
         .price {
             font-size: 16px;
@@ -226,13 +250,79 @@ img {
     }
 }
 
+// ******** Footer ***
 
+.footer-top {
+	padding: 50px 0 25px 0;
+    h3 {
+        font-size: 18px;
+        font-weight: 400;
+    }
+}
 
+.footer-logo {
+    h2 {
+        font-size: 28px;
+        font-weight: 400;
+        margin-bottom: 15px;
+    }
+}
 
+.payment-cards {
+	display: flex;
+	margin: 0 -5px;
+	flex-wrap: wrap;
+    li {
+        width: 20%;
+        padding: 0 5px;
+        margin-bottom: 10px;
+        font-size: 36px;
+        line-height: 1;
+        a {
+            color: #888 !important;
+        }
+    }
+}
 
+.contact-info {
+    li {
+        margin-bottom: 10px;
+        a {
+            text-decoration: none;
+            color: #333 !important;
+        }
+    }
+}
 
+.footer-bottom {
+    .container {
+        padding-top: 20px;
+        border-top: 1px solid rgba(0,0,0,0.07);
+    }
+}
 
+.social-links {
+	display: flex;
+	flex-wrap: wrap;
+    li {
+        margin-right: 10px;
+        margin-bottom: 10px;
+        a {
+            font-size: 18px;
+            line-height: 30px;
+            color: #969595 !important;
+            display: block;
+            height: 30px;
+            width: 30px;
+            text-align: center;
+        }
+    }
+}
 
+.copyright {
+    text-align: right;
+    color: #969595;
+}
 
 
 // Responsive
