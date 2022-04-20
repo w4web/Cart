@@ -32,27 +32,22 @@ export class LoginComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-    this.logout();
-  }
+  ngOnInit() {}
 
   login() {
 
     this.authService.login(this.model)
       .subscribe({
         next: (res) => {
-          this.setSession(res.data);
-          this.router.navigateByUrl('/');
+          if (res.token !== '') {
+            this.authService.setUser(res);
+            this.router.navigateByUrl('/');
+          }
         },
         error: (err: any) => {
           this.msgService.errorHandle(err);
         }
       });
-  }
-
-  private setSession(authResult: any) {
-    localStorage.setItem('email', authResult.email);
-    localStorage.setItem('token', authResult.token);
   }
 
   logout() {

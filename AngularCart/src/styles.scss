@@ -53,7 +53,9 @@ img {
     padding: 0 15px;
 }
 
-header {
+/* Header ************/
+
+.header-top {
     > .container {
         > .grid {
             margin-top: 0;
@@ -69,6 +71,50 @@ header {
         letter-spacing: 1px;
     }
 }
+
+.header-nav {
+    border-top: 1px solid #e1e1e1;
+    .p-menubar {
+        padding: 0;
+        background: none;
+        border: none;
+        .p-menubar-root-list {
+            > .p-menuitem {
+                margin-left: 25px;
+                &:first-child {
+                    margin-left: 0;
+                }
+                > .p-menuitem-link {
+                    font-size: 14px;
+                    padding: 18px 0;
+                    .p-menuitem-text {
+                        color: #333;
+                    }
+                    &:hover {
+                        background: none !important;
+                        box-shadow: none;
+                        .p-menuitem-text {
+                            color: #959af1;
+                        }
+                    }
+                    &:focus {
+                        background: none !important;
+                        box-shadow: none;
+                    }
+                }
+            }
+            > .p-menuitem.p-menuitem-active {
+                > .p-menuitem-link, > .p-menuitem-link:not(.p-disabled):hover {
+                    background: none !important;
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+}
+
+/* Header end ************/
+
 
 .p-button.p-button-text.no-box {
     border: none !important;

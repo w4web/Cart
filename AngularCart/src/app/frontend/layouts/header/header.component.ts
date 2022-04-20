@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,21 +10,31 @@ import { MenuItem } from 'primeng/api';
 export class HeaderComponent implements OnInit {
 
   items!: MenuItem[];
-
   accountItems!: MenuItem[];
+  isAuthenticated: boolean = false;
+  user: any;
+
+  constructor(public authService: AuthService) {
+    this.authService.user$.subscribe(user => {
+      this.isAuthenticated = user ? true : false;
+      this.user = user;
+    });
+  }
 
   ngOnInit(): void {
 
     this.accountItems = [
       {
-        label: 'Angular',
-        icon: 'pi pi-external-link',
-        url: 'http://angular.io'
+        label: 'Account',
+        icon: 'pi pi-user',
+        routerLink: '/'
       },
       {
-        label: 'Router',
-        icon: 'pi pi-upload',
-        routerLink: '/fileupload'
+        label: 'Logout',
+        icon: 'pi pi-sign-out',
+        command: (event) => {
+          this.authService.logout();
+        }
       }
     ];
 

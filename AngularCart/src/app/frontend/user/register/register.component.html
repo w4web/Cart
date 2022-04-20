@@ -10,7 +10,7 @@
 
                 <p-messages></p-messages>
 
-                <p-card styleClass="shadow-1 card-content card-form">
+                <p-card styleClass="shadow-1 card-content card-form mb-3">
 
                     <form [formGroup]="form" (ngSubmit)="submit()">
                         <formly-form 
@@ -30,11 +30,20 @@
                                 [disabled]="!form.valid"
                                 label="Register">
                             </button>
+                            <button 
+                                pButton 
+                                type="button" 
+                                routerLink="/"
+                                class="p-button-secondary"
+                                label="Back">
+                            </button>
                             <button #reset hidden type="reset">reset</button>
                         </div>
                     </form>
 
                 </p-card>
+
+                <p class="text-center">Already have account? <a routerLink="/user/login">Login now!</a></p>
 
             </div>
 

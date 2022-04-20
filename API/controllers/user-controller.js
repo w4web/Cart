@@ -59,12 +59,10 @@ exports.login = (req, res, next) => {
           if (doMatch) {
             const token = jwt.sign({id: user._id, email: user.email}, process.env.JWT_SECRET);
             res.status(201).json({
-                message: "logged in..",
-                data: {
-                    id: user._id, 
-                    email: user.email,
-                    token: token
-                }
+                id: user._id, 
+                firstName: user.firstName,
+                email: user.email,
+                token: token
             })
           } else {
             res.status(403).json({ summary: 'Invalid email/password', detail: 'Your entered email/password is Invalid' });
