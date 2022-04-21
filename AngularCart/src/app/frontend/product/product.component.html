@@ -1,0 +1,26 @@
+<div class="inner-page product-page">
+    <div class="container">
+
+        <h2 class="text-center">use:- <a href="https://www.primefaces.org/primeng/dataview">https://www.primefaces.org/primeng/dataview</a></h2>
+
+        <div class="grid gutter-10 p-products mb-5">
+            <div class="lg:col-20 md:col-6 col-12" *ngFor="let product of products; let i = index">
+                <p-card styleClass="shadow-1 product-card">
+                    <ng-template pTemplate="header">
+                        <img src="{{product.img}}" alt="img" />
+                    </ng-template>
+                    <h4>{{product.title}}</h4>
+                    <div class="price">
+                        <span>{{product.price}}</span>
+                        <span><del>{{product.originalPrice}}</del></span>
+                    </div>
+                    <div class="product-item-action">
+                        <button pButton pRipple type="button" icon="pi pi-shopping-cart" label="Add to cart" class="btn-cart p-button-outlined p-button-secondary"></button>
+                        <button pButton pRipple type="button" icon="pi pi-heart" class="btn-fav p-button-outlined p-button-secondary"></button>
+                    </div>
+                </p-card>
+            </div>
+        </div>
+
+    </div>
+</div>
