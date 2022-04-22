@@ -370,6 +370,26 @@ img {
     color: #969595;
 }
 
+// ******** Product page ***
+
+.p-dataview {
+    .p-dataview-header {
+        margin-bottom: 20px;
+    }
+    .p-dataview-content {
+        margin-bottom: 10px;
+        background: none;
+        .grid-nogutter {
+            margin-right: -10px;
+            margin-left: -10px;
+        }
+        .grid-nogutter > .col, .grid-nogutter > [class*="col-"] {
+            padding: 0 10px;
+            margin-bottom: 20px;
+        }
+    }
+}
+
 
 // Responsive
 

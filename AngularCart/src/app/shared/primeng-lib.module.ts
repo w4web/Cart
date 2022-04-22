@@ -21,6 +21,7 @@ import { TieredMenuModule } from 'primeng/tieredmenu';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { CarouselModule } from 'primeng/carousel';
 import { TableModule } from 'primeng/table';
+import { DataViewModule } from 'primeng/dataview';
 
 @NgModule({
   exports: [
@@ -42,7 +43,8 @@ import { TableModule } from 'primeng/table';
     PanelMenuModule,
     BadgeModule,
     CarouselModule,
-    TableModule
+    TableModule,
+    DataViewModule
   ]
 })
 export class PrimengLibModule { }
