@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from './product.service';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html'
 })
 export class ProductComponent implements OnInit {
+
+  breadcrumbItems!: MenuItem[];
+  breadcrumbHome!: MenuItem;
 
   products: any = [
     {
@@ -88,7 +93,7 @@ export class ProductComponent implements OnInit {
   sortOrder!: number;
   sortField!: string;
 
-  constructor() { }
+  constructor( public productService: ProductService ) { }
 
   ngOnInit(): void {
 
@@ -96,6 +101,13 @@ export class ProductComponent implements OnInit {
       {label: 'Price High to Low', value: '!price'},
       {label: 'Price Low to High', value: 'price'}
     ];
+
+    this.breadcrumbItems = [
+      {label: 'Products'},
+      {label: 'All'}
+    ];
+
+    this.breadcrumbHome = {icon: 'pi pi-home', routerLink: '/'};
 
   }
 
