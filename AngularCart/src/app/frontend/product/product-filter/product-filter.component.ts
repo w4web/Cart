@@ -8,6 +8,8 @@ import { ProductService } from '../product.service';
 
 export class ProductFilterComponent implements OnInit {
 
+  rangeValues: number[] = [20,80];
+
   constructor( public productService: ProductService ) { }
 
   ngOnInit(): void {

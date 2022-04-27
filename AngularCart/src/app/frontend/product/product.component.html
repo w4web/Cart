@@ -21,7 +21,9 @@
                 <div class="lg:col-20 md:col-6 col-12">
                     <p-card styleClass="shadow-1 product-card">
                         <ng-template pTemplate="header">
-                            <img src="{{product.img}}" alt="img" />
+                            <a routerLink="/products/detail/1">
+                                <img src="{{product.img}}" alt="img" />
+                            </a>
                         </ng-template>
                         <h4>{{product.title}}</h4>
                         <div class="price">

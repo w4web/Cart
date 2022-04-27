@@ -1,1 +1,109 @@
-<p>product-detail works!</p>
+<div class="inner-page product-detail">
+    <div class="container">
+
+        <p-breadcrumb styleClass="mb-5" [model]="breadcrumbItems" [home]="breadcrumbHome"></p-breadcrumb>
+
+        <div class="grid gutter-10 p-categories mb-4">
+            <div class="md:col-9 col-12">
+                <p-card styleClass="shadow-1 card-content">
+
+                    <!-- ngx-image-zoom -->
+
+                    <div class="grid gutter-10">
+                        <div class="md:col-6 col-12">
+                            <div class="img-full mb-4">
+                                <img src="./assets/images/product2.jpg" alt="img" />
+                            </div>
+                            <div class="img-thumbs">
+                                <p-carousel [value]="productImgThumbs" [numVisible]="4" [numScroll]="1" [showIndicators]="false">
+                                    <ng-template let-Thumb pTemplate="item">
+                                        <div class="item-wrap">
+                                            <img src="{{Thumb.img}}" alt="img" />
+                                        </div>
+                                    </ng-template>
+                                </p-carousel>
+                            </div>
+                        </div>
+                        <div class="md:col-6 col-12">
+                            <h2>High Rise Shorts</h2>
+                            <div class="price mb-4">
+                                <span>$55.00</span>
+                                <span><del>$65.00</del></span>
+                            </div>
+                            <div class="detail-controls mb-4">
+                                <p-inputNumber 
+                                    [(ngModel)]="quantity" 
+                                    [showButtons]="true" 
+                                    buttonLayout="horizontal" 
+                                    spinnerMode="horizontal" 
+                                    [step]="1"
+                                    decrementButtonClass="p-button-raised p-button-secondary p-button-text" 
+                                    incrementButtonClass="p-button-raised p-button-secondary p-button-text"
+                                    incrementButtonIcon="pi pi-plus" 
+                                    decrementButtonIcon="pi pi-minus">
+                                </p-inputNumber>
+                                <button 
+                                    pButton 
+                                    type="button" 
+                                    icon="pi pi-shopping-cart" 
+                                    label="Add to cart" 
+                                    class="p-button-raised p-button-secondary p-button-text ml-3">
+                                </button>
+                            </div>
+                            <p>
+                                <button 
+                                    pButton 
+                                    type="button" 
+                                    icon="pi pi-heart" 
+                                    label="Add to Wishlist" 
+                                    class="p-button-raised p-button-secondary p-button-text">
+                                </button>
+                            </p>
+                            <p><strong class="mr-2">Category: </strong><span>Shorts</span></p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni assumenda doloremque dolores optio voluptatum atque dolor quae excepturi expedita amet repellendus aliquid cumque mollitia nobis magnam, ipsam consequuntur ex possimus.</p>
+                        </div>
+                    </div>
+
+                </p-card>
+            </div>
+            <div class="md:col-3 col-12">
+                <p-card styleClass="shadow-1 card-content">
+                    <h4 class="widget-title">Product categories</h4>
+                    <ul class="product-categories mb-4 ls-none">
+                        <li class="cat-item"><a href="#">Furniture</a> <span class="count">(2)</span></li>
+                        <li class="cat-item"><a href="#">Shorts</a> <span class="count">(5)</span></li>
+                        <li class="cat-item"><a href="#">Sports</a> <span class="count">(10)</span></li>
+                        <li class="cat-item"><a href="#">Watches</a> <span class="count">(7)</span></li>
+                    </ul>
+                </p-card>
+            </div>
+        </div>
+
+        <h2>Related products</h2>
+
+        <div class="product-carousel mb-5">
+            <p-carousel [value]="products" [numVisible]="5" [numScroll]="1" [showIndicators]="false">
+                <ng-template let-product pTemplate="item">
+                    <div class="item-wrap">
+                        <p-card styleClass="shadow-1 product-card">
+                            <ng-template pTemplate="header">
+                                <img src="{{product.img}}" alt="img" />
+                            </ng-template>
+                            <h4>{{product.title}}</h4>
+                            <div class="price">
+                                <span>{{product.price}}</span>
+                                <span><del>{{product.originalPrice}}</del></span>
+                            </div>
+                            <div class="product-item-action">
+                                <button pButton pRipple type="button" icon="pi pi-shopping-cart" label="Add to cart" class="btn-cart p-button-outlined p-button-secondary"></button>
+                                <button pButton pRipple type="button" icon="pi pi-heart" class="btn-fav p-button-outlined p-button-secondary"></button>
+                            </div>
+                            
+                        </p-card>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+
+    </div>
+</div>
