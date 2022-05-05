@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterContentChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FieldType, FieldTypeConfig } from '@ngx-formly/core';
 import { environment } from 'src/environments/environment';
@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.scss']
 })
-export class fileUploadComponent extends FieldType<FieldTypeConfig> implements OnInit, AfterViewInit {
+export class fileUploadComponent extends FieldType<FieldTypeConfig> implements OnInit, AfterContentChecked {
 
   private apiUrl = environment.baseUrl;
 
@@ -29,19 +29,16 @@ export class fileUploadComponent extends FieldType<FieldTypeConfig> implements O
 
   ngOnInit(): void {}
 
-  ngAfterViewInit(): void {
+  ngAfterContentChecked(): void {
 
     this.checkToLoad();
 
   }
 
   checkToLoad () {
-    setTimeout(() => {
-      if( this.form && this.form.get('image')?.value ) {
-        this.imageSrc = this.form.get('image')?.value;
-        this.toSet();
-      }
-    }, 1000);
+    if( this.form && this.form.get('image')?.value ) {
+      this.imageSrc = this.form.get('image')?.value;
+    }
   }
 
   onFileChange(event: any): void {
