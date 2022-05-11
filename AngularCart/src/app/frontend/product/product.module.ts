@@ -12,7 +12,8 @@ import { ProductCategoryComponent } from './product-category/product-category.co
 const routes: Routes = [
   { path: '', component: ProductComponent },
   { path: 'detail/:id', component: ProductDetailComponent },
-  { path: 'cart', component: CartComponent }
+  { path: 'cart', component: CartComponent },
+  { path: 'checkout', component: CheckoutComponent }
 ];
 
 @NgModule({
