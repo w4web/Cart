@@ -25,6 +25,7 @@ import { DataViewModule } from 'primeng/dataview';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { SliderModule } from 'primeng/slider';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { AccordionModule } from 'primeng/accordion';
 
 @NgModule({
   exports: [
@@ -50,7 +51,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
     DataViewModule,
     BreadcrumbModule,
     SliderModule,
-    InputNumberModule
+    InputNumberModule,
+    AccordionModule
   ]
 })
 export class PrimengLibModule { }
