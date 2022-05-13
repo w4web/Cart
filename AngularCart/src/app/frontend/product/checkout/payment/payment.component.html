@@ -1,0 +1,10 @@
+<h3 class="mb-2">Google Pay</h3>
+<p>Please complete your payment using Google Pay!</p>
+
+<google-pay-button
+  environment="TEST"
+  buttonType="buy"
+  buttonColor="black"
+  [paymentRequest]="paymentRequest"
+  (loadpaymentdata)="onLoadPaymentData($event)"
+></google-pay-button>

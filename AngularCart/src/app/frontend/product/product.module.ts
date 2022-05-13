@@ -10,6 +10,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductCategoryComponent } from './product-category/product-category.component';
 import { ShippingAddressComponent } from './checkout/shipping-address/shipping-address.component';
 import { FormlyModule } from '@ngx-formly/core';
+import { PaymentComponent } from './checkout/payment/payment.component';
+import { GooglePayButtonModule } from '@google-pay/button-angular';
 
 const routes: Routes = [
   { path: '', component: ProductComponent },
@@ -26,7 +28,8 @@ const routes: Routes = [
     CartComponent,
     CheckoutComponent,
     ProductCategoryComponent,
-    ShippingAddressComponent
+    ShippingAddressComponent,
+    PaymentComponent
   ],
   imports: [
     CommonModule,
@@ -38,6 +41,7 @@ const routes: Routes = [
         { name: 'required', message: 'This field is required' },
       ],
     }),
+    GooglePayButtonModule
   ]
 })
 

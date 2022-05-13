@@ -8,13 +8,18 @@
                 <p-card styleClass="shadow-1 card-content">
 
                     <p-accordion>
-                        <p-accordionTab header="Shipping address" [selected]="true">
+                        <p-accordionTab header="Shipping address" [selected]="checkoutService.accSelected == 1">
                             
                             <app-shipping-address></app-shipping-address>
 
                         </p-accordionTab>
-                        <p-accordionTab header="Payment method" [disabled]="true">
-                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</p>
+                        <p-accordionTab 
+                            header="Payment method" 
+                            [selected]="checkoutService.accSelected == 2" 
+                            [disabled]="checkoutService.accSelected < 2">
+                            
+                            <app-payment></app-payment>
+
                         </p-accordionTab>
                     </p-accordion>
 
