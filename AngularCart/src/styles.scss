@@ -36,6 +36,11 @@ img {
     max-width: 100%;
 }
 
+hr {
+    border-top: 1px solid #dee2e6;
+    border-bottom: none;
+}
+
 .ls-none {
 	margin: 0;
 	padding: 0;
@@ -453,6 +458,29 @@ product-filter {
 .inputNumberQua {
     .p-inputnumber-input {
         width: 50px;
+    }
+}
+
+table.cart-summary {
+    width: 100%;
+    th {
+        text-align: left;
+    }
+    td {
+        text-align: right;
+    }
+    th, td {
+        padding: 4px 0;
+    }
+}
+
+.p-accordion-content {
+    position: relative;
+    .edit-icon {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        z-index: 1;
     }
 }
 

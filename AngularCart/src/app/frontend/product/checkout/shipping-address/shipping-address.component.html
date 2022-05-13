@@ -1,0 +1,58 @@
+<ng-container *ngIf="isEdit">
+
+    <div class="edit-address">
+        <p-messages></p-messages>
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <formly-form 
+                [model]="model" 
+                [fields]="fields" 
+                [options]="options" 
+                [form]="form">
+            </formly-form>
+            <div class="mt-3">
+                <button 
+                    pButton 
+                    type="submit" 
+                    class="p-button-secondary mr-2" 
+                    [disabled]="!form.valid"
+                    label="Save">
+                </button>
+                <button 
+                    pButton 
+                    type="button" 
+                    (click)="isEdit = false"
+                    class="p-button-secondary"
+                    label="Cancel">
+                </button>
+            </div>
+        </form>
+    </div>
+
+</ng-container>
+
+<ng-container *ngIf="!isEdit">
+
+    <div class="edit-icon">
+        <button 
+            pButton 
+            type="button" 
+            icon="pi pi-pencil" 
+            (click)="isEdit = true"
+            class="p-button-raised p-button-primery p-button-text">
+        </button>
+    </div>
+    <h3>Manish solanki</h3>
+    <p>Akshya Nagar 1st Block 1st Cross, Rammurthy nagar, Bangalore-560016.</p>
+    <p>Mobile no :- <span>8460677738</span></p>
+    <div class="text-left">
+        <button 
+            pButton 
+            type="button" 
+            icon="pi pi-angle-right" 
+            iconPos="right"
+            label="Deliver here" 
+            class="p-button-raised p-button-secondary p-button-text">
+        </button>
+    </div>
+
+</ng-container>

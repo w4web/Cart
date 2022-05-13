@@ -1,0 +1,53 @@
+[
+  {
+    "fieldGroupClassName": "grid gutter-10",
+    "fieldGroup": [
+      {
+        "type": "input",
+        "key": "name",
+        "className": "md:col-6 col-12",
+        "templateOptions": {
+          "label": "First & last name",
+          "placeholder": "Ex. Scott tiger",
+          "required": true
+        }
+      },
+      {
+        "type": "input",
+        "key": "street",
+        "className": "col-12",
+        "templateOptions": {
+          "label": "Street",
+          "required": true
+        }
+      },
+      {
+        "type": "input",
+        "key": "city",
+        "className": "md:col-4 col-12",
+        "templateOptions": {
+          "label": "City",
+          "required": true
+        }
+      },
+      {
+        "type": "input",
+        "key": "zip",
+        "className": "md:col-4 col-12",
+        "templateOptions": {
+          "label": "Zip code",
+          "required": true
+        }
+      },
+      {
+        "type": "input",
+        "key": "phone",
+        "className": "md:col-4 col-12",
+        "templateOptions": {
+          "label": "Phone",
+          "required": true
+        }
+      }
+    ]
+  }
+]

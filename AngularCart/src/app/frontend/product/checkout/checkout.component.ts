@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { CheckoutService } from './checkout.service';
 
 @Component({
   selector: 'app-checkout',
@@ -11,7 +12,7 @@ export class CheckoutComponent implements OnInit {
   breadcrumbItems!: MenuItem[];
   breadcrumbHome!: MenuItem;
 
-  constructor() { }
+  constructor( public checkoutService: CheckoutService ) {}
 
   ngOnInit(): void {
     this.breadcrumbItems = [

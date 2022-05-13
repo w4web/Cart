@@ -8,6 +8,8 @@ import { ProductFilterComponent } from './product-filter/product-filter.componen
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductCategoryComponent } from './product-category/product-category.component';
+import { ShippingAddressComponent } from './checkout/shipping-address/shipping-address.component';
+import { FormlyModule } from '@ngx-formly/core';
 
 const routes: Routes = [
   { path: '', component: ProductComponent },
@@ -23,12 +25,19 @@ const routes: Routes = [
     ProductFilterComponent,
     CartComponent,
     CheckoutComponent,
-    ProductCategoryComponent
+    ProductCategoryComponent,
+    ShippingAddressComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    SharedModule
+    SharedModule,
+    FormlyModule.forRoot({
+      types: [],
+      validationMessages: [
+        { name: 'required', message: 'This field is required' },
+      ],
+    }),
   ]
 })
 

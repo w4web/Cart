@@ -9,7 +9,9 @@
 
                     <p-accordion>
                         <p-accordionTab header="Shipping address" [selected]="true">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                            
+                            <app-shipping-address></app-shipping-address>
+
                         </p-accordionTab>
                         <p-accordionTab header="Payment method" [disabled]="true">
                             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</p>
@@ -21,6 +23,31 @@
             <div class="md:col-3 col-12">
                 <p-card styleClass="shadow-1 card-content">
                     <h4 class="widget-title">Summary</h4>
+                    <p>The total cost consist of tex & shipping charge.</p>
+                    <hr>
+                    <table class="cart-summary">
+                        <tr>
+                            <th>Price :-</th>
+                            <td>$60.00</td>
+                        </tr>
+                        <tr>
+                            <th>Tex :-</th>
+                            <td>$5.00</td>
+                        </tr>
+                        <tr>
+                            <th>Shipping charge :-</th>
+                            <td>$5.00</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <hr>
+                            </td>
+                        </tr>
+                        <tr class="cart-summary-total">
+                            <th>Total amount :-</th>
+                            <td><strong style="color: #22C55E;">$70.00</strong></td>
+                        </tr>
+                    </table>
                 </p-card>
             </div>
         </div>

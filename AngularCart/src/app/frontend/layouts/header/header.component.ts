@@ -60,9 +60,8 @@ export class HeaderComponent implements OnInit {
         routerLink: '/'
       },
       {
-        label: 'help',
-        icon: 'pi pi-fw pi-question-circle',
-        routerLink: '/'
+        label: 'checkout',
+        routerLink: '/products/checkout'
       }
     ];
   }
