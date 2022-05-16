@@ -2,6 +2,9 @@ require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const UserModel = require('../models/user-model');
+const StoredToken = require("../models/token");
+const crypto = require("crypto");
+const sendEmail = require("../utils/sendEmail");
 
 exports.register = (req, res, next) => {
 
@@ -18,10 +21,19 @@ exports.register = (req, res, next) => {
     
         userModel
         .save()
-        .then(result => {
+        .then(user => {
+
+            const storedToken = await new StoredToken({
+                userId: user._id,
+                token: crypto.randomBytes(32).toString("hex"),
+            }).save();
+
+            const url = `${process.env.APP_URL}users/${user.id}/verify/${storedToken.token}`;
+
+            await sendEmail(user.email, "Verify Email", url);
+
             res.status(201).json({
-                message: "User created..",
-                data: result
+                message: "An Email sent to your account please verify!"
             })
         })
         .catch(err => {
@@ -41,6 +53,35 @@ exports.register = (req, res, next) => {
 
 }
 
+exports.verifyEmail = (req, res, next) => {
+
+	try {
+
+		const user = await UserModel.findOne({ _id: req.params.id });
+
+		if (!user) return res.status(400).send({ message: "Invalid link" });
+
+		const token = await StoredToken.findOne({
+			userId: user._id,
+			token: req.params.token,
+		});
+
+		if (!token) return res.status(400).send({ message: "Invalid link" });
+
+		await User.updateOne({ _id: user._id, verified: true });
+
+		await token.remove();
+
+		res.status(200).send({ message: "Email verified successfully" });
+
+	} catch (error) {
+
+		res.status(500).send({ message: "Internal Server Error" });
+
+	}
+
+};
+
 exports.login = (req, res, next) => {
 
     const { email, password } = req.body;
@@ -57,6 +98,27 @@ exports.login = (req, res, next) => {
         .then(doMatch => {
 
           if (doMatch) {
+
+            // Check for email varification
+
+            if (!user.verified) {
+                let storedToken = await StoredToken.findOne({ userId: user._id });
+                if (!storedToken) {
+                    storedToken = await new StoredToken({
+                        userId: user._id,
+                        token: crypto.randomBytes(32).toString("hex"),
+                    }).save();
+                    const url = `${process.env.APP_URL}users/${user.id}/verify/${storedToken.token}`;
+                    await sendEmail(user.email, "Verify Email", url);
+                }
+    
+                return res
+                    .status(400)
+                    .send({ message: "An Email sent to your account please verify" });
+            }
+
+            // -----------
+
             const token = jwt.sign({id: user._id, email: user.email}, process.env.JWT_SECRET);
             res.status(201).json({
                 id: user._id, 

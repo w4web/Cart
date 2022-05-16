@@ -8,7 +8,7 @@ import { environment } from '../../../../environments/environment';
 })
 export class CheckoutService {
 
-  accSelected = 2;
+  accSelected = 1;
 
   private apiUrl = environment.userApi;
 

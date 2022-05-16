@@ -1,35 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
+import { MsgService } from 'src/app/shared/services/msg.service';
 import { UserService } from '../../user.service';
 
 @Component({
   selector: 'password-reset-init',
-  templateUrl: './password-reset-init.component.html'
+  templateUrl: './password-reset-init.component.html',
+  styleUrls: ['../../user.component.scss']
 })
+
 export class PasswordResetInitComponent implements OnInit {
 
-  resetRequestForm = new FormGroup({});
+  form = new FormGroup({});
   model: any = {};
   options: FormlyFormOptions = {};
   fields: FormlyFieldConfig[] = [];
 
-  success = false;
-
-  constructor( public userService: UserService ) {
+  constructor(public userService: UserService, public msgService: MsgService) {
     this.userService.resetEmailField().subscribe((fields: any) => {
-      this.resetRequestForm = new FormGroup({});
+      this.form = new FormGroup({});
       this.fields = fields;
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   requestReset(): void {
-    this.userService.resetByEmail(this.resetRequestForm.get(['email'])!.value).subscribe(() => (this.success = true));
+    this.userService.resetByEmail(this.form.get(['email'])!.value).subscribe({
+      next: () => {
+        this.msgService.msg('success', 'Email sent!', 'Please check your email to reset password!');
+      },
+      error: (err: any) => {
+        this.msgService.errorHandle(err);
+      }
+    });
   }
 
-  previousState(): void {
-    window.history.back();
-  }
 }

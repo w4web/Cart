@@ -22,6 +22,10 @@ const userSchema = new Schema({
     },
     address: {
         type: String
+    },
+    verified: { 
+        type: Boolean, 
+        default: false 
     }
     
 }, { timestamps: true })

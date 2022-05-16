@@ -47,6 +47,11 @@ hr {
 	list-style: none;
 }
 
+.no-decor {
+    text-decoration: none !important;
+    color: #333 !important;
+}
+
 .main-content {
     background-color: #f3f4f8;
     padding: 30px 0;
@@ -483,6 +488,24 @@ table.cart-summary {
         z-index: 1;
     }
 }
+
+
+
+// ******** User pages ***
+
+.user-btns {
+    button {
+        width: 100px;
+    }
+}
+.forget-link a {font-weight: 600;}
+.register-link a {color: #f77426 !important;}
+
+
+
+
+
+
 
 // Responsive
 

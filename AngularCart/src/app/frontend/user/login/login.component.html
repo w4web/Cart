@@ -4,9 +4,9 @@
 
         <div class="grid justify-content-center">
 
-            <div class="lg:col-6 md:col-9 col-12">
+            <div class="lg:col-4 md:col-6 col-12">
 
-                <h2 class="title">Login</h2>
+                <h2 class="title text-center">Login</h2>
 
                 <p-messages></p-messages>
 
@@ -19,11 +19,12 @@
                             [options]="options" 
                             [form]="form">
                         </formly-form>
-                        <div class="mt-3">
+                        <div class="forget-link"><a class="no-decor" routerLink="/user/password-reset-init">Forgot password?</a></div>
+                        <div class="mt-3 user-btns">
                             <button 
                                 pButton 
                                 type="submit" 
-                                class="p-button-secondary mr-2" 
+                                class="p-button-raised p-button-secondary p-button-text mr-2" 
                                 [disabled]="!form.valid"
                                 label="Login">
                             </button>
@@ -31,7 +32,7 @@
                                 pButton 
                                 type="button" 
                                 routerLink="/"
-                                class="p-button-secondary"
+                                class="p-button-raised p-button-secondary p-button-text"
                                 label="Back">
                             </button>
                         </div>
@@ -39,7 +40,7 @@
 
                 </p-card>
 
-                <p class="text-center">No account? <a routerLink="/user/register">Register now!</a></p>
+                <p class="register-link text-center">No account? <a class="no-decor" routerLink="/user/register">Register now!</a></p>
 
             </div>
 
