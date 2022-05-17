@@ -6,17 +6,17 @@ import { FormlyModule } from '@ngx-formly/core';
 import { EmailValidator, fieldMatchValidator, minlengthValidationMessages } from 'src/app/shared/formly-custom.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { ActivateComponent } from './activate/activate.component';
 import { PasswordResetInitComponent } from './password-reset/init/password-reset-init.component';
 import { PasswordResetFinishComponent } from './password-reset/finish/password-reset-finish.component';
+import { VerifyEmailComponent } from './register/verify-email/verify-email.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/user/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: ':id/verify/:token', component: VerifyEmailComponent },
   { path: 'password-reset-init', component: PasswordResetInitComponent },
-  { path: 'password-reset-finish', component: PasswordResetFinishComponent },
-  { path: 'activate', component: ActivateComponent },
+  { path: 'password-reset-finish', component: PasswordResetFinishComponent }
 ];
 
 @NgModule({
@@ -24,8 +24,7 @@ const routes: Routes = [
     LoginComponent, 
     RegisterComponent, 
     PasswordResetInitComponent, 
-    PasswordResetFinishComponent,
-    ActivateComponent
+    PasswordResetFinishComponent, VerifyEmailComponent
   ],
   imports: [
     CommonModule,

@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
 
     this.userService.register( this.model ).subscribe({
       next: (data) => {
-        this.msgService.msg('success', 'User registered!', 'User registered successfully!');
+        this.msgService.msg('success', 'Email sent!', 'An Email sent to your account please verify!');
         this.resetFields();
       },
       error: (err: any) => {

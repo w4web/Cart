@@ -1,17 +1,13 @@
 const nodemailer = require("nodemailer");
+const sendgridTransport = require('nodemailer-sendgrid-transport');
 
 module.exports = async (email, subject, text) => {
 	try {
-		const transporter = nodemailer.createTransport({
-			host: process.env.MAIL_HOST,
-			service: process.env.MAIL_SERVICE,
-			port: Number(process.env.MAIL_PORT),
-			secure: Boolean(process.env.MAIL_SECURE),
+		const transporter = nodemailer.createTransport(sendgridTransport({
 			auth: {
-				user: process.env.MAIL_USER,
-				pass: process.env.MAIL_PASS,
-			},
-		});
+				api_key: process.env.MAIL_key
+			}
+		}));
 
 		await transporter.sendMail({
 			from: process.env.MAIL_USER,
