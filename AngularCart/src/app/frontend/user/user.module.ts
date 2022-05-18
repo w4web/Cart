@@ -14,9 +14,9 @@ const routes: Routes = [
   { path: '', redirectTo: '/user/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: ':id/verify/:token', component: VerifyEmailComponent },
-  { path: 'password-reset-init', component: PasswordResetInitComponent },
-  { path: 'password-reset-finish', component: PasswordResetFinishComponent }
+  { path: 'verifyEmail/:id/:token', component: VerifyEmailComponent },
+  { path: 'passwordReset', component: PasswordResetInitComponent },
+  { path: 'passwordReset/:id/:token', component: PasswordResetFinishComponent }
 ];
 
 @NgModule({

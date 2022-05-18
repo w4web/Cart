@@ -30,7 +30,7 @@ exports.register = (req, res, next) => {
 
                 storedToken.save().then(s_Token => {
 
-                    const url = `${process.env.APP_URL}user/${user.id}/verify/${s_Token.token}`;
+                    const url = `${process.env.APP_URL}user/verifyEmail/${user.id}/${s_Token.token}`;
 
                     sendEmail(user.email, "Verify Email", url).then(() => {
 
@@ -132,7 +132,7 @@ exports.login = (req, res, next) => {
 
                                     storedToken.save().then(s_Token => {
 
-                                        const url = `${process.env.APP_URL}user/${user.id}/verify/${s_Token.token}`;
+                                        const url = `${process.env.APP_URL}user/verifyEmail/${user.id}/${s_Token.token}`;
 
                                         sendEmail(user.email, "Verify Email", url).then(() => {
 

@@ -32,7 +32,7 @@ export class UserService {
   }
 
   verifyEmail(id:any, token:any): Observable<any> {
-    return this.http.get(this.apiUrl + `/${id}/verify/${token}`, { observe: 'response' });
+    return this.http.get(this.apiUrl + `/verifyEmail/${id}/${token}`, { observe: 'response' });
   }
 
   // Password reset
