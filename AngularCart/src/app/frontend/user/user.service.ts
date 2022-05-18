@@ -41,16 +41,16 @@ export class UserService {
     return this.http.get<any>('./assets/formFields/passwordReset.json');
   }
 
-  resetByEmail(mail: string): Observable<any> {
-    return this.http.post(this.apiUrl + '/reset-password-init', mail, { observe: 'response' });
+  resetByEmail(data: any): Observable<any> {
+    return this.http.post(this.apiUrl + '/passwordResetInit', data, { observe: 'response' });
   }
 
   resetPasswordFields(): any {
     return this.http.get<any>('./assets/formFields/passwordResetFinish.json');
   }
 
-  resetPassword(key: string, newPassword: string): Observable<any> {
-    return this.http.post(this.apiUrl + '/reset-password-finish', { key, newPassword }, { observe: 'response' });
+  resetPassword(id:any, token:any, data: any): Observable<any> {
+    return this.http.post(this.apiUrl + `/passwordResetFinish/${id}/${token}`, data, { observe: 'response' });
   }
 
 }

@@ -122,7 +122,7 @@ exports.login = (req, res, next) => {
                         } else {
 
                             StoredToken.findOne({ userId: user._id }).then(st_Token => {
-                                
+
                                 if (!st_Token) {
 
                                     const storedToken = new StoredToken({
@@ -165,6 +165,96 @@ exports.login = (req, res, next) => {
         .catch(err => console.log(err));
 
 }
+
+// Reset password
+
+exports.passwordResetInit = (req, res, next) => {
+
+    const { email } = req.body;
+
+    UserModel.findOne({ email }).then(user => {
+
+        if (!user) {
+            res.status(409).json({ summary: 'Not exist', detail: 'User with given email does not exist!' });
+        }
+
+        StoredToken.findOne({ userId: user._id }).then(st_Token => {
+
+            if (!st_Token) {
+
+                const storedToken = new StoredToken({
+                    userId: user._id,
+                    token: crypto.randomBytes(32).toString("hex")
+                });
+
+                storedToken.save().then(s_Token => {
+
+                    const url = `${process.env.APP_URL}user/passwordReset/${user._id}/${s_Token.token}`;
+
+                    sendEmail(user.email, "Password Reset", url).then(() => {
+
+                        return res.status(200).json({ summary: 'Email sent', detail: 'Password reset link sent to your email account' });
+
+                    });
+
+                });
+
+            }
+
+        });
+
+    })
+    .catch(err => console.log(err));
+
+}
+
+exports.passwordResetFinish = (req, res, next) => {
+
+    UserModel.findOne({ _id: req.params.id }).then(user => {
+
+        if (!user) return res.status(401).send({ message: "Invalid link" });
+
+        StoredToken.findOne({ userId: user._id, token: req.params.token }).then(s_Token => {
+
+            if (!s_Token) return res.status(401).send({ message: "Invalid link" });
+
+            const { password } = req.body;
+
+            bcrypt.hash(password, 10).then(hashPassword => {
+
+                user.updateOne({ _id: user._id, password: hashPassword, verified: true }).then(() => {
+
+                    s_Token.remove().then(() => {
+    
+                        res.status(200).send({ message: "Password reset successfully" });
+    
+                    })
+    
+                })
+
+            }).catch(err => {
+                console.log(err);
+            });
+
+        });
+
+    }).catch(err => {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    });
+
+};
+
+
+
+
+
+
+
+
+
 
 exports.changePassword = (req, res, next) => {
 

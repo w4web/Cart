@@ -47,7 +47,7 @@ export class PasswordResetFinishComponent implements OnInit {
   finishReset(): void {
     const newPassword = this.form.get(['password'])!.value;
 
-    this.userService.resetPassword(this.key, newPassword).subscribe({
+    this.userService.resetPassword("111", this.key, newPassword).subscribe({
       next: () => {
         this.msgService.msg('success', 'Success!', 'Password reset successfully!');
       },

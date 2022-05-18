@@ -27,9 +27,11 @@ export class PasswordResetInitComponent implements OnInit {
   ngOnInit(): void { }
 
   requestReset(): void {
-    this.userService.resetByEmail(this.form.get(['email'])!.value).subscribe({
-      next: () => {
-        this.msgService.msg('success', 'Email sent!', 'Please check your email to reset password!');
+    this.userService.resetByEmail(this.model).subscribe({
+      next: (res) => {
+        if(res.status == 200) {
+          this.msgService.msg('success', res.body.summary, res.body.detail);
+        }
       },
       error: (err: any) => {
         this.msgService.errorHandle(err);
