@@ -212,13 +212,13 @@ exports.passwordResetFinish = (req, res, next) => {
 
     UserModel.findOne({ _id: req.params.id }).then(user => {
 
-        if (!user) return res.status(401).send({ message: "Invalid link" });
+        if (!user) return res.status(401).json({ summary: "Invalid", detail: "Invalid link" });
 
         StoredToken.findOne({ userId: user._id, token: req.params.token }).then(s_Token => {
 
-            if (!s_Token) return res.status(401).send({ message: "Invalid link" });
+            if (!s_Token) return res.status(401).json({ summary: "Invalid", detail: "Invalid link" });
 
-            const { password } = req.body;
+            const password = req.body.password;
 
             bcrypt.hash(password, 10).then(hashPassword => {
 
@@ -226,7 +226,7 @@ exports.passwordResetFinish = (req, res, next) => {
 
                     s_Token.remove().then(() => {
     
-                        res.status(200).send({ message: "Password reset successfully" });
+                        res.status(200).json({ summary: "Success", detail: "Password reset successfully" });
     
                     })
     

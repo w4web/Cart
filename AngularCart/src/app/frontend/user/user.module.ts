@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { PasswordResetInitComponent } from './password-reset/init/password-reset-init.component';
 import { PasswordResetFinishComponent } from './password-reset/finish/password-reset-finish.component';
 import { VerifyEmailComponent } from './register/verify-email/verify-email.component';
+import { SuccessComponent } from './password-reset/success/success.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/user/login', pathMatch: 'full' },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'verifyEmail/:id/:token', component: VerifyEmailComponent },
   { path: 'passwordReset', component: PasswordResetInitComponent },
-  { path: 'passwordReset/:id/:token', component: PasswordResetFinishComponent }
+  { path: 'passwordReset/:id/:token', component: PasswordResetFinishComponent },
+  { path: 'passwordResetSuccess', component: SuccessComponent }
 ];
 
 @NgModule({
@@ -24,7 +26,7 @@ const routes: Routes = [
     LoginComponent, 
     RegisterComponent, 
     PasswordResetInitComponent, 
-    PasswordResetFinishComponent, VerifyEmailComponent
+    PasswordResetFinishComponent, VerifyEmailComponent, SuccessComponent
   ],
   imports: [
     CommonModule,

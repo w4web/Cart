@@ -18,8 +18,8 @@ export class PasswordResetFinishComponent implements OnInit {
   options: FormlyFormOptions = {};
   fields: FormlyFieldConfig[] = [];
 
-  initialized = false;
-  key = '';
+  id:any;
+  token:any;
 
   constructor(
     public userService: UserService, 
@@ -30,12 +30,8 @@ export class PasswordResetFinishComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.route.queryParams.subscribe(params => {
-      if (params['key']) {
-        this.key = params['key'];
-      }
-      this.initialized = true;
-    });
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.token = this.route.snapshot.paramMap.get('token');
 
     this.userService.resetPasswordFields().subscribe((fields: any) => {
       this.form = new FormGroup({});
@@ -45,19 +41,19 @@ export class PasswordResetFinishComponent implements OnInit {
   }
 
   finishReset(): void {
-    const newPassword = this.form.get(['password'])!.value;
 
-    this.userService.resetPassword("111", this.key, newPassword).subscribe({
-      next: () => {
-        this.msgService.msg('success', 'Success!', 'Password reset successfully!');
+    this.userService.resetPassword(this.id, this.token, this.model).subscribe({
+      next: (res) => {
+        if(res.status == 200) {
+          // this.msgService.msg('success', res.body.summary, res.body.detail);
+          this.router.navigate(['/user/passwordResetSuccess']);
+        }
       },
       error: (err: any) => {
         this.msgService.errorHandle(err);
       }
     });
+
   }
 
-  login(): void {
-    this.router.navigate(['/user']);
-  }
 }
