@@ -28,13 +28,11 @@ export class UserService {
   // API Calls
 
   register(data: any): Observable<any> {
-    return this.http.post(this.apiUrl + '/register', data);
+    return this.http.post(this.apiUrl + '/register', data, { observe: 'response' });
   }
 
-  activate(key: string): Observable<any> {
-    return this.http.get(this.apiUrl + '/activate', {
-      params: new HttpParams().set('key', key),
-    });
+  verifyEmail(id:any, token:any): Observable<any> {
+    return this.http.get(this.apiUrl + `/${id}/verify/${token}`, { observe: 'response' });
   }
 
   // Password reset
@@ -44,7 +42,7 @@ export class UserService {
   }
 
   resetByEmail(mail: string): Observable<any> {
-    return this.http.post(this.apiUrl + '/reset-password-init', mail);
+    return this.http.post(this.apiUrl + '/reset-password-init', mail, { observe: 'response' });
   }
 
   resetPasswordFields(): any {
@@ -52,7 +50,7 @@ export class UserService {
   }
 
   resetPassword(key: string, newPassword: string): Observable<any> {
-    return this.http.post(this.apiUrl + '/reset-password-finish', { key, newPassword });
+    return this.http.post(this.apiUrl + '/reset-password-finish', { key, newPassword }, { observe: 'response' });
   }
 
 }

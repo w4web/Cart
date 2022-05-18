@@ -11,7 +11,7 @@ export class MsgService {
 
   errorHandle (err:any) {
 
-    if ( err.status === 409 || err.status === 403 ) {
+    if ( err.status !== 500 ) {
 
       this.msg('error', err.error.summary, err.error.detail, 5000);
 

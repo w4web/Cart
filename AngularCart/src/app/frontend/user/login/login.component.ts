@@ -39,8 +39,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.model)
       .subscribe({
         next: (res) => {
-          if (res.token !== '') {
-            this.authService.setUser(res);
+          if (res.body.token !== '') {
+            this.authService.setUser(res.body);
             this.router.navigateByUrl('/');
           }
         },

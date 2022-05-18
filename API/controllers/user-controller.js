@@ -30,7 +30,7 @@ exports.register = (req, res, next) => {
 
                 storedToken.save().then(s_Token => {
 
-                    const url = `${process.env.APP_URL}users/${user.id}/verify/${s_Token.token}`;
+                    const url = `${process.env.APP_URL}user/${user.id}/verify/${s_Token.token}`;
 
                     sendEmail(user.email, "Verify Email", url).then(() => {
 
@@ -61,32 +61,34 @@ exports.register = (req, res, next) => {
 
 }
 
-exports.verifyEmail = async (req, res, next) => {
+exports.verifyEmail = (req, res, next) => {
 
-    try {
+    UserModel.findOne({ _id: req.params.id }).then(user => {
 
-        const user = await UserModel.findOne({ _id: req.params.id });
+        if (!user) return res.status(401).send({ message: "Invalid link" });
 
-        if (!user) return res.status(400).send({ message: "Invalid link" });
+        StoredToken.findOne({ userId: user._id, token: req.params.token }).then(s_Token => {
 
-        const token = await StoredToken.findOne({
-            userId: user._id,
-            token: req.params.token,
+            if (!s_Token) return res.status(401).send({ message: "Invalid link" });
+
+            user.updateOne({ _id: user._id, verified: true }).then(() => {
+
+                s_Token.remove().then(() => {
+
+                    res.status(200).send({ message: "Email verified successfully" });
+
+                })
+
+            })
+
         });
 
-        if (!token) return res.status(400).send({ message: "Invalid link" });
-
-        await User.updateOne({ _id: user._id, verified: true });
-
-        await token.remove();
-
-        res.status(200).send({ message: "Email verified successfully" });
-
-    } catch (error) {
-
-        res.status(500).send({ message: "Internal Server Error" });
-
-    }
+    }).catch(err => {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    });
 
 };
 
@@ -107,12 +109,20 @@ exports.login = (req, res, next) => {
 
                     if (doMatch) {
 
-                        // Check for email varification
+                        if (user.verified && user.verified == true) {
 
-                        if (!user.verified) {
+                            const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET);
+                            res.status(201).json({
+                                id: user._id,
+                                firstName: user.firstName,
+                                email: user.email,
+                                token: token
+                            })
+
+                        } else {
 
                             StoredToken.findOne({ userId: user._id }).then(st_Token => {
-
+                                
                                 if (!st_Token) {
 
                                     const storedToken = new StoredToken({
@@ -122,31 +132,24 @@ exports.login = (req, res, next) => {
 
                                     storedToken.save().then(s_Token => {
 
-                                        const url = `${process.env.APP_URL}users/${user.id}/verify/${s_Token.token}`;
+                                        const url = `${process.env.APP_URL}user/${user.id}/verify/${s_Token.token}`;
 
                                         sendEmail(user.email, "Verify Email", url).then(() => {
 
-                                            return res
-                                                .status(400)
-                                                .send({ message: "An Email sent to your account please verify" });
+                                            return res.status(401).json({ summary: 'Email sent', detail: 'An Email sent to your account please verify' });
 
                                         });
 
                                     });
+
+                                } else {
+
+                                    return res.status(401).json({ summary: 'Email sent', detail: 'An Email sent to your account please verify' });
                                 }
 
                             });
+
                         }
-
-                        // -----------
-
-                        const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET);
-                        res.status(201).json({
-                            id: user._id,
-                            firstName: user.firstName,
-                            email: user.email,
-                            token: token
-                        })
 
                     } else {
 

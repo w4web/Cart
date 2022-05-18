@@ -5,7 +5,7 @@ const router = express.Router();
 const isAuth = require('../auth/isAuth');
 
 router.post('/register', userController.register);
-router.post('/:id/verify/:token', userController.verifyEmail);
+router.get('/:id/verify/:token', userController.verifyEmail);
 router.post('/login', userController.login);
 router.post('/change-password', isAuth, userController.changePassword);
 

@@ -2,13 +2,25 @@
 
   <div class="container">
 
-      <div class="grid justify-content-center">
+      <div class="grid justify-content-center mt-7">
 
           <div class="lg:col-8 col-12">
 
-              <p-card styleClass="shadow-1 card-content">
+              <p-messages></p-messages>
 
-                <p class="login-link text-center">Your email address has been verified. <a class="no-decor" routerLink="/user/login">Login now!</a></p>
+              <p-card *ngIf="success" styleClass="shadow-3 card-content text-center p-4">
+
+                <button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-success mb-4"></button>
+
+                <h3 class="login-link m-0">Your email address has been verified. <a class="no-decor" routerLink="/user/login">Login now!</a></h3>
+
+              </p-card>
+
+              <p-card *ngIf="invalid" styleClass="shadow-3 card-content text-center p-4">
+
+                <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger mb-4"></button>
+
+                <h3 class="login-link m-0">Sorry.. Link is not valid!</h3>
 
               </p-card>
 
