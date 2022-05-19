@@ -1,0 +1,25 @@
+[
+  {
+    "fieldGroupClassName": "grid gutter-10",
+    "fieldGroup": [
+      {
+        "type": "input",
+        "key": "firstName",
+        "className": "md:col-6 col-12",
+        "templateOptions": {
+          "label": "First name",
+          "required": true
+        }
+      },
+      {
+        "type": "input",
+        "key": "lastName",
+        "className": "md:col-6 col-12",
+        "templateOptions": {
+          "label": "Surname",
+          "required": true
+        }
+      }
+    ]
+  }
+]

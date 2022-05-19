@@ -18,16 +18,4 @@ export class CheckoutService {
     this.accSelected = i;
   }
 
-  getShippingAddressFields(): any {
-    return this.http.get<any>('./assets/formFields/shippingAddress.json');
-  }
-
-  getShippingAddress(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + '/ShippingAddress');
-  }
-
-  setShippingAddress(data: any): Observable<any> {
-    return this.http.post(this.apiUrl + '/ShippingAddress', data);
-  }
-
 }

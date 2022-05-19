@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { FormlyModule } from '@ngx-formly/core';
+import { EmailValidator, fieldMatchValidator, minlengthValidationMessages } from 'src/app/shared/formly-custom.module';
 import { MyAccountComponent } from './my-account.component';
 import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
@@ -40,8 +41,13 @@ const routes: Routes = [
     SharedModule,
     FormlyModule.forRoot({
       types: [],
+      validators: [
+        { name: 'email', validation: EmailValidator },
+        { name: 'fieldMatch', validation: fieldMatchValidator },
+      ],
       validationMessages: [
         { name: 'required', message: 'This field is required' },
+        { name: 'minlength', message: minlengthValidationMessages },
       ],
     })
   ]

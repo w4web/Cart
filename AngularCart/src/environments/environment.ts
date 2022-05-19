@@ -9,6 +9,7 @@ export const environment = {
   encryption: false,
   baseUrl,
   userApi: `${baseUrl}/user`,
+  myAccountApi: `${baseUrl}/myAccount`,
   adminApi: `${baseUrl}/admin`,
   apiKey : 'T^-jdUnRg9+f&G?5Z!y,)I Z(,B^_]LNQu+Jc<EeMxi9j9I~1+kD.keMGJ^6pxjl'
 };

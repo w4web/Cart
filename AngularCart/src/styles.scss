@@ -493,6 +493,13 @@ table.cart-summary {
 
 // ******** User pages ***
 
+h2.with-line {
+    color: #495057;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #dedede;
+}
+
 .user-btns {
     button {
         width: 100px;

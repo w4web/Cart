@@ -1,1 +1,48 @@
-<p>my-dashboard works!</p>
+<h2 class="with-line">My dashboard</h2>
+
+<p>Hello, <b>Manish!</b></p>
+
+<p class="mb-5">From your account dashboard you can view your recent orders, manage your shipping & billing addresses and edit your account detail & password!</p>
+
+<div style="max-width: 700px;">
+
+  <div class="grid gutter-10 mb-4">
+    <div class="lg:col-3 md:col-4 col-12">
+      <p-card routerLink="/myAccount/orders" styleClass="shadow-3 card-content pt-3 text-center cursor-pointer">
+        <i class="pi pi-shopping-cart mb-2" pBadge style="font-size: 2rem; color: #9E9E9E;" value="2"></i>
+        <div class="ic-text mb-1">My orders</div>
+      </p-card>
+    </div>
+    <div class="lg:col-3 md:col-4 col-12">
+      <p-card routerLink="/myAccount/orders" styleClass="shadow-3 card-content pt-3 text-center cursor-pointer">
+        <i class="pi pi-heart mb-2" pBadge style="font-size: 2rem; color: #9E9E9E;" value="2"></i>
+        <div class="ic-text mb-1">Wishlist</div>
+      </p-card>
+    </div>
+    <div class="lg:col-3 md:col-4 col-12">
+      <p-card routerLink="/myAccount/edit" styleClass="shadow-3 card-content pt-3 text-center cursor-pointer">
+        <i class="pi pi-user-edit mb-2" style="font-size: 2rem; color: #9E9E9E;"></i>
+        <div class="ic-text mb-1">Edit account</div>
+      </p-card>
+    </div>
+    <div class="lg:col-3 md:col-4 col-12">
+      <p-card routerLink="/myAccount/editAddress" styleClass="shadow-3 card-content pt-3 text-center cursor-pointer">
+        <i class="pi pi-user-edit mb-2" style="font-size: 2rem; color: #9E9E9E;"></i>
+        <div class="ic-text mb-1">Edit address</div>
+      </p-card>
+    </div>
+    <div class="lg:col-3 md:col-4 col-12">
+      <p-card routerLink="/myAccount/changePassword" styleClass="shadow-3 card-content pt-3 text-center cursor-pointer">
+        <i class="pi pi-key mb-2" style="font-size: 2rem; color: #9E9E9E;"></i>
+        <div class="ic-text mb-1">Change password</div>
+      </p-card>
+    </div>
+    <div class="lg:col-3 md:col-4 col-12">
+      <p-card routerLink="/" styleClass="shadow-3 card-content pt-3 text-center cursor-pointer">
+        <i class="pi pi-sign-out mb-2" style="font-size: 2rem; color: #9E9E9E;"></i>
+        <div class="ic-text mb-1">Logout</div>
+      </p-card>
+    </div>
+  </div>
+
+</div>

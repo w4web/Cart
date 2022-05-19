@@ -1,1 +1,25 @@
-<p>edit-address works!</p>
+<h2 class="with-line">Add / Edit address</h2>
+
+<p-messages></p-messages>
+
+<div style="max-width: 500px;">
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+      <formly-form 
+          [model]="model" 
+          [fields]="fields" 
+          [options]="options" 
+          [form]="form">
+      </formly-form>
+      <div class="user-btns">
+          <button 
+              pButton 
+              type="submit" 
+              class="p-button-raised p-button-secondary p-button-text mr-2" 
+              [disabled]="!form.valid"
+              label="Save">
+          </button>
+      </div>
+  </form>
+
+</div>
