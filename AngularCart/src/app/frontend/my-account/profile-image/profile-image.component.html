@@ -1,0 +1,31 @@
+<div class="profile-image">
+
+  <button 
+    class="imgUploadBtn" 
+    [class.image-selected]="imgSelected" 
+    type="button" 
+    (click)="fileInput.click()">
+    <img [src]="imageSrc" alt="img" />
+    <input
+      #fileInput
+      class="hidden"
+      type="file"
+      (change)="onFileChange($event)"
+    />
+  </button>
+
+  <button 
+    pButton pRipple 
+    type="button" 
+    icon="pi pi-times" 
+    class="btn-onCancel p-button-rounded p-button-raised p-button-secondary p-button-text" 
+    (click)="onCancel()">
+  </button>
+
+  <button #toSetImg type="button" class="hidden" (click)="toSet()"></button>
+
+</div>
+
+<p-message *ngIf="alert" [severity]="alertType" styleClass="mt-3" [text]="alertMessage"></p-message>
+
+<input type="text" class="hidden" [(ngModel)]="valuePath" />

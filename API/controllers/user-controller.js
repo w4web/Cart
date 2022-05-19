@@ -248,14 +248,6 @@ exports.passwordResetFinish = (req, res, next) => {
 };
 
 
-
-
-
-
-
-
-
-
 exports.changePassword = (req, res, next) => {
 
     const { newPassword } = req.body;

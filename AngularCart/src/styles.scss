@@ -502,8 +502,30 @@ table.cart-summary {
 .register-link a, .login-link a {color: #f77426 !important;}
 
 
+// ******** My account pages ***
 
+.btn-onCancel {
+    .pi {
+        font-size: 0.8rem !important;
+    }
+}
 
+.Icon-tab {
+    li {
+        position: relative;
+        border-bottom: 1px solid #eee;
+        a {
+            color: #333 !important;
+            text-decoration: none !important;
+            display: block;
+            padding: 12px;
+            i {
+                width: 20px;
+                margin-right: 5px;
+            }
+        }
+    }
+}
 
 
 
