@@ -1,34 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { MyAccountService } from '../my-account.service';
 
 @Component({
   selector: 'app-my-orders',
   templateUrl: './my-orders.component.html'
 })
+
 export class MyOrdersComponent implements OnInit {
 
-  orders: any = [
-    {
-      
-    }
-  ]
-  products: any = [
-    {
-      img: "./assets/images/product1.jpg",
-      title: "Oversized V Sweater",
-      quantity: 1,
-      price: "$45.00"
-    },
-    {
-      img: "./assets/images/product2.jpg",
-      title: "V-neck Blouse",
-      quantity: 2,
-      price: "$65.00"
-    }
-  ];
+  orders: any;
 
-  constructor() { }
+  constructor( public myAccountService: MyAccountService ) { }
 
   ngOnInit(): void {
+
+    this.myAccountService.getOrders().subscribe((orders: any) => {
+      this.orders = orders;
+    });
+
   }
 
 }

@@ -48,6 +48,10 @@ export class MyAccountService {
     return this.http.put<any>(`${this.apiUrl}/changePassword`, data, { observe: 'response' });
   }
 
+  // -------------
 
+  getOrders(): any {
+    return this.http.get<any>('./assets/data/orders.json');
+  }
 
 }
