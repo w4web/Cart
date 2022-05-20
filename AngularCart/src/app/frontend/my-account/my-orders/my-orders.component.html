@@ -1,1 +1,78 @@
-<p>my-orders works!</p>
+<h2 class="with-line">My orders</h2>
+
+<p-card styleClass="shadow-1 card-content">
+
+  <ng-template pTemplate="header">
+
+    <p-table styleClass="mb-4" [value]="products" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+          <tr>
+              <th>Products</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th></th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product>
+          <tr>
+              <td>
+                  <div class="flex align-items-center">
+                      <div class="mr-4">
+                          <img class="shadow-4 p-2" width="70" src="{{product.img}}" alt="img" />
+                      </div>
+                      <div>
+                          {{product.title}}
+                      </div>
+                  </div>
+              </td>
+              <td class="text-right">
+                  <button 
+                      pButton 
+                      type="button" 
+                      icon="pi pi-heart" 
+                      routerLink="/"
+                      class="p-button-raised p-button-primery p-button-text"
+                      label="Return product">
+                  </button>
+              </td>
+          </tr>
+      </ng-template>
+    </p-table>
+
+  </ng-template>
+
+  <p-table styleClass="mb-4" [value]="products" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+          <tr>
+              <th>Products</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th></th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product>
+          <tr>
+              <td>
+                  <div class="flex align-items-center">
+                      <div class="mr-4">
+                          <img class="shadow-4 p-2" width="70" src="{{product.img}}" alt="img" />
+                      </div>
+                      <div>
+                          {{product.title}}
+                      </div>
+                  </div>
+              </td>
+              <td class="text-right">
+                  <button 
+                      pButton 
+                      type="button" 
+                      icon="pi pi-heart" 
+                      routerLink="/"
+                      class="p-button-raised p-button-primery p-button-text"
+                      label="Return product">
+                  </button>
+              </td>
+          </tr>
+      </ng-template>
+  </p-table>
+</p-card>
