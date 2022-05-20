@@ -10,7 +10,9 @@ export const environment = {
   baseUrl,
   userApi: `${baseUrl}/user`,
   myAccountApi: `${baseUrl}/myAccount`,
-  adminApi: `${baseUrl}/admin`,
+  adminApi: {
+    products: `${baseUrl}/admin/products`
+  },
   apiKey : 'T^-jdUnRg9+f&G?5Z!y,)I Z(,B^_]LNQu+Jc<EeMxi9j9I~1+kD.keMGJ^6pxjl'
 };
 
