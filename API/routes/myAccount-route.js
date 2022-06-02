@@ -6,6 +6,6 @@ const isAuth = require('../auth/isAuth');
 
 // router.post('/register', myAccountController.register);
 
-router.post('/change-password', isAuth, myAccountController.changePassword);
+router.put('/changePassword', isAuth, myAccountController.changePassword);
 
 module.exports = router;

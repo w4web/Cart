@@ -8,6 +8,7 @@ const connectionString = "mongodb+srv://manish:2VqFMEw4xxshrT8F@cluster0.80yfn.m
 const shopRoutes = require('./routes/shop-route');
 const userRoutes = require('./routes/user-route');
 const myAccountRoutes = require('./routes/myAccount-route');
+const cors = require('cors');
 
 // admin routes
 
@@ -30,6 +31,10 @@ server.use('/admin/products', productRoutes);
 server.use('/user', userRoutes);
 server.use('/myAccount', myAccountRoutes);
 server.use(shopRoutes);
+
+// CORS
+
+server.use(cors());
 
 // Connection
 
