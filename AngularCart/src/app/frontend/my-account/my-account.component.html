@@ -4,7 +4,7 @@
       <div class="md:col-3 col-12">
         <p-card styleClass="shadow-1 card-content">
           <app-profile-image></app-profile-image>
-          <div class="text-center mb-4"><i>Manish solanki</i></div>
+          <div class="text-center mb-4"><i>{{user.firstName}} {{user.lastName}}</i></div>
 
           <ul class="Icon-tab mb-4 ls-none">
             <li><a routerLink="/myAccount"><i class="pi pi-home"></i>Dashboard</a></li>
@@ -12,7 +12,7 @@
             <li><a routerLink="/myAccount/edit"><i class="pi pi-user-edit"></i>Edit account</a></li>
             <li><a routerLink="/myAccount/editAddress"><i class="pi pi-user-edit"></i>Edit address</a></li>
             <li><a routerLink="/myAccount/changePassword"><i class="pi pi-key"></i>Change password</a></li>
-            <li><a routerLink="/"><i class="pi pi-sign-out"></i>Logout</a></li>
+            <li><a class="cursor-pointer" (click)="authService.logout()"><i class="pi pi-sign-out"></i>Logout</a></li>
           </ul>
         </p-card>
       </div>

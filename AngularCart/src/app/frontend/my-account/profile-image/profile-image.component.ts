@@ -1,6 +1,7 @@
-import { AfterContentChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { MyAccountService } from '../my-account.service';
 
 @Component({
   selector: 'app-profile-image',
@@ -8,13 +9,12 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./profile-image.component.scss']
 })
 
-export class ProfileImageComponent implements OnInit, AfterContentChecked {
+export class ProfileImageComponent implements OnInit {
 
   private apiUrl = environment.baseUrl;
-  valuePath = "";
-
-  imgSelected = false;
+  
   imageSrc = '../../../assets/images/upload.png';
+  valuePath = "";
 
   alert = false;
   alertType: any;
@@ -24,20 +24,20 @@ export class ProfileImageComponent implements OnInit, AfterContentChecked {
 
   @ViewChild('toSetImg') toSetImg!: ElementRef<HTMLElement>;
 
-  constructor( protected http: HttpClient ) {
-    
-  }
+  constructor( protected http: HttpClient, public myAccountService: MyAccountService ) { }
 
-  ngOnInit(): void {}
-
-  ngAfterContentChecked(): void {
-
+  ngOnInit(): void {
     this.checkToLoad();
-
   }
 
   checkToLoad () {
-    
+    this.myAccountService.getAccount().subscribe(res => {
+      const user = res['body'];
+      if (user.profileImage != undefined && user.profileImage != "") {
+        this.imageSrc = user.profileImage;
+        this.valuePath = user.profileImage;
+      }
+    });
   }
 
   onFileChange(event: any): void {
@@ -51,13 +51,41 @@ export class ProfileImageComponent implements OnInit, AfterContentChecked {
           // It is a patch
           this.toSet();
           // -------------
-          this.imgSelected = true;
           this.file = event.target.files[0];
+          this.fileUpload();
         };
       } else {
         this._alert('error', 'image should be less than 2mb!');
       }
     }
+  }
+
+  fileUpload(): void {
+    const formData = new FormData();
+    formData.append("file", this.file, this.file.name);
+
+    this.http.post<any>(`${this.apiUrl}/uploadFile`, formData).subscribe(res => {
+      this.imageSrc = this.apiUrl+'/'+res.file;
+      this.valuePath = this.apiUrl+'/'+res.file;
+      this.submit();
+    });
+  }
+
+  submit(): void {
+    this.myAccountService.editProfileImage({profileImage: this.valuePath}).subscribe({
+      next: () => {
+        this._alert('success', 'Image uploaded successfully..');
+      },
+      error: () => {
+        this._alert('error', 'Something went wrong!');
+      }
+    });
+  }
+
+  onCancel(): void {
+    this.imageSrc = '../../../assets/images/upload.png';
+    this.valuePath = "";
+    this.submit();
   }
 
   _alert(type: any, message: any): void {
@@ -69,24 +97,6 @@ export class ProfileImageComponent implements OnInit, AfterContentChecked {
       this.alert = false;
       this.toSet();
     }, 3000);
-  }
-
-  onSubmit(): void {
-    const formData = new FormData();
-    formData.append("file", this.file, this.file.name);
-
-    this.http.post<any>(`${this.apiUrl}/uploadFile`, formData).subscribe(res => {
-      this.imageSrc = this.apiUrl+'/'+res.file;
-      this.valuePath = this.apiUrl+'/'+res.file;
-      this._alert('success', 'Image uploaded successfully..');
-      this.imgSelected = false;
-    });
-  }
-
-  onCancel(): void {
-    this.imageSrc = '../../../assets/images/upload.png';
-    this.valuePath = "";
-    this.imgSelected = false;
   }
 
   // Patch...

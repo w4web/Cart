@@ -4,7 +4,12 @@ const router = express.Router();
 
 const isAuth = require('../auth/isAuth');
 
-// router.post('/register', myAccountController.register);
+router.get('/', isAuth, myAccountController.getAccount);
+router.put('/edit', isAuth, myAccountController.editAccount);
+router.put('/editProfileImage', isAuth, myAccountController.editProfileImage);
+
+router.get('/address', isAuth, myAccountController.getAddress);
+router.put('/address/edit', isAuth, myAccountController.editAddress);
 
 router.put('/changePassword', isAuth, myAccountController.changePassword);
 

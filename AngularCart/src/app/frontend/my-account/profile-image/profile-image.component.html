@@ -2,7 +2,6 @@
 
   <button 
     class="imgUploadBtn" 
-    [class.image-selected]="imgSelected" 
     type="button" 
     (click)="fileInput.click()">
     <img [src]="imageSrc" alt="img" />
@@ -26,6 +25,4 @@
 
 </div>
 
-<p-message *ngIf="alert" [severity]="alertType" styleClass="mt-3" [text]="alertMessage"></p-message>
-
-<input type="text" class="hidden" [(ngModel)]="valuePath" />
+<p-message *ngIf="alert" [severity]="alertType" styleClass="mb-3 w-full" [text]="alertMessage"></p-message>

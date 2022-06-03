@@ -4,7 +4,7 @@
     "fieldGroup": [
       {
         "type": "input",
-        "key": "name",
+        "key": "customerName",
         "className": "md:col-6 col-12",
         "templateOptions": {
           "label": "First & last name",

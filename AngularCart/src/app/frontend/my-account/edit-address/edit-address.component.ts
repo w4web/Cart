@@ -16,14 +16,27 @@ export class EditAddressComponent implements OnInit {
   options: FormlyFormOptions = {};
   fields: FormlyFieldConfig[] = [];
 
-  constructor( public myAccountService: MyAccountService, public msgService: MsgService ) {
+  constructor( public myAccountService: MyAccountService, public msgService: MsgService ) { }
+
+  ngOnInit(): void {
     this.myAccountService.addressFields().subscribe((fields: any) => {
       this.form = new FormGroup({});
       this.fields = fields;
+      this.load();
     });
   }
 
-  ngOnInit(): void {
+  load(): void {
+    this.myAccountService.getAddress().subscribe(res => {
+      const address = res['body'];
+      this.model = {
+        customerName: address.customerName,
+        street: address.street,
+        city: address.city,
+        zip: address.zip,
+        phone: address.phone
+      }
+    });
   }
 
   submit() {

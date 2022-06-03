@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { MsgService } from 'src/app/shared/services/msg.service';
 import { MyAccountService } from '../my-account.service';
 
@@ -16,28 +17,51 @@ export class EditAccountComponent implements OnInit {
   options: FormlyFormOptions = {};
   fields: FormlyFieldConfig[] = [];
 
-  constructor( public myAccountService: MyAccountService, public msgService: MsgService ) {
+  constructor(
+    public myAccountService: MyAccountService, 
+    public msgService: MsgService, 
+    public authService: AuthService
+  ) {}
+
+  ngOnInit(): void {
     this.myAccountService.editAccountFields().subscribe((fields: any) => {
       this.form = new FormGroup({});
       this.fields = fields;
+      this.load();
     });
   }
 
-  ngOnInit(): void {
-
+  load(): void {
+    this.myAccountService.getAccount().subscribe(res => {
+      const user = res['body'];
+      this.model = {
+        firstName: user.firstName,
+        lastName: user.lastName
+      }
+    });
   }
 
-  submit() {
+  submit(): void {
 
     this.myAccountService.editAccount( this.model ).subscribe({
-      next: (data) => {
-        this.msgService.msg('success', 'Success!', 'Successfully edited!');
+      next: (res) => {
+        this.resetUser(res['body']);
+        this.msgService.msg('success', 'Success!', 'Account updated!');
       },
       error: (err: any) => {
         this.msgService.errorHandle(err);
       }
     });
     
+  }
+
+  resetUser(data:any): any {
+    
+    const user = this.authService.getUser();
+    user.firstName = data.firstName;
+    user.lastName = data.lastName;
+    this.authService.setUser(user);
+
   }
 
 }

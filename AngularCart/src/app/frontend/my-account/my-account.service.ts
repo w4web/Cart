@@ -17,11 +17,15 @@ export class MyAccountService {
   }
 
   getAccount(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/get`, { observe: 'response' });
+    return this.http.get<any>(`${this.apiUrl}`, { observe: 'response' });
   }
 
   editAccount(data: any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/edit`, data, { observe: 'response' });
+  }
+
+  editProfileImage(data: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/editProfileImage`, data, { observe: 'response' });
   }
 
   // -------------
@@ -31,7 +35,7 @@ export class MyAccountService {
   }
 
   getAddress(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/address/get`, { observe: 'response' });
+    return this.http.get<any>(`${this.apiUrl}/address`, { observe: 'response' });
   }
 
   editAddress(data: any): Observable<any> {
