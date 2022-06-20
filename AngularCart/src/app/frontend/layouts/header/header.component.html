@@ -3,9 +3,9 @@
         <div class="container">
             <div class="grid py-2">
                 <div class="md:col-6 col-12">
-                    <div class="logo flex align-items-center">
+                    <a class="logo inline-flex align-items-center no-decor" routerLink="/">
                         <img src="assets/images/primeng.svg" height="40" class="mr-3"><span>Prime cart</span>
-                    </div>
+                    </a>
                 </div>
                 <div class="md:col-6 col-12 flex align-items-center justify-content-end">
                     <button *ngIf="!isAuthenticated" routerLink="/user" type="button" pButton icon="pi pi-user" label="Login now!" class="p-button-secondary p-button-text no-box"></button>

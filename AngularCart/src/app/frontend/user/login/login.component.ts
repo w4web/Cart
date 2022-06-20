@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
 import { UserService } from '../user.service';
@@ -14,6 +14,8 @@ import { MsgService } from 'src/app/shared/services/msg.service';
 
 export class LoginComponent implements OnInit {
 
+  returnUrl!: string;
+
   form = new FormGroup({});
   model: any = {};
   options: FormlyFormOptions = {};
@@ -21,6 +23,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router, 
+    private route: ActivatedRoute,
     public authService: AuthService, 
     public userService: UserService, 
     public msgService: MsgService) {
@@ -32,7 +35,9 @@ export class LoginComponent implements OnInit {
 
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/myAccount';
+  }
 
   login() {
 
@@ -41,7 +46,7 @@ export class LoginComponent implements OnInit {
         next: (res) => {
           if (res.body.token !== '') {
             this.authService.setUser(res.body);
-            this.router.navigateByUrl('/myAccount');
+            this.router.navigate([this.returnUrl]);
           }
         },
         error: (err: any) => {

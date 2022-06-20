@@ -30,6 +30,12 @@ export class HeaderComponent implements OnInit {
         routerLink: '/myAccount'
       },
       {
+        label: 'Admin panel',
+        icon: 'pi pi-cog',
+        routerLink: '/admin',
+        visible: (this.user.role == 'admin') ? true : false
+      },
+      {
         label: 'Logout',
         icon: 'pi pi-sign-out',
         command: (event) => {

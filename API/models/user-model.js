@@ -8,15 +8,19 @@ const userSchema = new Schema({
     },
     firstName: {
         type: String,
+        trim: true,
         required: true
     },
     lastName: {
         type: String,
+        trim: true,
         required: true
     },
     email: {
         type: String,
+        trim: true,
         required: true,
+        lowercase: true,
         unique: true
     },
     password: {
@@ -25,6 +29,11 @@ const userSchema = new Schema({
     },
     address: {
         type: String
+    },
+    role: {
+        type: String,
+        enum: ["user", "admin"],
+        default: "user",
     },
     verified: { 
         type: Boolean, 

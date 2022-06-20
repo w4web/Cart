@@ -1,7 +1,6 @@
 const express = require('express');
-const myAccountController = require('../controllers/myAccount-controller');
 const router = express.Router();
-
+const myAccountController = require('../controllers/myAccount-controller');
 const isAuth = require('../middlewares/isAuth');
 
 router.get('/', isAuth, myAccountController.getAccount);

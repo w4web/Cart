@@ -8,10 +8,18 @@ import { FormlyModule } from '@ngx-formly/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { MessageService } from 'primeng/api';
-import { AuthInterceptor } from './shared/services/auth/auth.interceptor';
+import { AuthInterceptor } from './shared/services/interceptor/auth.interceptor';
+import { AuthGuard } from './shared/services/guard/auth.guard';
 
 const routes: Routes = [
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
+  { 
+    path: 'admin', 
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), 
+    canActivate: [AuthGuard],
+    data: {
+      role: 'admin'
+    }
+  },
   { path: '', loadChildren: () => import('./frontend/frontend.module').then(m => m.FrontendModule) },
   { path: '**', component: PageNotFoundComponent }
 ];
