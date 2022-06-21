@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
   submit() {
 
     this.userService.register( this.model ).subscribe({
-      next: (data) => {
+      next: () => {
         this.msgService.msg('success', 'Email sent!', 'An Email sent to your account please verify!');
         this.resetFields();
       },

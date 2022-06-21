@@ -25,15 +25,15 @@ export class HeaderComponent implements OnInit {
 
     this.accountItems = [
       {
-        label: 'Account',
-        icon: 'pi pi-user',
-        routerLink: '/myAccount'
-      },
-      {
         label: 'Admin panel',
         icon: 'pi pi-cog',
         routerLink: '/admin',
         visible: (this.user.role == 'admin') ? true : false
+      },
+      {
+        label: 'Account',
+        icon: 'pi pi-user',
+        routerLink: '/myAccount'
       },
       {
         label: 'Logout',

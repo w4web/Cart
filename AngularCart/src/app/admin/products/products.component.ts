@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/models/product.model';
+import { MsgService } from 'src/app/shared/services/msg.service';
 import { ProductService } from './product.service';
 
 @Component({
@@ -10,27 +11,34 @@ export class ProductsComponent implements OnInit {
 
   products!: Product[];
 
-  constructor( public productService: ProductService ) { }
+  constructor( public productService: ProductService, public msgService: MsgService ) { }
 
   ngOnInit(): void {
     this.load();
   }
 
   load() {
-    this.productService.allProducts().subscribe((res: any) => {
-      this.products = res['data'];
-      console.log(this.products);
+    this.productService.allProducts().subscribe({
+      next: (res: any) => {
+        this.products = res['body']['data'];
+        if(this.products.length < 1) {
+          this.msgService.msg('warn', 'Empty!', 'No products available!');
+        }
+      },
+      error: (err: any) => {
+        this.msgService.errorHandle(err);
+      }
     });
   }
 
   deleteProduct(product: any) {
     if (confirm("Are you sure to delete " + product.name)) {
       this.productService.delete(product._id).subscribe({
-        next: (data) => {
+        next: () => {
           this.load();
         },
         error: (err: any) => {
-          console.log(err);
+          this.msgService.errorHandle(err);
         }
       });
     }

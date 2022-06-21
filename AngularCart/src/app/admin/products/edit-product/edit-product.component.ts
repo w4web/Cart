@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Product } from 'src/app/shared/models/product.model';
 import { ProductService } from '../product.service';
 import { FormGroup } from '@angular/forms';
 import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MsgService } from 'src/app/shared/services/msg.service';
 
 @Component({
   selector: 'app-edit-product',
@@ -13,20 +14,18 @@ export class EditProductComponent implements OnInit {
 
   id: any;
   isAdd = true;
-  error = false;
-  success = false;
-  msgs: any = [{severity:'success', summary:'Product saved!', detail:'Your Product is saved!'}];
-
-  // Formly
 
   form = new FormGroup({});
   model: any = {};
   options: FormlyFormOptions = {};
   fields: FormlyFieldConfig[] = [];
 
+  @ViewChild('reset', { static: false }) reset?: ElementRef<HTMLElement>;
+
   constructor( 
     private router: Router, 
     public productService: ProductService, 
+    public msgService: MsgService,
     protected activatedRoute: ActivatedRoute
   ) { }
 
@@ -44,7 +43,7 @@ export class EditProductComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params['id'];
     if ( this.id ) {
       this.productService.find(this.id).subscribe(res => {
-        const prod = res['data'];
+        const prod = res['body']['data'];
         this.model = {
           image: prod.image,
           name: prod.name,
@@ -72,24 +71,37 @@ export class EditProductComponent implements OnInit {
 
   addProduct() {
     this.productService.create(this.model).subscribe({
-      next: (data) => {
-        this.router.navigate(['/admin/product']);
+      next: (res: any) => {
+        if(res.status == 201) {
+          this.msgService.msg('success', 'Success!', 'Product added successfully!');
+        }
+        this.resetFields();
       },
       error: (err: any) => {
-        console.log(err);
+        this.msgService.errorHandle(err);
       }
     });
   }
 
   editProduct() {
     this.productService.update(this.id, this.model).subscribe({
-      next: (data) => {
-        this.router.navigate(['/admin/product']);
+      next: (res: any) => {
+        if(res.status == 201) {
+          this.msgService.msg('success', 'Success!', 'Product edited successfully!');
+        }
+        // this.router.navigate(['/admin/product']);
       },
       error: (err: any) => {
-        console.log(err);
+        this.msgService.errorHandle(err);
       }
     });
+  }
+
+  resetFields(): void {
+    if (this.reset) {
+      const el: HTMLElement = this.reset.nativeElement;
+      el.click();
+    }
   }
 
 }

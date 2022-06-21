@@ -13,7 +13,7 @@ export class ProductService {
   constructor( private http: HttpClient ) { }
 
   allProducts(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}`);
+    return this.http.get<any>(`${this.apiUrl}`, { observe: 'response' });
   }
 
   create(data: any): Observable<any> {
@@ -21,7 +21,7 @@ export class ProductService {
   }
 
   find(id: any): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`);
+    return this.http.get<any>(`${this.apiUrl}/${id}`, { observe: 'response' });
   }
 
   update(id: any, data: any): Observable<any> {

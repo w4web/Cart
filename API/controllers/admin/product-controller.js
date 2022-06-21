@@ -29,9 +29,7 @@ exports.getProduct = (req, res, next) => {
     ProductModel.findById(productId)
     .then(product => {
         if (!product) {
-            const error = new Error('Could not find product.');
-            error.statusCode = 404;
-            throw error;
+            return res.status(404).json({ summary: 'Not found!', detail: 'Could not find product!' });
         }
         res.status(200).json({
             message: "Product fetched..",
@@ -97,9 +95,7 @@ exports.editProduct = (req, res, next) => {
     ProductModel.findById(productId).then(product => {
         
         if (!product) {
-          const error = new Error('Could not find product..');
-          error.statusCode = 404;
-          throw error;
+            return res.status(404).json({ summary: 'Not found!', detail: 'Could not find product!' });
         }
 
         product.name = name;

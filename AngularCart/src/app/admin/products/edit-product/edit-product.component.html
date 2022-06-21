@@ -1,8 +1,8 @@
 <h2 class="title">Add new product</h2>
 
-<p-card styleClass="shadow-2 card-content card-form">
+<p-messages></p-messages>
 
-    <p-messages *ngIf="success" [(value)]="msgs"></p-messages>
+<p-card styleClass="shadow-2 card-content card-form">
 
     <form [formGroup]="form" (ngSubmit)="save()">
         <formly-form 
@@ -28,6 +28,7 @@
                 class="p-button-secondary"
                 label="Back">
             </button>
+            <button #reset hidden type="reset">reset</button>
         </div>
     </form>
 

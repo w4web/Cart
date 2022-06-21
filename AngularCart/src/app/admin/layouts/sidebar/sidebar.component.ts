@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { LayoutService } from '../../layout/layout.service';
 
 @Component({
@@ -10,7 +11,10 @@ export class SidebarComponent implements OnInit {
 
   items!: MenuItem[];
 
-  constructor(public layoutService: LayoutService) { }
+  constructor(
+    public layoutService: LayoutService,
+    public authService: AuthService
+  ) { }
 
   ngOnInit(): void {
 
@@ -40,7 +44,10 @@ export class SidebarComponent implements OnInit {
         ]
       },
       {
-        label: 'Sign out'
+        label: 'Logout',
+        command: (event) => {
+          this.authService.logout();
+        }
       }
     ]
   }
