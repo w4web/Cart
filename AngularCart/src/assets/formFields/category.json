@@ -1,0 +1,42 @@
+[
+  {
+    "fieldGroupClassName": "grid gutter-10",
+    "fieldGroup": [
+      {
+        "key": "image",
+        "type": "file",
+        "className": "col-12",
+        "templateOptions": {
+          "label": "Category image"
+        }
+      },
+      {
+        "key": "name",
+        "type": "input",
+        "className": "col-12",
+        "templateOptions": {
+          "label": "Name",
+          "required": true
+        }
+      },
+      {
+        "key": "isParent",
+        "type": "checkbox",
+        "className": "col-12",
+        "defaultValue": true,
+        "templateOptions": {
+          "label": "Is parent"
+        }
+      },
+      {
+        "key": "parentId",
+        "type": "category-select",
+        "className": "col-12",
+        "templateOptions": {
+          "label": "Parent category"
+        },
+        "hideExpression": "model.isParent == true"
+      }
+    ]
+  }
+]

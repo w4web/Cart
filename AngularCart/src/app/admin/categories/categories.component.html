@@ -1,0 +1,71 @@
+<button 
+    pButton pRipple 
+    icon="pi pi-plus" 
+    class="p-button-raised p-button-secondary p-button-text mb-4" 
+    routerLink="/admin/category/add"
+    label="add new">
+</button>
+
+<p-messages></p-messages>
+
+<p-card styleClass="shadow-2 card-content">
+    <p-table [value]="categories" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Slug</th>
+                <th>Parent</th>
+                <th style="width: 130px;"></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-category>
+            <tr class="font-bold">
+                <td>
+                    <img [src]="category.image" alt="img" width="100" class="shadow-2 p-1" />
+                </td>
+                <td>{{category.name}}</td>
+                <td>{{category.slug}}</td>
+                <td>--</td>
+                <td>
+                    <button 
+                        pButton pRipple 
+                        icon="pi pi-pencil" 
+                        class="p-button-raised p-button-warning p-button-text mr-2" 
+                        [routerLink]="['/admin/category/edit', category._id]">
+                    </button>
+                    <button 
+                        pButton pRipple 
+                        icon="pi pi-trash" 
+                        class="p-button-raised p-button-danger p-button-text" 
+                        (click)="deleteCategory(category)">
+                    </button>
+                </td>
+            </tr>
+            <ng-container *ngIf="category['children']">
+                <tr *ngFor="let subCategory of category['children']; let i = index">
+                    <td>
+                        <img [src]="subCategory.image" alt="img" width="70" class="shadow-2 p-1" />
+                    </td>
+                    <td><img src="assets/images/right-down.png" width="20" class="right-down" /> {{subCategory.name}}</td>
+                    <td>{{subCategory.slug}}</td>
+                    <td>{{category.name}}</td>
+                    <td>
+                        <button 
+                            pButton pRipple 
+                            icon="pi pi-pencil" 
+                            class="p-button-raised p-button-warning p-button-text mr-2" 
+                            [routerLink]="['/admin/category/edit', subCategory._id]">
+                        </button>
+                        <button 
+                            pButton pRipple 
+                            icon="pi pi-trash" 
+                            class="p-button-raised p-button-danger p-button-text" 
+                            (click)="deleteCategory(subCategory)">
+                        </button>
+                    </td>
+                </tr>
+            </ng-container>
+        </ng-template>
+    </p-table>
+</p-card>

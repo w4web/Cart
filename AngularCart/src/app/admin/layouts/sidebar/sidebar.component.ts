@@ -35,6 +35,21 @@ export class SidebarComponent implements OnInit {
         ]
       },
       {
+        label: 'Categories',
+        items: [
+          {
+            label: 'Category list',
+            icon: 'pi pi-fw pi-list',
+            routerLink: '/admin/category'
+          },
+          {
+            label: 'Add new',
+            icon: 'pi pi-fw pi-plus',
+            routerLink: '/admin/category/add'
+          }
+        ]
+      },
+      {
         label: 'Orders',
         items: [
           {

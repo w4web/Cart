@@ -11,7 +11,8 @@ export const environment = {
   userApi: `${baseUrl}/user`,
   myAccountApi: `${baseUrl}/myAccount`,
   adminApi: {
-    products: `${baseUrl}/admin/products`
+    products: `${baseUrl}/admin/products`,
+    categories: `${baseUrl}/admin/categories`
   },
   apiKey : 'T^-jdUnRg9+f&G?5Z!y,)I Z(,B^_]LNQu+Jc<EeMxi9j9I~1+kD.keMGJ^6pxjl'
 };

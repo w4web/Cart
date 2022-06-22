@@ -3,7 +3,7 @@ const slugify = require("slugify");
 
 function treeView(categories, parentId = null) {
 
-    const categoryList = [];
+    const categoryTree = [];
     let cates;
 
     if (parentId == null) {
@@ -13,16 +13,17 @@ function treeView(categories, parentId = null) {
     }
 
     for (let cate of cates) {
-        categoryList.push({
+        categoryTree.push({
             _id: cate._id,
             name: cate.name,
             slug: cate.slug,
+            image: cate.image,
             parentId: cate.parentId,
             children: treeView(categories, cate._id),
         });
     }
 
-    return categoryList;
+    return categoryTree;
 
 }
 
@@ -33,8 +34,11 @@ exports.getCategories = (req, res, next) => {
     CategoryModel.find()
         .then(categories => {
             if (categories) {
-                const categoryList = treeView(categories);
-                res.status(200).json(categoryList);
+                const categoryTree = treeView(categories);
+                res.status(200).json({
+                    tree: categoryTree,
+                    list: categories
+                });
             }
         })
         .catch(err => {
@@ -76,18 +80,18 @@ exports.getCategory = (req, res, next) => {
 exports.addCategory = (req, res, next) => {
 
     const name = req.body.name;
-    const slug = slugify(req.body.name, '_');
+    const slug = `_${slugify(req.body.name, {replacement: '_', strict: true, lower: true})}_${Math.floor(Math.random() * 100)}`;
     const image = req.body.image;
     const parentId = req.body.parentId;
 
-    const CategoryModel = new CategoryModel({
+    const categoryModel = new CategoryModel({
         name: name,
         slug: slug,
         image: image,
         parentId: parentId
     });
 
-    CategoryModel
+    categoryModel
         .save()
         .then(category => {
             res.status(201).json(category);
@@ -108,7 +112,6 @@ exports.editCategory = (req, res, next) => {
     const categoryId = req.params.categoryId;
 
     const name = req.body.name;
-    const slug = slugify(req.body.name, '_');
     const image = req.body.image;
     const parentId = req.body.parentId;
 
@@ -120,7 +123,6 @@ exports.editCategory = (req, res, next) => {
             }
 
             category.name = name;
-            category.slug = slug;
             category.image = image;
             category.parentId = parentId;
 

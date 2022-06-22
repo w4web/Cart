@@ -11,7 +11,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: '/admin/landing', pathMatch: 'full' },
       { path: 'landing', loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule) },
-      { path: 'product', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) }
+      { path: 'product', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) },
+      { path: 'category', loadChildren: () => import('./categories/categories.module').then(m => m.CategoriesModule) }
     ]
   }
 ];
