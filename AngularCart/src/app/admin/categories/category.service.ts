@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -8,9 +8,16 @@ import { environment } from 'src/environments/environment';
 })
 export class CategoryService {
 
+  public parentCategory:any;
+  public parentCategory$ = new BehaviorSubject(undefined);
+
   private apiUrl = environment.adminApi.categories;
 
   constructor( private http: HttpClient ) { }
+
+  getParentCategory(): any {
+    this.parentCategory$.next(this.parentCategory);
+  }
 
   allCategories(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}`, { observe: 'response' });

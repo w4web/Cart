@@ -4,20 +4,21 @@ import { CategoryService } from 'src/app/admin/categories/category.service';
 import { MsgService } from '../../services/msg.service';
 
 @Component({
-  selector: 'category-select',
+  selector: 'proCate-select',
   template: `
     <p-dropdown 
       [options]="categories" 
-      placeholder="Select parent"
+      placeholder="Select category"
       optionLabel="name" 
-      optionValue="_id" 
+      optionValue="slug" 
+      (onChange)="onChange($event)" 
       [formControl]="formControl" 
       [formlyAttributes]="field">
     </p-dropdown>
   `,
 })
 
-export class CategorySelectComponent extends FieldType<FieldTypeConfig> implements OnInit {
+export class ProCateSelectComponent extends FieldType<FieldTypeConfig> implements OnInit {
 
   public categories: any;
 
@@ -28,13 +29,17 @@ export class CategorySelectComponent extends FieldType<FieldTypeConfig> implemen
   ngOnInit(): void {
     this.categoryService.allCategories().subscribe({
       next: (res: any) => {
-        // console.log("res", res['body']['tree']);
         this.categories = res['body']['tree'];
       },
       error: (err: any) => {
         this.msgService.errorHandle(err);
       }
     });
+  }
+
+  onChange(event:any) {
+    this.categoryService.parentCategory = event.value;
+    this.categoryService.getParentCategory();
   }
 
 }

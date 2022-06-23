@@ -49,18 +49,20 @@ exports.getProduct = (req, res, next) => {
 
 exports.addProduct = (req, res, next) => {
 
-    const name = req.body.name;
-    const description = req.body.description;
     const image = req.body.image;
+    const name = req.body.name;
     const price = req.body.price;
     const category = req.body.category;
+    const subCategory = req.body.subCategory;
+    const description = req.body.description;
 
     const productModel = new ProductModel({
-        name: name,
-        description: description,
         image: image,
+        name: name,
         price: price,
-        category: category
+        category: category,
+        subCategory: subCategory,
+        description: description
     });
 
     productModel
@@ -86,11 +88,12 @@ exports.editProduct = (req, res, next) => {
 
     const productId = req.params.productId;
 
-    const name = req.body.name;
-    const description = req.body.description;
     const image = req.body.image;
+    const name = req.body.name;
     const price = req.body.price;
     const category = req.body.category;
+    const subCategory = req.body.subCategory;
+    const description = req.body.description;
     
     ProductModel.findById(productId).then(product => {
         
@@ -98,11 +101,12 @@ exports.editProduct = (req, res, next) => {
             return res.status(404).json({ summary: 'Not found!', detail: 'Could not find product!' });
         }
 
-        product.name = name;
-        product.description = description;
         product.image = image;
+        product.name = name;
         product.price = price;
         product.category = category;
+        product.subCategory = subCategory;
+        product.description = description;
 
         return product.save();
     })

@@ -13,7 +13,7 @@
       {
         "key": "name",
         "type": "input",
-        "className": "col-12",
+        "className": "md:col-6 col-12",
         "templateOptions": {
           "label": "Name",
           "required": true
@@ -30,21 +30,21 @@
       },
       {
         "key": "category",
-        "type": "select",
+        "type": "proCate-select",
         "className": "md:col-6 col-12",
         "templateOptions": {
-          "label": "Category",
-          "options": [
-            {
-              "label": "Shirt",
-              "value": "Shirt"
-            },
-            {
-              "label": "T-shirt",
-              "value": "T-shirt"
-            }
-          ],
-          "required": true
+          "label": "Category"
+        }
+      },
+      {
+        "key": "subCategory",
+        "type": "proSubCate-select",
+        "className": "md:col-6 col-12",
+        "templateOptions": {
+          "label": "Sub category"
+        },
+        "expressionProperties": {
+          "templateOptions.disabled": "!model.category"
         }
       },
       {

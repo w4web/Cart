@@ -22,7 +22,7 @@
         <ng-template pTemplate="body" let-category>
             <tr class="font-bold">
                 <td>
-                    <img [src]="category.image" alt="img" width="100" class="shadow-2 p-1" />
+                    <img *ngIf="category.image" [src]="category.image" alt="img" width="100" class="shadow-2 p-1" />
                 </td>
                 <td>{{category.name}}</td>
                 <td>{{category.slug}}</td>
@@ -45,7 +45,7 @@
             <ng-container *ngIf="category['children']">
                 <tr *ngFor="let subCategory of category['children']; let i = index">
                     <td>
-                        <img [src]="subCategory.image" alt="img" width="70" class="shadow-2 p-1" />
+                        <img *ngIf="subCategory.image" [src]="subCategory.image" alt="img" width="70" class="shadow-2 p-1" />
                     </td>
                     <td><img src="assets/images/right-down.png" width="20" class="right-down" /> {{subCategory.name}}</td>
                     <td>{{subCategory.slug}}</td>

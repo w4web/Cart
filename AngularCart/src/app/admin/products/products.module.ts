@@ -7,6 +7,8 @@ import { EditProductComponent } from './edit-product/edit-product.component';
 import { FormlyModule } from '@ngx-formly/core';
 import { EmailValidator, fieldMatchValidator, minlengthValidationMessages } from 'src/app/shared/formly-custom.module';
 import { fileUploadComponent } from 'src/app/shared/components/formly/file-upload/file-upload.component';
+import { ProCateSelectComponent } from 'src/app/shared/components/formly/proCate-select.component';
+import { ProSubCateSelectComponent } from 'src/app/shared/components/formly/proSubCate-select.component';
 
 const routes: Routes = [
   { path: '', component: ProductsComponent },
@@ -15,15 +17,22 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ ProductsComponent, EditProductComponent, fileUploadComponent ],
+  declarations: [ 
+    ProductsComponent, 
+    EditProductComponent, 
+    fileUploadComponent, 
+    ProCateSelectComponent, 
+    ProSubCateSelectComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
     FormlyModule.forRoot({
       types: [
-        { name: 'file', component: fileUploadComponent }
-        // { name: 'custom-input', component: CustomInputComponent, extends: 'input' }
+        { name: 'file', component: fileUploadComponent },
+        { name: 'proCate-select', component: ProCateSelectComponent, extends: 'input' },
+        { name: 'proSubCate-select', component: ProSubCateSelectComponent, extends: 'input' }
       ],
       validators: [
         { name: 'email', validation: EmailValidator },

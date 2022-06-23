@@ -49,6 +49,7 @@ export class EditProductComponent implements OnInit {
           name: prod.name,
           price: prod.price,
           category: prod.category,
+          subCategory: prod.subCategory,
           description: prod.description,
         }
         this.isAdd = false;

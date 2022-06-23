@@ -3,15 +3,11 @@ const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
 
-    name: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String,
-        required: true
-    },
     image: {
+        type: String,
+        required: true
+    },
+    name: {
         type: String,
         required: true
     },
@@ -20,6 +16,13 @@ const productSchema = new Schema({
         required: true
     },
     category: {
+        type: String,
+        required: true
+    },
+    subCategory: {
+        type: String
+    },
+    description: {
         type: String,
         required: true
     }
