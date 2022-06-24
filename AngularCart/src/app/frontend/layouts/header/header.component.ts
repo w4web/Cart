@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
         label: 'Admin panel',
         icon: 'pi pi-cog',
         routerLink: '/admin',
-        visible: (this.user.role == 'admin') ? true : false
+        visible: (this.user && this.user.role == 'admin') ? true : false
       },
       {
         label: 'Account',
