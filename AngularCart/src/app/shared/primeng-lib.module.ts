@@ -17,7 +17,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuModule } from 'primeng/menu';
 import { BadgeModule } from 'primeng/badge';
-import { TieredMenuModule } from 'primeng/tieredmenu';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { CarouselModule } from 'primeng/carousel';
 import { TableModule } from 'primeng/table';
@@ -43,7 +42,6 @@ import { AccordionModule } from 'primeng/accordion';
     DropdownModule,
     MenubarModule,
     MenuModule,
-    TieredMenuModule,
     PanelMenuModule,
     BadgeModule,
     CarouselModule,

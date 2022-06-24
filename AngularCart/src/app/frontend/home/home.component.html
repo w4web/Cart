@@ -5,35 +5,23 @@
             <img src="./assets/images/banner.jpg" alt="img" />
         </div>
 
-        <p-card styleClass="shadow-1 card-content mb-5">
-            <div class="grid">
-                <div class="md:col-3 col-12">
-                    <h2><i class="pi pi-bars mr-2" style="font-size: 1.3rem"></i> All products</h2>
-                    <p-tieredMenu [model]="allProducts" styleClass="w-full"></p-tieredMenu>
-                </div>
-                <div class="md:col-9 col-12 offer-carousel">
-                    <p-carousel [value]="offers">
-                        <ng-template let-offer pTemplate="item">
-                            <img src="{{offer.img}}" alt="img" />
-                        </ng-template>
-                    </p-carousel>
-                </div>
-            </div>
-        </p-card>
+        <!-- <app-offers></app-offers> -->
+
+        <h3 class="title">All Product types</h3>
 
         <div class="grid gutter-10 p-categories mb-5">
-            <div class="lg:col-20 md:col-6 col-12" *ngFor="let category of categories; let i = index">
+            <div class="lg:col-20 md:col-6 col-12" *ngFor="let category of categories">
                 <p-card styleClass="shadow-1 card-content">
-                    <img src="{{category.img}}" alt="img" />
+                    <img src="{{category.image}}" alt="img" />
                     <div class="category-text">
-                        <h4>Sports</h4>
+                        <h4>{{category.name}}</h4>
                         <p>Get 10% Off Your Order</p>
                     </div>
                 </p-card>
             </div>
         </div>
 
-        <h2>Best Selling Products</h2>
+        <h3 class="title">Best Selling Products</h3>
 
         <div class="product-carousel mb-5">
             <p-carousel [value]="products" [numVisible]="5" [numScroll]="1" [showIndicators]="false">
@@ -41,12 +29,12 @@
                     <div class="item-wrap">
                         <p-card styleClass="shadow-1 product-card">
                             <ng-template pTemplate="header">
-                                <img src="{{product.img}}" alt="img" />
+                                <img src="{{product.image}}" alt="img" />
                             </ng-template>
-                            <h4>{{product.title}}</h4>
+                            <h4>{{product.name}}</h4>
                             <div class="price">
-                                <span>{{product.price}}</span>
-                                <span><del>{{product.originalPrice}}</del></span>
+                                Rs. <span class="price-inner">{{product.price}}</span>
+                                <span class="main-price-inner"><del>155</del></span>
                             </div>
                             <div class="product-item-action">
                                 <button pButton pRipple type="button" icon="pi pi-shopping-cart" label="Add to cart" class="btn-cart p-button-outlined p-button-secondary"></button>
@@ -59,16 +47,7 @@
             </p-carousel>
         </div>
 
-        <div class="brand-carousel mb-5">
-            <p-carousel [value]="brands" [numVisible]="6" [numScroll]="1" [showIndicators]="false">
-                <ng-template let-brand pTemplate="item">
-                    <div class="item-wrap">
-                        <img src="{{brand.img}}" alt="img" />
-                    </div>
-                </ng-template>
-            </p-carousel>
-        </div>
-
-
+        <app-brands></app-brands>
+        
     </div>
 </div>

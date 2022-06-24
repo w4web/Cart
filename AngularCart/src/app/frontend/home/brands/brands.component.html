@@ -1,0 +1,9 @@
+<div class="brand-carousel mb-5">
+  <p-carousel [value]="brands" [numVisible]="6" [numScroll]="1" [showIndicators]="false">
+      <ng-template let-brand pTemplate="item">
+          <div class="item-wrap">
+              <img src="{{brand.img}}" alt="img" />
+          </div>
+      </ng-template>
+  </p-carousel>
+</div>
