@@ -74,7 +74,7 @@ export class EditProductComponent implements OnInit {
     this.productService.create(this.model).subscribe({
       next: (res: any) => {
         if(res.status == 201) {
-          this.msgService.msg('success', 'Success!', 'Product added successfully!');
+          this.msgService.msg('success', 'Success!', 'Product added successfully!', 2000);
         }
         this.resetFields();
       },
@@ -88,7 +88,7 @@ export class EditProductComponent implements OnInit {
     this.productService.update(this.id, this.model).subscribe({
       next: (res: any) => {
         if(res.status == 201) {
-          this.msgService.msg('success', 'Success!', 'Product edited successfully!');
+          this.msgService.msg('success', 'Success!', 'Product edited successfully!', 2000);
         }
         // this.router.navigate(['/admin/product']);
       },

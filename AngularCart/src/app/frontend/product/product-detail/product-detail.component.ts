@@ -53,23 +53,23 @@ export class ProductDetailComponent implements OnInit {
     }
   ];
 
-  productImgThumbs: any = [
-    {
-      img: "./assets/images/product1.jpg",
-    },
-    {
-      img: "./assets/images/product2.jpg",
-    },
-    {
-      img: "./assets/images/product3.jpg",
-    },
-    {
-      img: "./assets/images/product4.jpg",
-    },
-    {
-      img: "./assets/images/product5.jpg",
-    }
-  ];
+  // productImgThumbs: any = [
+  //   {
+  //     img: "./assets/images/product1.jpg",
+  //   },
+  //   {
+  //     img: "./assets/images/product2.jpg",
+  //   },
+  //   {
+  //     img: "./assets/images/product3.jpg",
+  //   },
+  //   {
+  //     img: "./assets/images/product4.jpg",
+  //   },
+  //   {
+  //     img: "./assets/images/product5.jpg",
+  //   }
+  // ];
 
   constructor() { }
 

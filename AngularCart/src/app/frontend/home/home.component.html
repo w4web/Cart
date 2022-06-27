@@ -29,7 +29,11 @@
                     <div class="item-wrap">
                         <p-card styleClass="shadow-1 product-card">
                             <ng-template pTemplate="header">
-                                <img src="{{product.image}}" alt="img" />
+                                <a routerLink="/products/detail/1">
+                                    <div class="product-image">
+                                        <img src="{{product.image}}" alt="img" />
+                                    </div>
+                                </a>
                             </ng-template>
                             <h4>{{product.name}}</h4>
                             <div class="price">
