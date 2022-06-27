@@ -10,7 +10,7 @@
                         <p-breadcrumb [model]="breadcrumbItems" [home]="breadcrumbHome"></p-breadcrumb>
                     </div>
                     <div>
-                        <button pButton type="button" (click)="productService.sidebar = !productService.sidebar" icon="pi pi-filter" label="filter" class="p-button-raised p-button-secondary p-button-text mr-3"></button>
+                        <button pButton type="button" (click)="shopService.sidebar = !shopService.sidebar" icon="pi pi-filter" label="filter" class="p-button-raised p-button-secondary p-button-text mr-3"></button>
                         <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Price"
                             (onChange)="onSortChange($event)" styleClass="mb-2 md:mb-0"></p-dropdown>
                     </div>
@@ -22,13 +22,13 @@
                     <p-card styleClass="shadow-1 product-card">
                         <ng-template pTemplate="header">
                             <a routerLink="/products/detail/1">
-                                <img src="{{product.img}}" alt="img" />
+                                <img src="{{product.image}}" alt="img" />
                             </a>
                         </ng-template>
-                        <h4>{{product.title}}</h4>
+                        <h4>{{product.name}}</h4>
                         <div class="price">
-                            <span>{{product.price}}</span>
-                            <span><del>{{product.originalPrice}}</del></span>
+                            Rs. <span class="price-inner">{{product.price}}</span>
+                            <span class="main-price-inner"><del>155</del></span>
                         </div>
                         <div class="product-item-action">
                             <button pButton pRipple type="button" icon="pi pi-shopping-cart" label="Add to cart" class="btn-cart p-button-outlined p-button-secondary"></button>

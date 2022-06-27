@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { MegaMenuItem, MenuItem } from 'primeng/api';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { ShopService } from 'src/app/shared/services/shop.service';
 
 @Component({
   selector: 'app-header',
@@ -9,12 +10,13 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 
 export class HeaderComponent implements OnInit {
 
-  items!: MenuItem[];
+  megaMenu!: MegaMenuItem[];
   accountItems!: MenuItem[];
   isAuthenticated: boolean = false;
   user: any;
+  categories: any;
 
-  constructor(public authService: AuthService) {
+  constructor(public shopService: ShopService, public authService: AuthService) {
     this.authService.user$.subscribe(user => {
       this.isAuthenticated = user ? true : false;
       this.user = user;
@@ -44,16 +46,16 @@ export class HeaderComponent implements OnInit {
       }
     ];
 
-    this.items = [
+    this.megaMenu = [
       {
         label: 'Home',
         icon: 'pi pi-fw pi-home',
         routerLink: '/home'
       },
       {
-        label: 'Products',
+        label: 'Shop',
         icon: 'pi pi-fw pi-tag',
-        routerLink: '/products'
+        items: []
       },
       {
         label: 'About us',
@@ -70,6 +72,43 @@ export class HeaderComponent implements OnInit {
         routerLink: '/products/checkout'
       }
     ];
+
+    this.loadCategories();
+
   }
+
+  loadCategories(): any {
+
+    this.shopService.allCategories().subscribe((res: any) => {
+
+      this.categories = res['body']['tree'];
+
+      for(let i = 0; i < this.categories.length; i++){
+
+          this.categories[i].label = this.categories[i]['name'];
+
+          if (this.categories[i].children.length > 0) {
+
+            this.categories[i].items = this.categories[i]['children'];
+
+            for(let j = 0; j < this.categories[i].items.length; j++){
+
+              this.categories[i].items[j].label = this.categories[i].items[j]['name'];
+              this.categories[i].items[j].routerLink = '/products';
+              this.categories[i].items[j].queryParams = {category: this.categories[i].items[j]['slug']};
+
+            }
+
+          }
+      }
+
+      this.megaMenu[1].items = [this.categories];
+
+    });
+
+    
+  }
+
+
 
 }

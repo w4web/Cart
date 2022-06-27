@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
   loadCategories(): void {
     this.shopService.allCategories().subscribe((res: any) => {
       this.categories = res['body']['tree'];
+      // console.log("this.categories", this.categories);
     });
   }
 

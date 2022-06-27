@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../product.service';
+import { ShopService } from 'src/app/shared/services/shop.service';
 
 @Component({
   selector: 'product-filter',
@@ -10,7 +10,7 @@ export class ProductFilterComponent implements OnInit {
 
   rangeValues: number[] = [20,80];
 
-  constructor( public productService: ProductService ) { }
+  constructor( public shopService: ShopService ) { }
 
   ngOnInit(): void {
 

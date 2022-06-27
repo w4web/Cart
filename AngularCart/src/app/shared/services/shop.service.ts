@@ -9,14 +9,16 @@ import { environment } from 'src/environments/environment';
 
 export class ShopService {
 
+  sidebar = false;
+
   private apiUrl = environment.baseUrl;
 
   constructor( private http: HttpClient ) { }
 
   // Product
 
-  allProducts(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/products`, { observe: 'response' });
+  allProducts(category?:any): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/products?category=${category}`, { observe: 'response' });
   }
 
   findProduct(id: any): Observable<any> {

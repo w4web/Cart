@@ -14,7 +14,8 @@ import { PanelModule } from 'primeng/panel';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
-import { MenubarModule } from 'primeng/menubar';
+// import { MenubarModule } from 'primeng/menubar';
+import { MegaMenuModule } from 'primeng/megamenu';
 import { MenuModule } from 'primeng/menu';
 import { BadgeModule } from 'primeng/badge';
 import { PanelMenuModule } from 'primeng/panelmenu';
@@ -40,7 +41,8 @@ import { AccordionModule } from 'primeng/accordion';
     PanelModule,
     InputSwitchModule,
     DropdownModule,
-    MenubarModule,
+    // MenubarModule,
+    MegaMenuModule,
     MenuModule,
     PanelMenuModule,
     BadgeModule,

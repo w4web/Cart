@@ -84,11 +84,11 @@ hr {
 
 .header-nav {
     border-top: 1px solid #e1e1e1;
-    .p-menubar {
+    .p-megamenu {
         padding: 0;
         background: none;
         border: none;
-        .p-menubar-root-list {
+        .p-megamenu-root-list {
             > .p-menuitem {
                 margin-left: 25px;
                 &:first-child {
@@ -118,6 +118,16 @@ hr {
                     background: none !important;
                     box-shadow: none;
                 }
+            }
+        }
+        .p-megamenu-panel {
+            width: 500px;
+            .p-megamenu-col-12 {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .p-megamenu-submenu {
+                width: 33.33%;
             }
         }
     }
@@ -584,3 +594,17 @@ h2.with-line {
         width: 20%;
     }
 }
+
+@media screen and (max-width: 991px) {
+    .header-nav .p-megamenu .p-megamenu-panel {
+        width: 100%;
+    }
+    .header-nav .p-megamenu .p-megamenu-panel .p-megamenu-submenu {
+        width: 50%;
+    }
+    .p-megamenu-root-list > .p-menuitem {
+        width: 100%;
+        margin: 0 !important;
+    }
+}
+

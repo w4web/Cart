@@ -6,7 +6,14 @@ const { treeView } = require("../util/logic");
 
 exports.getProducts = (req, res, next) => {
 
-    ProductModel.find()
+    const filter = {};
+
+    if(req.query.category != "undefined") {
+        filter.subCategory = req.query.category;
+    }
+
+    ProductModel.find(filter)
+    
     .then(result => {
         res.status(200).json({
             message: "Fetched products successfully..",

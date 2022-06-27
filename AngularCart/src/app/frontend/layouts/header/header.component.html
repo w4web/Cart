@@ -2,12 +2,12 @@
     <div class="header-top">
         <div class="container">
             <div class="grid py-2">
-                <div class="md:col-6 col-12">
+                <div class="col-6">
                     <a class="logo inline-flex align-items-center no-decor" routerLink="/">
                         <img src="assets/images/primeng.svg" height="40" class="mr-3"><span>Prime cart</span>
                     </a>
                 </div>
-                <div class="md:col-6 col-12 flex align-items-center justify-content-end">
+                <div class="col-6 flex align-items-center justify-content-end">
                     <button *ngIf="!isAuthenticated" routerLink="/user" type="button" pButton icon="pi pi-user" label="Login now!" class="p-button-secondary p-button-text no-box"></button>
                     <button *ngIf="isAuthenticated" (click)="menu.toggle($event)" type="button" pButton icon="pi pi-user" label="{{user.firstName}}" class="p-button-secondary p-button-text no-box"></button>
                     <p-menu #menu [popup]="true" [model]="accountItems"></p-menu>
@@ -19,7 +19,7 @@
     </div>
     <div class="header-nav">
         <div class="container">
-            <p-menubar [model]="items"></p-menubar>
+            <p-megaMenu [model]="megaMenu"></p-megaMenu>
         </div>
     </div>
 </header>
