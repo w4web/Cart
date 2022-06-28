@@ -214,6 +214,10 @@ hr {
             margin: -15px 0 0 0;
             z-index: 1;
         }
+        .p-carousel-prev.p-disabled, .p-carousel-prev.p-disabled *,
+        .p-carousel-next.p-disabled, .p-carousel-next.p-disabled * {
+            pointer-events: visible;
+        }
     }
 }
 

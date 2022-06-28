@@ -9,8 +9,8 @@ import { ShopService } from 'src/app/shared/services/shop.service';
 
 export class HomeComponent implements OnInit {
 
-  public products!: Product[];
-  public categories: any;
+  products!: Product[];
+  categories: any;
 
   constructor( public shopService: ShopService ) { }
 

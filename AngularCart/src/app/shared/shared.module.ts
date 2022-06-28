@@ -5,11 +5,13 @@ import { FormlyPrimeNGModule } from '@ngx-formly/primeng';
 import { PrimengLibModule } from './primeng-lib.module';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProductCategoryComponent } from '../frontend/product/product-category/product-category.component';
+import { ProductCarouselComponent } from '../frontend/product/product-carousel/product-carousel.component';
 
 @NgModule({
   declarations: [
     PageNotFoundComponent,
-    ProductCategoryComponent
+    ProductCategoryComponent,
+    ProductCarouselComponent
   ],
   imports: [
     FormsModule,
@@ -25,7 +27,8 @@ import { ProductCategoryComponent } from '../frontend/product/product-category/p
     PrimengLibModule,
 
     PageNotFoundComponent,
-    ProductCategoryComponent
+    ProductCategoryComponent,
+    ProductCarouselComponent
   ],
 })
 

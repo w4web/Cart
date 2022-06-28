@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { ShopService } from 'src/app/shared/services/shop.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -8,54 +10,26 @@ import { MenuItem } from 'primeng/api';
 
 export class ProductDetailComponent implements OnInit {
 
+  id: any;
   quantity: number = 1;
 
   breadcrumbItems!: MenuItem[];
   breadcrumbHome!: MenuItem;
 
-  products: any = [
-    {
-      img: "./assets/images/product1.jpg",
-      title: "Oversized V Sweater",
-      price: "$45.00"
-    },
-    {
-      img: "./assets/images/product2.jpg",
-      title: "V-neck Blouse",
-      price: "$65.00"
-    },
-    {
-      img: "./assets/images/product3.jpg",
-      title: "Puffy Sleeves",
-      price: "$88.00"
-    },
-    {
-      img: "./assets/images/product4.jpg",
-      title: "Masculine Blazer",
-      price: "$65.00",
-      originalPrice: "$75.00"
-    },
-    {
-      img: "./assets/images/product5.jpg",
-      title: "High Rise Shorts",
-      price: "$55.00",
-      originalPrice: "$65.00"
-    },
-    {
-      img: "./assets/images/product1.jpg",
-      title: "Oversized V Sweater",
-      price: "$45.00"
-    },
-    {
-      img: "./assets/images/product2.jpg",
-      title: "V-neck Blouse",
-      price: "$65.00"
-    }
-  ];
+  product!: any;
+  category!: any;
+  products!: any;
 
-  constructor() { }
+  constructor( public shopService: ShopService, private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
+
+    this.route.paramMap.subscribe((params) => {
+      this.id = params.get('id');
+      this.loadSingle();
+    });
+
+    // breadcrumb
 
     this.breadcrumbItems = [
       {label: 'Products'},
@@ -64,6 +38,20 @@ export class ProductDetailComponent implements OnInit {
 
     this.breadcrumbHome = {icon: 'pi pi-home', routerLink: '/'};
 
+  }
+
+  loadSingle(): void {
+    this.shopService.findProduct(this.id).subscribe(res => {
+      this.product = res['body']['data'];
+      this.category = res['body']['data']['subCategory'];
+      this.loadProducts();
+    });
+  }
+
+  loadProducts(): void {
+    this.shopService.allProducts(this.category).subscribe((res: any) => {
+      this.products = res['body']['data'];
+    });
   }
 
 }
