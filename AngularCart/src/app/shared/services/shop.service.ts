@@ -17,8 +17,8 @@ export class ShopService {
 
   // Product
 
-  allProducts(category?:any): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/products?category=${category}`, { observe: 'response' });
+  allProducts(category?:any, page?:any): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/products?category=${category}&page=${page}`, { observe: 'response' });
   }
 
   findProduct(id: any): Observable<any> {

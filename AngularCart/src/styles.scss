@@ -448,25 +448,6 @@ product-filter {
     text-align: center;
     text-transform: uppercase;
 }
-.product-categories {
-    li {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-bottom: 1px solid #eee;
-        position: relative;
-        padding: 10px 0;
-        a {
-            color: #333 !important;
-            text-decoration: none !important;
-            &::before {
-                color: #999;
-                content: "❖";
-                margin-right: 10px;
-            }
-        }
-    }
-}
 
 .img-thumbs {
     .p-carousel .p-carousel-content {

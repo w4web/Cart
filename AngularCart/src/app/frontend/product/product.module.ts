@@ -7,7 +7,6 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ProductFilterComponent } from './product-filter/product-filter.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { ProductCategoryComponent } from './product-category/product-category.component';
 import { ShippingAddressComponent } from './checkout/shipping-address/shipping-address.component';
 import { FormlyModule } from '@ngx-formly/core';
 import { PaymentComponent } from './checkout/payment/payment.component';
@@ -27,7 +26,6 @@ const routes: Routes = [
     ProductFilterComponent,
     CartComponent,
     CheckoutComponent,
-    ProductCategoryComponent,
     ShippingAddressComponent,
     PaymentComponent
   ],

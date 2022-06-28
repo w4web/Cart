@@ -14,7 +14,6 @@ import { PanelModule } from 'primeng/panel';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
-// import { MenubarModule } from 'primeng/menubar';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { MenuModule } from 'primeng/menu';
 import { BadgeModule } from 'primeng/badge';
@@ -26,6 +25,8 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { SliderModule } from 'primeng/slider';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { AccordionModule } from 'primeng/accordion';
+import { TreeModule } from 'primeng/tree';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   exports: [
@@ -41,7 +42,6 @@ import { AccordionModule } from 'primeng/accordion';
     PanelModule,
     InputSwitchModule,
     DropdownModule,
-    // MenubarModule,
     MegaMenuModule,
     MenuModule,
     PanelMenuModule,
@@ -52,7 +52,9 @@ import { AccordionModule } from 'primeng/accordion';
     BreadcrumbModule,
     SliderModule,
     InputNumberModule,
-    AccordionModule
+    AccordionModule,
+    TreeModule,
+    PaginatorModule
   ]
 })
 export class PrimengLibModule { }

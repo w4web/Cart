@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ShopService } from 'src/app/shared/services/shop.service';
 
 @Component({
@@ -8,12 +8,15 @@ import { ShopService } from 'src/app/shared/services/shop.service';
 
 export class ProductFilterComponent implements OnInit {
 
-  rangeValues: number[] = [20,80];
+  rangeValues: number[] = [100, 1000];
+  @Output() changePrice = new EventEmitter<any>();
 
   constructor( public shopService: ShopService ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
+  setPriceRange() {
+    this.changePrice.next(this.rangeValues);
   }
 
 }

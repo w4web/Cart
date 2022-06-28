@@ -8,7 +8,7 @@ import { MenuItem } from 'primeng/api';
 
 export class ProductDetailComponent implements OnInit {
 
-  quantity:number = 1;
+  quantity: number = 1;
 
   breadcrumbItems!: MenuItem[];
   breadcrumbHome!: MenuItem;
@@ -52,24 +52,6 @@ export class ProductDetailComponent implements OnInit {
       price: "$65.00"
     }
   ];
-
-  // productImgThumbs: any = [
-  //   {
-  //     img: "./assets/images/product1.jpg",
-  //   },
-  //   {
-  //     img: "./assets/images/product2.jpg",
-  //   },
-  //   {
-  //     img: "./assets/images/product3.jpg",
-  //   },
-  //   {
-  //     img: "./assets/images/product4.jpg",
-  //   },
-  //   {
-  //     img: "./assets/images/product5.jpg",
-  //   }
-  // ];
 
   constructor() { }
 

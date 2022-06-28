@@ -1,8 +1,7 @@
 <div class="inner-page product-listing">
     <div class="container">
 
-        <p-dataView #dv [value]="products" [paginator]="true" [rows]="10" [sortField]="sortField"
-            [sortOrder]="sortOrder" layout="grid">
+        <p-dataView #dv [value]="products" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
             <ng-template pTemplate="header">
                 <div class="flex flex-column md:flex-row md:justify-content-between align-items-center">
 
@@ -41,7 +40,13 @@
             </ng-template>
         </p-dataView>
 
-        <product-filter></product-filter>
+        <p-paginator 
+            [rows]="rows" 
+            [totalRecords]="totalRecords" 
+            (onPageChange)="paginate($event)">
+        </p-paginator>
+
+        <product-filter (changePrice)="onPriceChange($event)"></product-filter>
 
     </div>
 </div>

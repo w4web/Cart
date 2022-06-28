@@ -4,10 +4,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormlyPrimeNGModule } from '@ngx-formly/primeng';
 import { PrimengLibModule } from './primeng-lib.module';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { ProductCategoryComponent } from '../frontend/product/product-category/product-category.component';
 
 @NgModule({
   declarations: [
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ProductCategoryComponent
   ],
   imports: [
     FormsModule,
@@ -22,7 +24,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     FormlyPrimeNGModule,
     PrimengLibModule,
 
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ProductCategoryComponent
   ],
 })
 

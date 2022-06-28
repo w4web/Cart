@@ -1,9 +1,7 @@
 <p-card styleClass="shadow-1 card-content mb-5">
   <div class="grid">
       <div class="md:col-3 col-12">
-          <div class="mb-2" *ngFor="let offer of offers">
-              <img src="{{offer.img}}" alt="img" />
-          </div>
+        <app-product-category></app-product-category>
       </div>
       <div class="md:col-9 col-12 offer-carousel">
           <p-carousel [value]="offers">

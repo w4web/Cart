@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ShopService } from 'src/app/shared/services/shop.service';
 
 @Component({
@@ -12,6 +12,10 @@ export class ProductComponent implements OnInit {
   breadcrumbItems!: MenuItem[];
   breadcrumbHome!: MenuItem;
 
+  page = 1;
+  rows: any;
+  totalRecords: any;
+
   products: any;
   category: any;
 
@@ -20,14 +24,13 @@ export class ProductComponent implements OnInit {
   sortOrder!: number;
   sortField!: string;
 
-  constructor( public shopService: ShopService, private route: ActivatedRoute ) {
-    
-  }
+  constructor( public shopService: ShopService, private route: ActivatedRoute, private router: Router ) {}
 
   ngOnInit(): void {
 
     this.route.queryParams.subscribe(params => {
       this.category = params['category'];
+      this.page = params['page'];
       this.loadProducts();
     });
 
@@ -46,8 +49,10 @@ export class ProductComponent implements OnInit {
   }
 
   loadProducts(): void {
-    this.shopService.allProducts(this.category).subscribe((res: any) => {
+    this.shopService.allProducts(this.category, this.page).subscribe((res: any) => {
       this.products = res['body']['data'];
+      this.rows = res['body']['productsPerPage'];
+      this.totalRecords = res['body']['totalProducts'];
     });
   }
 
@@ -62,6 +67,24 @@ export class ProductComponent implements OnInit {
         this.sortOrder = 1;
         this.sortField = value;
     }
+  }
+
+  onPriceChange(priceRange: any) {
+    this.products = this.products.filter((product:any) => {
+      return product.price >= priceRange[0]
+          && product.price <= priceRange[1]
+    });
+  }
+
+  paginate(event:any) {
+
+    this.router.navigate(['/products'], {
+      queryParams: {
+        page: event.page+1,
+        category: this.category
+      },
+    });
+
   }
 
 }

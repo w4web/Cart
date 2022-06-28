@@ -6,18 +6,38 @@ const { treeView } = require("../util/logic");
 
 exports.getProducts = (req, res, next) => {
 
+    let page = 1;
+    let totalItems;
+    const ITEMS_PER_PAGE = 10;
     const filter = {};
+
+    if(req.query.page != "undefined") {
+        page = req.query.page;
+    }
 
     if(req.query.category != "undefined") {
         filter.subCategory = req.query.category;
     }
 
     ProductModel.find(filter)
-    
-    .then(result => {
+    .count()
+    .then(numProducts => {
+      totalItems = numProducts;
+      return ProductModel.find(filter)
+        .skip((page - 1) * ITEMS_PER_PAGE)
+        .limit(ITEMS_PER_PAGE);
+    })
+    .then(products => {
         res.status(200).json({
             message: "Fetched products successfully..",
-            data: result
+            data: products,
+            totalProducts: totalItems,
+            productsPerPage: ITEMS_PER_PAGE,
+            hasNextPage: ITEMS_PER_PAGE * page < totalItems,
+            hasPreviousPage: page > 1,
+            nextPage: page + 1,
+            previousPage: page - 1,
+            lastPage: Math.ceil(totalItems / ITEMS_PER_PAGE)
         })
     })
     .catch(err => {

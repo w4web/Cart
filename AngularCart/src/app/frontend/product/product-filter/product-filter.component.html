@@ -5,10 +5,10 @@
     <h4 class="widget-title">Filter by price</h4>
 
     <h5>Range: {{rangeValues[0] + ' - ' + rangeValues[1]}}</h5>
-    <p-slider styleClass="mb-5" [(ngModel)]="rangeValues" [range]="true"></p-slider>
+    <p-slider styleClass="mb-5" [(ngModel)]="rangeValues" [max]="100" [max]="1200" [range]="true"></p-slider>
 
     <div class="text-right">
-        <button pButton type="button" label="Apply" class="p-button-raised p-button-text"></button>
+        <button (click)="setPriceRange()" pButton type="button" label="Apply" class="p-button-raised p-button-text"></button>
     </div>
 
 </p-sidebar>
