@@ -48,7 +48,7 @@
                                     type="button" 
                                     icon="pi pi-shopping-cart" 
                                     label="Add to cart" 
-                                    routerLink="/products/cart"
+                                    (click)="addToCart(product._id, quantity)"
                                     class="p-button-raised p-button-secondary p-button-text ml-3">
                                 </button>
                             </div>

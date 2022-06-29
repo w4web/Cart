@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { CartService } from 'src/app/shared/services/cart.service';
 import { ShopService } from 'src/app/shared/services/shop.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class ProductDetailComponent implements OnInit {
   category!: any;
   products!: any;
 
-  constructor( public shopService: ShopService, private route: ActivatedRoute ) { }
+  constructor( public shopService: ShopService, public cartService: CartService, private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
 
@@ -52,6 +53,14 @@ export class ProductDetailComponent implements OnInit {
     this.shopService.allProducts(this.category).subscribe((res: any) => {
       this.products = res['body']['data'];
     });
+  }
+
+  addToCart(productId:any, quantity:number): void {
+
+    this.cartService._addToCart({productId:productId, quantity:quantity}).subscribe(res => {
+      console.log("Added to cart..", res['body']);
+    });
+
   }
 
 }

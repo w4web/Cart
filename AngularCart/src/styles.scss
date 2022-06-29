@@ -52,6 +52,13 @@ hr {
     color: #333 !important;
 }
 
+.ellipsis { 
+    // text-overflow: ellipsis;
+    // white-space: nowrap;
+    overflow: hidden;
+    height: 1.4em;
+}
+
 .main-content {
     background-color: #f3f4f8;
     padding: 30px 0;

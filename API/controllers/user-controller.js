@@ -111,7 +111,13 @@ exports.login = (req, res, next) => {
 
                         if (user.verified && user.verified == true) {
 
-                            const token = jwt.sign({ id: user._id, email: user.email, role: user.role }, process.env.JWT_SECRET);
+                            const token = jwt.sign({ 
+                                id: user._id, 
+                                email: user.email, 
+                                role: user.role 
+                            }, 
+                            process.env.JWT_SECRET);
+
                             res.status(201).json({
                                 id: user._id,
                                 firstName: user.firstName,
