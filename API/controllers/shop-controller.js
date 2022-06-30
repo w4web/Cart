@@ -127,14 +127,67 @@ exports.getCategory = (req, res, next) => {
 // Cart & orders
 
 exports.getCart = (req, res, next) => {
-    req.user
+
+    let products;
+    let totalQuantity = 0;
+    let total = 0;
+
+    const _id = req.user.id;
+
+    UserModel.findById(_id).then(user => {
+
+        user
         .populate('cart.items.productId')
-        .execPopulate()
         .then(user => {
-            const products = user.cart.items;
-            res.status(200).json(products);
-        })
-        .catch(err => console.log(err));
+
+            products = user.cart.items;
+            products.forEach(p => {
+                totalQuantity += p.quantity;
+                total += p.quantity * p.productId.price;
+            });
+            res.status(200).json({
+                products: products,
+                totalQuantity: totalQuantity,
+                totalSum: total,
+            });
+            
+        }).catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err);
+        });
+
+    }).catch(err => {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    });
+
+};
+
+exports.cartQuantity = (req, res, next) => {
+
+    let totalQuantity = 0;
+
+    const _id = req.user.id;
+
+    UserModel.findById(_id).then(user => {
+
+        products = user.cart.items;
+        products.forEach(p => {
+            totalQuantity += p.quantity;
+        });
+        res.status(200).json({totalQuantity: totalQuantity});
+
+    }).catch(err => {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    });
+
 };
 
 exports.postCart = (req, res, next) => {
@@ -153,12 +206,49 @@ exports.postCart = (req, res, next) => {
             .then(result => {
                 res.status(201).json(result);
             })
-            .catch(err => {
-                if (!err.statusCode) {
-                    err.statusCode = 500;
+            .catch(error => {
+
+                if (error.name === "ValidationError") {
+                    // let errors = {};
+                    let vError = "";
+
+                    Object.keys(error.errors).forEach((key) => {
+                        // errors[key] = error.errors[key].message;
+                        vError = error.errors[key].message;
+                    });
+
+                    return res.status(422).json({vError});
                 }
-                next(err);
+
+                if (!error.statusCode) {
+                    error.statusCode = 500;
+                }
+                next(error);
             });
+
+    }).catch(err => {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    });
+
+};
+
+exports.editQuantity = (req, res, next) => {
+
+    const prodId = req.body.productId;
+    const quantity = req.body.quantity;
+
+    const _id = req.user.id;
+
+    UserModel.findById(_id).then(user => {
+
+        return user.editQuantity(prodId, quantity);
+
+    }).then(result => {
+
+        res.status(201).json(result);
 
     }).catch(err => {
         if (!err.statusCode) {
@@ -177,10 +267,15 @@ exports.cartDeleteProduct = (req, res, next) => {
     UserModel.findById(_id).then(user => {
 
         user.removeFromCart(prodId).then(result => {
+
             res.status(201).json(result);
-        }).catch(err =>
-            console.log(err)
-        );
+            
+        }).catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err);
+        });
 
     }).catch(err => {
         if (!err.statusCode) {
@@ -202,7 +297,6 @@ exports.getCheckout = (req, res, next) => {
 
         user
         .populate('cart.items.productId')
-        .execPopulate()
         .then(user => {
             products = user.cart.items;
             products.forEach(p => {
@@ -233,7 +327,6 @@ exports.postOrder = (req, res, next) => {
 
         user
         .populate('cart.items.productId')
-        .execPopulate()
         .then(user => {
             const products = user.cart.items.map(i => {
                 return { quantity: i.quantity, product: { ...i.productId._doc } };

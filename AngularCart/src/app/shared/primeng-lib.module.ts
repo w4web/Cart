@@ -27,6 +27,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { AccordionModule } from 'primeng/accordion';
 import { TreeModule } from 'primeng/tree';
 import { PaginatorModule } from 'primeng/paginator';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   exports: [
@@ -54,7 +55,8 @@ import { PaginatorModule } from 'primeng/paginator';
     InputNumberModule,
     AccordionModule,
     TreeModule,
-    PaginatorModule
+    PaginatorModule,
+    ToastModule
   ]
 })
 export class PrimengLibModule { }

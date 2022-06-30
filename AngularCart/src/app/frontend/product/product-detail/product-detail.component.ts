@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { CartService } from 'src/app/shared/services/cart.service';
+import { MsgService } from 'src/app/shared/services/msg.service';
 import { ShopService } from 'src/app/shared/services/shop.service';
 
 @Component({
@@ -21,7 +22,12 @@ export class ProductDetailComponent implements OnInit {
   category!: any;
   products!: any;
 
-  constructor( public shopService: ShopService, public cartService: CartService, private route: ActivatedRoute ) { }
+  constructor( 
+    public shopService: ShopService, 
+    public cartService: CartService, 
+    private route: ActivatedRoute, 
+    public msgService: MsgService
+  ) { }
 
   ngOnInit(): void {
 
@@ -57,8 +63,15 @@ export class ProductDetailComponent implements OnInit {
 
   addToCart(productId:any, quantity:number): void {
 
-    this.cartService._addToCart({productId:productId, quantity:quantity}).subscribe(res => {
-      console.log("Added to cart..", res['body']);
+    this.cartService._addToCart({productId:productId, quantity:quantity}).subscribe({
+      next: () => {
+        // console.log("Added to cart..", res['body']);
+        this.msgService.msg('success', 'Added to cart!', '');
+        this.cartService.callCart();
+      },
+      error: (err: any) => {
+        this.msgService.errorHandle(err);
+      }
     });
 
   }

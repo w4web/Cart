@@ -1,6 +1,8 @@
 <div class="inner-page product-detail">
     <div class="container">
 
+        <p-toast position="bottom-center"></p-toast>
+
         <p-breadcrumb styleClass="mb-5" [model]="breadcrumbItems" [home]="breadcrumbHome"></p-breadcrumb>
 
         <div class="grid gutter-10 p-categories mb-4">
@@ -37,6 +39,8 @@
                                     [showButtons]="true" 
                                     buttonLayout="horizontal" 
                                     spinnerMode="horizontal" 
+                                    [min]="1"
+                                    [max]="5"
                                     [step]="1"
                                     decrementButtonClass="p-button-raised p-button-secondary p-button-text" 
                                     incrementButtonClass="p-button-raised p-button-secondary p-button-text"

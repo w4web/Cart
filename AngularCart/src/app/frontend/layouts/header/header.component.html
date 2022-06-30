@@ -12,7 +12,15 @@
                     <button *ngIf="isAuthenticated" (click)="menu.toggle($event)" type="button" pButton icon="pi pi-user" label="{{user.firstName}}" class="p-button-secondary p-button-text no-box"></button>
                     <p-menu #menu [popup]="true" [model]="accountItems"></p-menu>
                     <i *ngIf="isAuthenticated" class="pi pi-heart mr-4 p-text-secondary" pBadge style="font-size: 1.5rem" value="2"></i>
-                    <i *ngIf="isAuthenticated" class="pi pi-shopping-cart mr-4 p-text-secondary" pBadge style="font-size: 1.5rem" value="2" severity="danger"></i>
+                    <i 
+                        *ngIf="isAuthenticated" 
+                        routerLink="/products/cart" 
+                        class="pi pi-shopping-cart mr-4 p-text-secondary cursor-pointer" 
+                        pBadge 
+                        style="font-size: 1.5rem" 
+                        [value]="cartQuantity" 
+                        severity="danger">
+                    </i>
                 </div>
             </div>
         </div>

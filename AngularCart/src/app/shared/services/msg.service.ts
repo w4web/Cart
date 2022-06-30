@@ -13,7 +13,13 @@ export class MsgService {
 
     if ( err.status !== 500 ) {
 
-      this.msg('error', err.error.summary, err.error.detail, 5000);
+      if (err.error.summary) {
+        this.msg('error', err.error.summary, err.error.detail, 5000);
+      } else if (err.error.vError) {
+        this.msg('error', err.error.vError, '', 5000);
+      } else {
+        this.msg('error', err.statusText, '', 5000);
+      }
 
     } else {
 

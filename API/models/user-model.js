@@ -47,7 +47,7 @@ const userSchema = new Schema({
                     ref: 'products',
                     required: true
                 },
-                quantity: { type: Number, required: true }
+                quantity: { type: Number, required: true, max: [5, 'Quantity will be Max 5'] }
             }
         ]
     }
@@ -86,6 +86,26 @@ userSchema.methods.addToCart = function (product, quantity) {
 
     this.cart = updatedCart;
     return this.save();
+};
+
+userSchema.methods.editQuantity = function (prodId, quantity) {
+
+    const cartProductIndex = this.cart.items.findIndex(cp => {
+        return cp.productId.toString() === prodId.toString();
+    });
+
+    const updatedCartItems = [...this.cart.items];
+
+    updatedCartItems[cartProductIndex].quantity = quantity;
+
+
+    const updatedCart = {
+        items: updatedCartItems
+    };
+
+    this.cart = updatedCart;
+    return this.save();
+
 };
 
 userSchema.methods.removeFromCart = function (productId) {

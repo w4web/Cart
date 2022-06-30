@@ -15,7 +15,11 @@ router.get('/categories/:categoryId', shopController.getCategory);
 
 router.get('/cart', isAuth, shopController.getCart);
 
+router.get('/cartQuantity', isAuth, shopController.cartQuantity);
+
 router.post('/cart/add', isAuth, shopController.postCart);
+
+router.post('/cart/editQuantity', isAuth, shopController.editQuantity);
 
 router.post('/cart/delete', isAuth, shopController.cartDeleteProduct);
 

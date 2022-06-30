@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MegaMenuItem, MenuItem } from 'primeng/api';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { CartService } from 'src/app/shared/services/cart.service';
 import { ShopService } from 'src/app/shared/services/shop.service';
 
 @Component({
@@ -15,8 +16,9 @@ export class HeaderComponent implements OnInit {
   isAuthenticated: boolean = false;
   user: any;
   categories: any;
+  cartQuantity: any = 0;
 
-  constructor(public shopService: ShopService, public authService: AuthService) {
+  constructor(public shopService: ShopService, public cartService: CartService, public authService: AuthService) {
     this.authService.user$.subscribe(user => {
       this.isAuthenticated = user ? true : false;
       this.user = user;
@@ -74,6 +76,7 @@ export class HeaderComponent implements OnInit {
     ];
 
     this.loadCategories();
+    this.callCart();
 
   }
 
@@ -105,8 +108,16 @@ export class HeaderComponent implements OnInit {
       this.megaMenu[1].items = [this.categories];
 
     });
-
     
+  }
+
+  callCart(): void {
+    this.cartService.callCart$.subscribe(() => 
+    {
+      this.cartService._cartQuantity().subscribe((res: any) => {
+        this.cartQuantity = res['body']['totalQuantity'];
+      });
+    });
   }
 
 
