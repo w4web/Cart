@@ -1,7 +1,8 @@
+<p-messages></p-messages>
+
 <ng-container *ngIf="isEdit">
 
     <div class="edit-address">
-        <p-messages></p-messages>
         <form [formGroup]="form" (ngSubmit)="submit()">
             <formly-form 
                 [model]="model" 
@@ -22,7 +23,7 @@
                     type="button" 
                     (click)="isEdit = false"
                     class="p-button-secondary"
-                    label="Cancel">
+                    label="Back">
                 </button>
             </div>
         </form>
@@ -41,19 +42,24 @@
             class="p-button-raised p-button-primery p-button-text">
         </button>
     </div>
-    <h3>Manish solanki</h3>
-    <p>Akshya Nagar 1st Block 1st Cross, Rammurthy nagar, Bangalore-560016.</p>
-    <p>Mobile no :- <span>8460677738</span></p>
-    <div class="text-left">
-        <button 
-            pButton 
-            type="button" 
-            icon="pi pi-angle-right" 
-            iconPos="right"
-            label="Deliver here" 
-            (click)="checkoutService.accChange(2)"
-            class="p-button-raised p-button-secondary p-button-text">
-        </button>
+    <div *ngIf="!address" class="address-text mt-3">
+        <h2>Address not available. Please add one!</h2>
+    </div>
+    <div *ngIf="address" class="address-text">
+        <h3>{{address.customerName}}</h3>
+        <p>{{address.street}} {{address.city}}-{{address.zip}}.</p>
+        <p>Mobile no :- <span>{{address.phone}}</span></p>
+        <div class="text-left">
+            <button 
+                pButton 
+                type="button" 
+                icon="pi pi-angle-right" 
+                iconPos="right"
+                label="Deliver here" 
+                (click)="checkoutService.accChange(2)"
+                class="p-button-raised p-button-secondary p-button-text">
+            </button>
+        </div>
     </div>
 
 </ng-container>

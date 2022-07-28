@@ -28,14 +28,7 @@ export class EditAddressComponent implements OnInit {
 
   load(): void {
     this.myAccountService.getAddress().subscribe(res => {
-      const address = res['body'];
-      this.model = {
-        customerName: address.customerName,
-        street: address.street,
-        city: address.city,
-        zip: address.zip,
-        phone: address.phone
-      }
+      this.model = res['body'];
     });
   }
 

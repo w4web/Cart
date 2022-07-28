@@ -12,7 +12,8 @@ import { CheckoutService } from '../checkout.service';
 
 export class ShippingAddressComponent implements OnInit {
 
-  isEdit = true;
+  address: any;
+  isEdit = false;
 
   form = new FormGroup({});
   model: any = {};
@@ -23,20 +24,42 @@ export class ShippingAddressComponent implements OnInit {
     public checkoutService: CheckoutService,
     public myAccountService: MyAccountService, 
     public msgService: MsgService 
-  ) {
+  ) { }
+
+  ngOnInit(): void {
     this.myAccountService.addressFields().subscribe((fields: any) => {
       this.form = new FormGroup({});
       this.fields = fields;
+      this.load();
     });
   }
 
-  ngOnInit(): void {
+  load(): void {
+    this.myAccountService.getAddress().subscribe({
+      next: (res) => {
+        this.address = res['body'];
+        this.model = res['body'];
+        if(this.address) {
+          if (this.address.street == undefined || this.address.street == "") {
+            this.isEdit = true;
+          }
+        }
+      },
+      error: (err: any) => {
+        // console.log("error.....", err);
+        if(err.status == 409) {
+          this.isEdit = true;
+        }
+      }
+    });
   }
 
   submit() {
     this.myAccountService.editAddress( this.model ).subscribe({
       next: (data) => {
-        this.msgService.msg('success', 'Saved!', 'Saved successfully!');
+        this.msgService.msg('success', 'Saved!', 'Saved successfully!', 2000);
+        this.isEdit = false;
+        this.load();
       },
       error: (err: any) => {
         this.msgService.errorHandle(err);

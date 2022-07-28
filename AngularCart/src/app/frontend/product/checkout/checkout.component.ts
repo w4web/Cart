@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { CartService } from 'src/app/shared/services/cart.service';
+import { MsgService } from 'src/app/shared/services/msg.service';
 import { CheckoutService } from './checkout.service';
 
 @Component({
@@ -9,18 +11,40 @@ import { CheckoutService } from './checkout.service';
 
 export class CheckoutComponent implements OnInit {
 
+  products!: any;
+  totalSum!: any;
+  tax!: any;
+  shippingCharge = 40;
+
   breadcrumbItems!: MenuItem[];
   breadcrumbHome!: MenuItem;
 
-  constructor( public checkoutService: CheckoutService ) {}
+  constructor( 
+    public checkoutService: CheckoutService, 
+    public cartService: CartService, 
+    public msgService: MsgService 
+  ) {}
 
   ngOnInit(): void {
+
+    this.loadCart();
+
     this.breadcrumbItems = [
       {label: 'Products'},
       {label: 'All'}
     ];
 
     this.breadcrumbHome = {icon: 'pi pi-home', routerLink: '/'};
+
+  }
+
+  loadCart(): void {
+    this.cartService._getCart().subscribe((res: any) => {
+      this.products = res['body']['products'];
+      this.totalSum = res['body']['totalSum'];
+      this.tax = (this.totalSum*10)/100;
+      console.log("Cart items.", res['body']);
+    });
   }
 
 }

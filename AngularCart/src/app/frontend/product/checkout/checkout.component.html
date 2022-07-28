@@ -28,20 +28,20 @@
             <div class="md:col-3 col-12">
                 <p-card styleClass="shadow-1 card-content">
                     <h4 class="widget-title">Summary</h4>
-                    <p>The total cost consist of tex & shipping charge.</p>
+                    <p>The total cost consist of tax & shipping charge.</p>
                     <hr>
                     <table class="cart-summary">
                         <tr>
-                            <th>Price :-</th>
-                            <td>$60.00</td>
+                            <th>Price :</th>
+                            <td>Rs. {{totalSum}} /-</td>
                         </tr>
                         <tr>
-                            <th>Tex :-</th>
-                            <td>$5.00</td>
+                            <th>Tax :</th>
+                            <td>Rs. {{tax}} /-</td>
                         </tr>
                         <tr>
-                            <th>Shipping charge :-</th>
-                            <td>$5.00</td>
+                            <th>Shipping charge :</th>
+                            <td>Rs. {{shippingCharge}} /-</td>
                         </tr>
                         <tr>
                             <td colspan="2">
@@ -49,8 +49,8 @@
                             </td>
                         </tr>
                         <tr class="cart-summary-total">
-                            <th>Total amount :-</th>
-                            <td><strong style="color: #22C55E;">$70.00</strong></td>
+                            <th>Total amount :</th>
+                            <td><strong style="color: #22C55E;">Rs. {{totalSum + tax + shippingCharge}} /-</strong></td>
                         </tr>
                     </table>
                 </p-card>
