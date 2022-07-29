@@ -9,6 +9,7 @@ import { environment } from '../../../environments/environment';
 export class MyAccountService {
 
   private apiUrl = environment.myAccountApi;
+  private baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -54,8 +55,12 @@ export class MyAccountService {
 
   // -------------
 
-  getOrders(): any {
-    return this.http.get<any>('./assets/data/orders.json');
+  // getOrders(): any {
+  //   return this.http.get<any>('./assets/data/orders.json');
+  // }
+
+  _getOrders(): Observable<any> {
+    return this.http.get<any>(this.baseUrl + '/orders', { observe: 'response' });
   }
 
 }

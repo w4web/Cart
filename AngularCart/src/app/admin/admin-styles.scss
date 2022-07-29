@@ -36,6 +36,11 @@
         padding-bottom: 15px;
         border-bottom: 1px solid #ccc;
     }
+    .list-img {
+        height: 70px;
+        width: 70px;
+        object-fit: cover;
+    }
 }
 
 .admin-wrapper.showSidebar {
@@ -89,4 +94,8 @@ img.right-down {
 
 .card-half {
     max-width: 600px;
+}
+
+.p-paginator .p-paginator-current {
+    margin-left: auto;
 }

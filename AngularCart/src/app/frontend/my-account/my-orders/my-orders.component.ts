@@ -14,10 +14,15 @@ export class MyOrdersComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.myAccountService.getOrders().subscribe((orders: any) => {
-      this.orders = orders;
-    });
+    this.getOrders();
 
+  }
+
+  getOrders(): void {
+    this.myAccountService._getOrders().subscribe((res: any) => {
+      this.orders = res['body'];
+      console.log("Order items.", res['body']);
+    });
   }
 
 }

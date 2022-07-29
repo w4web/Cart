@@ -10,6 +10,8 @@ import { ProductService } from './product.service';
 export class ProductsComponent implements OnInit {
 
   products!: Product[];
+  first = 0;
+  rows = 5;
 
   constructor( public productService: ProductService, public msgService: MsgService ) { }
 

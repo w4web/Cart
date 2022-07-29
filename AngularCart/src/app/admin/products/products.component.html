@@ -9,7 +9,14 @@
 <p-messages></p-messages>
 
 <p-card styleClass="shadow-2 card-content">
-    <p-table [value]="products" responsiveLayout="scroll">
+    <p-table 
+        [value]="products" 
+        [paginator]="true" 
+        [rows]="5" 
+        [showCurrentPageReport]="true" 
+        responsiveLayout="scroll"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" 
+        [rowsPerPageOptions]="[5,10,15]">
         <ng-template pTemplate="header">
             <tr>
                 <th>Name</th>
@@ -25,7 +32,7 @@
             <tr>
                 <td>{{product.name}}</td>
                 <td>
-                    <img [src]="product.image" alt="img" width="70" class="shadow-3 p-2" />
+                    <img [src]="product.image" alt="img" class="list-img shadow-3 p-2" />
                 </td>
                 <td>{{product.description}}</td>
                 <td>{{product.price}}</td>

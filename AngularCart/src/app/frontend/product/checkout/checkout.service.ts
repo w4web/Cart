@@ -10,12 +10,24 @@ export class CheckoutService {
 
   accSelected = 1;
 
-  private apiUrl = environment.userApi;
+  private apiUrl = environment.baseUrl;
 
   constructor(private http: HttpClient) {}
 
   accChange(i:number) {
     this.accSelected = i;
+  }
+
+  _getCheckout(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + '/checkout', { observe: 'response' });
+  }
+
+  _createOrder(): Observable<any> {
+    return this.http.post(this.apiUrl + '/create-order', { observe: 'response' });
+  }
+
+  _getOrders(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + '/orders', { observe: 'response' });
   }
 
 }

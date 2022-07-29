@@ -334,14 +334,14 @@ exports.postOrder = (req, res, next) => {
             const order = new Order({
                 user: {
                     email: req.user.email,
-                    userId: req.user
+                    userId: req.user.id
                 },
                 products: products
             });
             return order.save();
         })
         .then(result => {
-            return req.user.clearCart();
+            return user.clearCart();
         })
         .then(() => {
             res.status(201).json({ message: "Order successful" });

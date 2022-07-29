@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MsgService } from 'src/app/shared/services/msg.service';
+import { CheckoutService } from '../checkout.service';
 
 @Component({
   selector: 'app-payment',
@@ -39,13 +42,25 @@ export class PaymentComponent implements OnInit {
     }
   };
 
-  constructor() { }
+  constructor(private router: Router, public checkoutService: CheckoutService, public msgService: MsgService ) { }
 
   ngOnInit(): void {
   }
 
   onLoadPaymentData(event:any) {
     console.log('load payment data', event.detail);
+    this.createOrder();
+  }
+
+  createOrder(): void {
+    this.checkoutService._createOrder().subscribe({
+      next: () => {
+        this.router.navigate(['/products/orderConfirmation']);
+      },
+      error: (err: any) => {
+        this.msgService.errorHandle(err);
+      }
+    });
   }
 
 }

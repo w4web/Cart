@@ -11,12 +11,14 @@ import { ShippingAddressComponent } from './checkout/shipping-address/shipping-a
 import { FormlyModule } from '@ngx-formly/core';
 import { PaymentComponent } from './checkout/payment/payment.component';
 import { GooglePayButtonModule } from '@google-pay/button-angular';
+import { OrderConfirmationComponent } from './checkout/order-confirmation/order-confirmation.component';
 
 const routes: Routes = [
   { path: '', component: ProductComponent },
   { path: 'detail/:id', component: ProductDetailComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'checkout', component: CheckoutComponent }
+  { path: 'checkout', component: CheckoutComponent },
+  { path: 'orderConfirmation', component: OrderConfirmationComponent }
 ];
 
 @NgModule({
@@ -27,7 +29,8 @@ const routes: Routes = [
     CartComponent,
     CheckoutComponent,
     ShippingAddressComponent,
-    PaymentComponent
+    PaymentComponent,
+    OrderConfirmationComponent
   ],
   imports: [
     CommonModule,

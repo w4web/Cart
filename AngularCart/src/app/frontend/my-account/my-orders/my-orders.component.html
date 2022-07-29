@@ -1,76 +1,81 @@
 <h2 class="with-line">My orders</h2>
 
-<p-card styleClass="shadow-3 card-content mb-4" *ngFor="let order of orders">
-
-  <ng-template pTemplate="header">
-
-    <table class="p-datatable w-full">
-
-      <thead class="p-datatable-thead">
-          <tr>
-              <th>Order #</th>
-              <th>Order placed</th>
-              <th>Total</th>
-              <th>Status</th>
-              <th style="width: 110px"></th>
-          </tr>
-      </thead>
-
-      <tbody class="p-element p-datatable-tbody">
-          <tr>
-              <td class="font-bold">{{order.id}}</td>
-              <td>{{order.date_created}}</td>
-              <td>$ {{order.total}}</td>
-              <td>
-                <span [class]="'product-badge status-' + order.status.toLowerCase()">
-                  {{order.status}}
-                </span>
-              </td>
-              <td class="text-right">
-                <a class="text-primary font-bold no-underline" routerLink="/">View detail</a>
-              </td>
-          </tr>
-      </tbody>
-
-    </table>
-
-  </ng-template>
-
-  <p-table [value]="order.line_items" responsiveLayout="scroll">
-      <ng-template pTemplate="body" let-product>
-          <tr>
-              <td>
-                  <div class="flex align-items-center">
-                      <div class="mr-4">
-                          <img class="shadow-4 p-2" width="70" src="{{product.img}}" alt="img" />
-                      </div>
-                      <div>
-                        <div class="text-secondary font-bold mb-2">
-                          {{product.name}}
-                        </div>
-                        <p class="m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                      </div>
-                  </div>
-              </td>
-              <td class="text-right" style="width: 200px">
-                  <button 
-                      pButton 
-                      type="button" 
-                      icon="pi pi-replay" 
-                      routerLink="/"
-                      class="p-button-raised p-button-secondary p-button-text mb-2"
-                      label="Return product">
-                  </button>
-                  <button 
-                      pButton 
-                      type="button" 
-                      icon="pi pi-pencil" 
-                      routerLink="/"
-                      class="p-button-raised p-button-secondary p-button-text"
-                      label="Write review">
-                  </button>
-              </td>
-          </tr>
+<p-card *ngIf="orders && orders.length == 0" styleClass="shadow-1 card-content">
+  <p-messages severity="warn">
+      <ng-template pTemplate>
+          <i class="pi pi-shopping-cart"></i>
+          <div class="ml-3">No orders yet! Buy something :)</div>
       </ng-template>
-  </p-table>
+  </p-messages>
 </p-card>
+
+<div *ngIf="orders && orders.length > 0">
+  <p-card styleClass="shadow-3 card-content mb-4" *ngFor="let order of orders">
+    <ng-template pTemplate="header">
+      <table class="p-datatable w-full">
+        <thead class="p-datatable-thead">
+            <tr>
+                <th>Order #</th>
+                <th>Order placed</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th style="width: 110px"></th>
+            </tr>
+        </thead>
+        <tbody class="p-element p-datatable-tbody">
+            <tr>
+                <td class="font-bold">001</td>
+                <td>29 July 2022 T 16:28:02</td>
+                <td>Rs. 1700/-</td>
+                <td>
+                  <!-- <span [class]="'product-badge status-' + order.status.toLowerCase()"> -->
+                  <span class="product-badge status-confirmed">
+                    confirmed
+                  </span>
+                </td>
+                <td class="text-right">
+                  <a class="text-primary font-bold no-underline" routerLink="/">View detail</a>
+                </td>
+            </tr>
+        </tbody>
+      </table>
+    </ng-template>
+    <p-table [value]="order.products" responsiveLayout="scroll">
+        <ng-template pTemplate="body" let-item>
+            <tr>
+                <td>
+                    <div class="flex align-items-center">
+                        <div class="mr-4">
+                            <img class="shadow-4 p-2" width="70" src="{{item.product.image}}" alt="img" />
+                        </div>
+                        <div>
+                          <div class="text-secondary font-bold mb-2">
+                            {{item.product.name}}
+                          </div>
+                          <p class="m-0">{{item.product.description}}</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="text-right" style="width: 200px">
+                    <button 
+                        pButton 
+                        type="button" 
+                        icon="pi pi-replay" 
+                        routerLink="/"
+                        class="p-button-raised p-button-secondary p-button-text mb-2"
+                        label="Return product">
+                    </button>
+                    <button 
+                        pButton 
+                        type="button" 
+                        icon="pi pi-pencil" 
+                        routerLink="/"
+                        class="p-button-raised p-button-secondary p-button-text"
+                        label="Write review">
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+  </p-card>
+</div>
