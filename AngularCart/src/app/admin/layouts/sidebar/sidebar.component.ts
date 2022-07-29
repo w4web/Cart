@@ -55,6 +55,7 @@ export class SidebarComponent implements OnInit {
           {
             label: 'Order list',
             icon: 'pi pi-fw pi-list',
+            routerLink: '/admin/order'
           }
         ]
       },

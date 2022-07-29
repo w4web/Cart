@@ -9,6 +9,8 @@ import { CategoryService } from './category.service';
 export class CategoriesComponent implements OnInit {
 
   categories!: any[];
+  first = 0;
+  rows = 5;
 
   constructor( public categoryService: CategoryService, public msgService: MsgService ) { }
 

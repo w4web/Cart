@@ -9,7 +9,14 @@
 <p-messages></p-messages>
 
 <p-card styleClass="shadow-2 card-content">
-    <p-table [value]="categories" responsiveLayout="scroll">
+    <p-table 
+    [value]="categories" 
+    [paginator]="true" 
+    [rows]="5" 
+    [showCurrentPageReport]="true" 
+    responsiveLayout="scroll"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" 
+    [rowsPerPageOptions]="[5,10,15]">
         <ng-template pTemplate="header">
             <tr>
                 <th>Image</th>
@@ -22,7 +29,7 @@
         <ng-template pTemplate="body" let-category>
             <tr class="font-bold">
                 <td>
-                    <img *ngIf="category.image" [src]="category.image" alt="img" width="100" class="shadow-2 p-1" />
+                    <img *ngIf="category.image" [src]="category.image" alt="img" class="list-img shadow-2 p-1" />
                 </td>
                 <td>{{category.name}}</td>
                 <td>{{category.slug}}</td>
@@ -45,7 +52,7 @@
             <ng-container *ngIf="category['children']">
                 <tr *ngFor="let subCategory of category['children']; let i = index">
                     <td>
-                        <img *ngIf="subCategory.image" [src]="subCategory.image" alt="img" width="70" class="shadow-2 p-1" />
+                        <img *ngIf="subCategory.image" [src]="subCategory.image" alt="img" class="list-img shadow-2 p-1" />
                     </td>
                     <td><img src="assets/images/right-down.png" width="20" class="right-down" /> {{subCategory.name}}</td>
                     <td>{{subCategory.slug}}</td>
