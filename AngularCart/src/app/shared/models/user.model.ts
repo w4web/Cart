@@ -5,8 +5,8 @@ export interface User {
   lastName?: string;
   email?: string;
   password?: string;
-  activated?: boolean;
-  authorities?: string[];
+  verified?: boolean;
+  role?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }

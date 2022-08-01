@@ -44,7 +44,7 @@ exports.getUser = (req, res, next) => {
 
 exports.addUser = (req, res, next) => {
 
-    const { profileImage, firstName, lastName, email, password } = req.body;
+    const { profileImage, firstName, lastName, email, password, role, verified } = req.body;
 
     bcrypt.hash(password, 10).then(hashPassword => {
 
@@ -53,7 +53,9 @@ exports.addUser = (req, res, next) => {
             firstName,
             lastName,
             email,
-            password: hashPassword
+            password: hashPassword,
+            role,
+            verified
         });
 
         userModel
@@ -86,7 +88,7 @@ exports.editUser = (req, res, next) => {
 
     const userId = req.params.userId;
 
-    const { profileImage, firstName, lastName, email, password } = req.body;
+    const { profileImage, firstName, lastName, email, password, role, verified } = req.body;
 
     bcrypt.hash(password, 10).then(hashPassword => {
 
@@ -101,6 +103,8 @@ exports.editUser = (req, res, next) => {
             user.lastName = lastName;
             user.email = email;
             user.password = hashPassword;
+            user.role = role;
+            user.verified = verified;
     
             return user.save();
         })

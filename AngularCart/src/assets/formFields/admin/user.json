@@ -73,6 +73,44 @@
           "label": "Confirm password",
           "required": true
         }
+      },
+      {
+        "key": "role",
+        "type": "select",
+        "className": "md:col-6 col-12",
+        "defaultValue": "user",
+        "templateOptions": {
+          "label": "Role",
+          "options": [
+            {
+              "label": "Admin",
+              "value": "admin"
+            },
+            {
+              "label": "User",
+              "value": "user"
+            }
+          ]
+        }
+      },
+      {
+        "key": "verified",
+        "type": "select",
+        "className": "md:col-6 col-12",
+        "defaultValue": false,
+        "templateOptions": {
+          "label": "Verified",
+          "options": [
+            {
+              "label": "false",
+              "value": false
+            },
+            {
+              "label": "True",
+              "value": true
+            }
+          ]
+        }
       }
     ]
   }

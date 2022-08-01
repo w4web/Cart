@@ -49,7 +49,9 @@ export class EditUserComponent implements OnInit {
           firstName: user.firstName,
           lastName: user.lastName,
           email: user.email,
-          password: user.password
+          password: user.password,
+          role: user.role,
+          verified: user.verified
         }
         this.isAdd = false;
       });

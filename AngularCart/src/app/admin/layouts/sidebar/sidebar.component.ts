@@ -21,6 +21,7 @@ export class SidebarComponent implements OnInit {
     this.items = [
       {
         label: 'Products',
+        icon: 'pi pi-fw pi-th-large',
         items: [
           {
             label: 'Product list',
@@ -36,6 +37,7 @@ export class SidebarComponent implements OnInit {
       },
       {
         label: 'Categories',
+        icon: 'pi pi-fw pi-sitemap',
         items: [
           {
             label: 'Category list',
@@ -51,6 +53,7 @@ export class SidebarComponent implements OnInit {
       },
       {
         label: 'Orders',
+        icon: 'pi pi-fw pi-shopping-cart',
         items: [
           {
             label: 'Order list',
@@ -61,6 +64,7 @@ export class SidebarComponent implements OnInit {
       },
       {
         label: 'Users',
+        icon: 'pi pi-fw pi-users',
         items: [
           {
             label: 'User list',
@@ -75,7 +79,29 @@ export class SidebarComponent implements OnInit {
         ]
       },
       {
+        label: 'Content',
+        icon: 'pi pi-fw pi-book',
+        routerLink: '/admin/content'
+      },
+      {
+        label: 'Content types',
+        icon: 'pi pi-fw pi-sitemap',
+        items: [
+          {
+            label: 'Home carousel',
+            icon: 'pi pi-fw pi-images',
+            routerLink: '/admin/contentType/home_carousel'
+          },
+          {
+            label: 'Add new',
+            icon: 'pi pi-fw pi-plus',
+            routerLink: '/admin/contentType/add'
+          }
+        ]
+      },
+      {
         label: 'Logout',
+        icon: 'pi pi-fw pi-sign-out',
         command: (event) => {
           this.authService.logout();
         }

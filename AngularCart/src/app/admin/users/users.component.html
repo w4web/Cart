@@ -24,18 +24,33 @@
                 <th>Last name</th>
                 <th>Email</th>
                 <th>Password</th>
+                <th>Role</th>
+                <th>Status</th>
                 <th style="width: 130px;"></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-user>
             <tr>
                 <td>
-                    <img [src]="user.profileImage" alt="img" class="list-img shadow-3 p-2" />
+                    <img 
+                        [src]="user.profileImage" 
+                        onerror="this.src='./assets/images/avatar.png';"
+                        alt="img" 
+                        class="list-img shadow-3 p-2" 
+                    />
                 </td>
                 <td>{{user.firstName}}</td>
                 <td>{{user.lastName}}</td>
                 <td>{{user.email}}</td>
-                <td>{{user.password}}</td>
+                <td>*****</td>
+                <td style="font-weight: 700">{{user.role}}</td>
+                <td>
+                    <span 
+                        class="product-badge" 
+                        [ngClass]="{'status-completed': user.verified, 'status-processing' : !user.verified }">
+                        {{user.verified ? 'verified' : 'not verified'}}
+                    </span>
+                </td>
                 <td>
                     <button 
                         pButton pRipple 
