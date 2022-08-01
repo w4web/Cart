@@ -1,0 +1,56 @@
+<button 
+    pButton pRipple 
+    icon="pi pi-plus" 
+    class="p-button-raised p-button-secondary p-button-text mb-4" 
+    routerLink="/admin/user/add"
+    label="add new">
+</button>
+
+<p-messages></p-messages>
+
+<p-card styleClass="shadow-2 card-content">
+    <p-table 
+        [value]="users" 
+        [paginator]="true" 
+        [rows]="5" 
+        [showCurrentPageReport]="true" 
+        responsiveLayout="scroll"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" 
+        [rowsPerPageOptions]="[5,10,15]">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Profile image</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th style="width: 130px;"></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+            <tr>
+                <td>
+                    <img [src]="user.profileImage" alt="img" class="list-img shadow-3 p-2" />
+                </td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.password}}</td>
+                <td>
+                    <button 
+                        pButton pRipple 
+                        icon="pi pi-pencil" 
+                        class="p-button-raised p-button-warning p-button-text mr-2" 
+                        [routerLink]="['/admin/user/edit', user._id]">
+                    </button>
+                    <button 
+                        pButton pRipple 
+                        icon="pi pi-trash" 
+                        class="p-button-raised p-button-danger p-button-text" 
+                        (click)="deleteUser(user)">
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>

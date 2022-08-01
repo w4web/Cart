@@ -1,0 +1,79 @@
+[
+  {
+    "validators": {
+      "validation": [
+        {
+          "name": "fieldMatch",
+          "options": {
+            "errorPath": "password"
+          }
+        }
+      ]
+    },
+    "fieldGroupClassName": "grid gutter-10",
+    "fieldGroup": [
+      {
+        "key": "profileImage",
+        "type": "file",
+        "className": "col-12",
+        "templateOptions": {
+          "label": "Profile image"
+        }
+      },
+      {
+        "type": "input",
+        "key": "firstName",
+        "className": "md:col-6 col-12",
+        "templateOptions": {
+          "label": "First name",
+          "required": true
+        }
+      },
+      {
+        "type": "input",
+        "key": "lastName",
+        "className": "md:col-6 col-12",
+        "templateOptions": {
+          "label": "Surname",
+          "required": true
+        }
+      },
+      {
+        "key": "email",
+        "type": "input",
+        "className": "col-12",
+        "templateOptions": {
+          "type": "email",
+          "label": "Email",
+          "required": true,
+          "minLength": 5,
+          "maxLength": 100
+        },
+        "validators": {
+          "validation": ["email"]
+        }
+      },
+      {
+        "key": "password",
+        "type": "input",
+        "className": "col-12",
+        "templateOptions": {
+          "type": "password",
+          "label": "password",
+          "required": true,
+          "minLength": 3
+        }
+      },
+      {
+        "key": "passwordConfirm",
+        "type": "input",
+        "className": "col-12",
+        "templateOptions": {
+          "type": "password",
+          "label": "Confirm password",
+          "required": true
+        }
+      }
+    ]
+  }
+]

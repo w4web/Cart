@@ -14,6 +14,7 @@ const cors = require('cors');
 const productRoutes = require('./routes/admin/product-route');
 const categoryRoutes = require('./routes/admin/category-route');
 const orderRoutes = require('./routes/admin/order-route');
+const adminUserRoutes = require('./routes/admin/user-route');
 
 const fileUploadController = require('./controllers/fileUpload-controller');
 const myFile = multer({ storage: fileUpload.fileStorage }).single('file');
@@ -32,6 +33,7 @@ server.post('/uploadFile', myFile, fileUploadController.uploadFile);
 server.use('/admin/products', productRoutes);
 server.use('/admin/categories', categoryRoutes);
 server.use('/admin/orders', orderRoutes);
+server.use('/admin/users', adminUserRoutes);
 
 server.use('/user', userRoutes);
 server.use('/myAccount', myAccountRoutes);

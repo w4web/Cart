@@ -60,6 +60,21 @@ export class SidebarComponent implements OnInit {
         ]
       },
       {
+        label: 'Users',
+        items: [
+          {
+            label: 'User list',
+            icon: 'pi pi-fw pi-list',
+            routerLink: '/admin/user'
+          },
+          {
+            label: 'Add new',
+            icon: 'pi pi-fw pi-plus',
+            routerLink: '/admin/user/add'
+          }
+        ]
+      },
+      {
         label: 'Logout',
         command: (event) => {
           this.authService.logout();

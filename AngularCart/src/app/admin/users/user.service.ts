@@ -7,13 +7,13 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 
-export class ProductService {
+export class UserService {
 
-  private apiUrl = environment.adminApi.products;
+  private apiUrl = environment.adminApi.users;
 
   constructor( private http: HttpClient ) { }
 
-  allProducts(): Observable<any> {
+  allUsers(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}`, { observe: 'response' });
   }
 
@@ -30,13 +30,13 @@ export class ProductService {
   }
 
   delete(id: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/delete`, {'productId': id}, { observe: 'response' });
+    return this.http.post(`${this.apiUrl}/delete`, {'userId': id}, { observe: 'response' });
   }
 
   // Formly fileds
 
-  getProductFields(): any {
-    return this.http.get<any>('./assets/formFields/product.json');
+  getUserFields(): any {
+    return this.http.get<any>('./assets/formFields/admin/user.json');
   }
-
+  
 }
