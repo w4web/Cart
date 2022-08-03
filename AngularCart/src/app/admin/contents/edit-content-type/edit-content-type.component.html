@@ -1,0 +1,35 @@
+<h2 class="title">Add new ContentType</h2>
+
+<p-messages></p-messages>
+
+<p-card styleClass="shadow-2 card-content card-form card-half">
+
+    <form [formGroup]="form" (ngSubmit)="save()">
+        <formly-form 
+            [model]="model" 
+            [fields]="fields" 
+            [options]="options" 
+            [form]="form">
+        </formly-form>
+        <div class="mt-3">
+            <button 
+                pButton 
+                type="submit" 
+                icon="pi pi-plus" 
+                class="p-button-secondary mr-2" 
+                [disabled]="!form.valid"
+                label="Save">
+            </button>
+            <button 
+                pButton 
+                type="button" 
+                icon="pi pi-angle-left" 
+                routerLink="/admin/content"
+                class="p-button-secondary"
+                label="Back">
+            </button>
+            <button #reset hidden type="reset">reset</button>
+        </div>
+    </form>
+
+</p-card>

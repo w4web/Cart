@@ -1,0 +1,26 @@
+[
+  {
+    "fieldGroupClassName": "grid gutter-10",
+    "fieldGroup": [
+      {
+        "key": "name",
+        "type": "input",
+        "className": "md:col-6 col-12",
+        "templateOptions": {
+          "label": "Name",
+          "required": true
+        }
+      },
+      {
+        "key": "icon",
+        "type": "input",
+        "className": "md:col-6 col-12",
+        "templateOptions": {
+          "label": "Icon",
+          "placeholder": "pi pi-fw pi-images",
+          "required": true
+        }
+      }
+    ]
+  }
+]

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { ContentType } from 'src/app/shared/models/contentType.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { ContentService } from '../../contents/content.service';
 import { LayoutService } from '../../layout/layout.service';
 
 @Component({
@@ -13,7 +15,8 @@ export class SidebarComponent implements OnInit {
 
   constructor(
     public layoutService: LayoutService,
-    public authService: AuthService
+    public authService: AuthService,
+    public contentService: ContentService
   ) { }
 
   ngOnInit(): void {
@@ -86,18 +89,7 @@ export class SidebarComponent implements OnInit {
       {
         label: 'Content types',
         icon: 'pi pi-fw pi-sitemap',
-        items: [
-          {
-            label: 'Home carousel',
-            icon: 'pi pi-fw pi-images',
-            routerLink: '/admin/contentType/home_carousel'
-          },
-          {
-            label: 'Add new',
-            icon: 'pi pi-fw pi-plus',
-            routerLink: '/admin/contentType/add'
-          }
-        ]
+        items: []
       },
       {
         label: 'Logout',
@@ -106,7 +98,37 @@ export class SidebarComponent implements OnInit {
           this.authService.logout();
         }
       }
-    ]
+    ];
+
+    this.loadCategories();
+  }
+
+  loadCategories(): any {
+
+    this.contentService.allContentTypes().subscribe((res: any) => {
+
+      let contentTypes = res['body'];
+
+      for(let i = 0; i < contentTypes.length; i++){
+
+        contentTypes[i].label = contentTypes[i]['name'];
+        contentTypes[i].routerLink = "/admin/content/"+contentTypes[i]['_id'];
+
+      }
+
+      contentTypes.push({
+        label: 'Add new',
+        icon: 'pi pi-fw pi-plus',
+        routerLink: '/admin/content/addType',
+        style: {'border-top': '1px solid #DDD', 'margin-top': '5px'}
+      })
+
+      this.items.find(i => i.label === 'Content types')!.items = contentTypes;
+
+      console.log("Content types", contentTypes);
+
+    });
+
   }
 
 }
