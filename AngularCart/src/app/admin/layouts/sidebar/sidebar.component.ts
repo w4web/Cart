@@ -82,11 +82,6 @@ export class SidebarComponent implements OnInit {
         ]
       },
       {
-        label: 'Content',
-        icon: 'pi pi-fw pi-book',
-        routerLink: '/admin/content'
-      },
-      {
         label: 'Content types',
         icon: 'pi pi-fw pi-sitemap',
         items: []
@@ -105,27 +100,44 @@ export class SidebarComponent implements OnInit {
 
   loadCategories(): any {
 
-    this.contentService.allContentTypes().subscribe((res: any) => {
+    this.contentService.callCategories$.subscribe(() => 
+    {
 
-      let contentTypes = res['body'];
+      this.contentService.allContentTypes().subscribe((res: any) => {
 
-      for(let i = 0; i < contentTypes.length; i++){
+        let contentTypes = res['body'];
 
-        contentTypes[i].label = contentTypes[i]['name'];
-        contentTypes[i].routerLink = "/admin/content/"+contentTypes[i]['_id'];
+        for(let i = 0; i < contentTypes.length; i++){
 
-      }
+          contentTypes[i].label = contentTypes[i]['name'];
+          contentTypes[i].routerLink = "/admin/content/"+contentTypes[i]['_id'];
 
-      contentTypes.push({
-        label: 'Add new',
-        icon: 'pi pi-fw pi-plus',
-        routerLink: '/admin/content/addType',
-        style: {'border-top': '1px solid #DDD', 'margin-top': '5px'}
-      })
+        }
 
-      this.items.find(i => i.label === 'Content types')!.items = contentTypes;
+        contentTypes.push(
+          {
+            label: 'Un categorized',
+            icon: 'pi pi-fw pi-book',
+            routerLink: '/admin/content',
+            style: {'border-top': '1px solid #DDD', 'margin-top': '5px'}
+          },
+          {
+            icon: 'pi pi-fw pi-refresh',
+            styleClass: 'icon-refrash'
+          },
+          {
+            label: 'Add new',
+            icon: 'pi pi-fw pi-plus',
+            routerLink: '/admin/content/addType',
+            style: {'border-top': '1px solid #DDD', 'margin-top': '5px'}
+          }
+        )
 
-      console.log("Content types", contentTypes);
+        this.items.find(i => i.label === 'Content types')!.items = contentTypes;
+
+        console.log("Content types", contentTypes);
+
+      });
 
     });
 

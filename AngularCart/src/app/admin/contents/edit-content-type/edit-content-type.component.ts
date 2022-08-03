@@ -74,6 +74,7 @@ export class EditContentTypeComponent implements OnInit {
           this.msgService.msg('success', 'Success!', 'ContentType added successfully!', 2000);
         }
         this.resetFields();
+        this.contentService.callCategories();
       },
       error: (err: any) => {
         this.msgService.errorHandle(err);
@@ -87,6 +88,7 @@ export class EditContentTypeComponent implements OnInit {
         if(res.status == 201) {
           this.msgService.msg('success', 'Success!', 'ContentType edited successfully!', 2000);
         }
+        this.contentService.callCategories();
         // this.router.navigate(['/admin/ContentType']);
       },
       error: (err: any) => {
