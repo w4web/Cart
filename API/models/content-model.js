@@ -8,16 +8,14 @@ const contentSchema = new Schema({
         required: true
     },
     subTitle: {
-        type: String,
-        required: true
+        type: String
     },
     description: {
         type: String,
         required: true
     },
     image: {
-        type: String,
-        required: true
+        type: String
     },
     slug: {
         type: String,
@@ -27,7 +25,6 @@ const contentSchema = new Schema({
     },
     contentTypeId: {
         type: Schema.Types.ObjectId,
-        required: true,
         ref: 'contentType'
     }
     

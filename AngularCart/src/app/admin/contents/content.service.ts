@@ -20,8 +20,8 @@ export class ContentService {
     this.callCategories$.next(undefined);
   }
 
-  allContents(): Observable<any> {
-    return this.http.get<any>(`${this.apiContents}`, { observe: 'response' });
+  allContents(contentTypeId: any): Observable<any> {
+    return this.http.get<any>(`${this.apiContents}/${contentTypeId}`, { observe: 'response' });
   }
 
   create(data: any): Observable<any> {
@@ -29,7 +29,7 @@ export class ContentService {
   }
 
   find(id: any): Observable<any> {
-    return this.http.get<any>(`${this.apiContents}/${id}`, { observe: 'response' });
+    return this.http.get<any>(`${this.apiContents}/find/${id}`, { observe: 'response' });
   }
 
   update(id: any, data: any): Observable<any> {
@@ -37,7 +37,7 @@ export class ContentService {
   }
 
   delete(id: any): Observable<any> {
-    return this.http.post(`${this.apiContents}/delete`, {'contentTypeId': id}, { observe: 'response' });
+    return this.http.post(`${this.apiContents}/delete`, {'contentId': id}, { observe: 'response' });
   }
 
   // Content types
@@ -65,11 +65,11 @@ export class ContentService {
   // Formly fileds
 
   getContentFields(): any {
-    return this.http.get<any>('./assets/formFields/content.json');
+    return this.http.get<any>('./assets/formFields/admin/content.json');
   }
 
   getContentTypeFields(): any {
-    return this.http.get<any>('./assets/formFields/contentType.json');
+    return this.http.get<any>('./assets/formFields/admin/contentType.json');
   }
 
 }

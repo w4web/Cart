@@ -14,6 +14,22 @@ export function EmailValidator(control: AbstractControl): any {
   return null;
 }
 
+// Slug
+
+const slugRegex = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
+export function SlugValidator(control: AbstractControl): any {
+  if (control.value && !slugRegex.test(control.value)) {
+    return {
+      slug: { message: 'Your slug is invalid.' },
+    };
+  }
+
+  return null;
+}
+
+// Slug end..
+
 export function minlengthValidationMessages(err: any, field: any): any {
   return `Should have atleast ${field.templateOptions.minLength} characters`;
 }

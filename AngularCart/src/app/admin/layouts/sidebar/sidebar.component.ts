@@ -116,9 +116,9 @@ export class SidebarComponent implements OnInit {
 
         contentTypes.push(
           {
-            label: 'Un categorized',
-            icon: 'pi pi-fw pi-book',
-            routerLink: '/admin/content',
+            label: 'Add new type',
+            icon: 'pi pi-fw pi-plus',
+            routerLink: '/admin/content/addType',
             style: {'border-top': '1px solid #DDD', 'margin-top': '5px'}
           },
           {
@@ -126,9 +126,9 @@ export class SidebarComponent implements OnInit {
             styleClass: 'icon-refrash'
           },
           {
-            label: 'Add new',
-            icon: 'pi pi-fw pi-plus',
-            routerLink: '/admin/content/addType',
+            label: 'Un categorized',
+            icon: 'pi pi-fw pi-book',
+            routerLink: '/admin/content',
             style: {'border-top': '1px solid #DDD', 'margin-top': '5px'}
           }
         )

@@ -111,10 +111,10 @@ exports.deleteContentType = (req, res, next) => {
             if (contents) {
                 contents.forEach((content) => {
                     content.contentTypeId = undefined;
+                    content.save();
                 })
             }
-    
-            return contents.save();
+
         })
         .catch(err => {
             if (!err.statusCode) {
@@ -122,6 +122,8 @@ exports.deleteContentType = (req, res, next) => {
             }
             next(err);
         });
+
+        // ContentModel.updateMany({ 'contentTypeId': contentTypeId }, { contentTypeId: undefined });
 
     })
     .then(() => {

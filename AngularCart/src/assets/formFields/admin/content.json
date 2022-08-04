@@ -1,0 +1,61 @@
+[
+  {
+    "fieldGroupClassName": "grid gutter-10",
+    "fieldGroup": [
+      {
+        "key": "title",
+        "type": "input",
+        "className": "md:col-6 col-12",
+        "templateOptions": {
+          "label": "Title",
+          "required": true
+        }
+      },
+      {
+        "key": "subTitle",
+        "type": "input",
+        "className": "md:col-6 col-12",
+        "templateOptions": {
+          "label": "Sub title"
+        }
+      },
+      {
+        "key": "description",
+        "type": "textarea",
+        "className": "col-12",
+        "templateOptions": {
+          "label": "Description",
+          "required": true
+        }
+      },
+      {
+        "key": "image",
+        "type": "file",
+        "className": "col-12",
+        "templateOptions": {
+          "label": "Upload image"
+        }
+      },
+      {
+        "key": "slug",
+        "type": "input",
+        "className": "md:col-6 col-12",
+        "templateOptions": {
+          "label": "Slug - (For url)",
+          "required": true
+        },
+        "validators": {
+          "validation": ["slug"]
+        }
+      },
+      {
+        "key": "contentTypeId",
+        "type": "contentType-select",
+        "className": "md:col-6 col-12",
+        "templateOptions": {
+          "label": "Content type"
+        }
+      }
+    ]
+  }
+]

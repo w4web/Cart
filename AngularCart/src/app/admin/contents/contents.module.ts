@@ -7,20 +7,24 @@ import { fileUploadComponent } from 'src/app/shared/components/formly/file-uploa
 import { ContentsComponent } from './contents.component';
 import { EditContentComponent } from './edit-content/edit-content.component';
 import { EditContentTypeComponent } from './edit-content-type/edit-content-type.component';
+import { contentTypeSelectComponent } from 'src/app/shared/components/formly/contentType-select.component';
+import { SlugValidator } from 'src/app/shared/formly-custom.module';
 
 const routes: Routes = [
-  { path: '', component: ContentsComponent },
   { path: 'add', component: EditContentComponent },
   { path: 'edit/:id', component: EditContentComponent },
   { path: 'addType', component: EditContentTypeComponent },
-  { path: 'editType/:id', component: EditContentTypeComponent }
+  { path: 'editType/:id', component: EditContentTypeComponent },
+  { path: '', component: ContentsComponent },
+  { path: ':id', component: ContentsComponent }
 ];
 
 @NgModule({
   declarations: [
     ContentsComponent,
     EditContentComponent,
-    EditContentTypeComponent
+    EditContentTypeComponent,
+    contentTypeSelectComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +32,11 @@ const routes: Routes = [
     SharedModule,
     FormlyModule.forRoot({
       types: [
-        { name: 'file', component: fileUploadComponent }
+        { name: 'file', component: fileUploadComponent },
+        { name: 'contentType-select', component: contentTypeSelectComponent, extends: 'input' }
+      ],
+      validators: [
+        { name: 'slug', validation: SlugValidator }
       ],
       validationMessages: [
         { name: 'required', message: 'This field is required' }

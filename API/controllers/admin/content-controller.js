@@ -4,7 +4,13 @@ const ContentModel = require('../../models/content-model');
 
 exports.getContents = (req, res, next) => {
 
-    ContentModel.find()
+    const filter = {contentTypeId: undefined};
+
+    if (req.params.contentTypeId != "undefined") {
+        filter.contentTypeId = req.params.contentTypeId;
+    }
+
+    ContentModel.find(filter)
     .then(result => {
         res.status(200).json(result)
     })
