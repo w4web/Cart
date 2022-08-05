@@ -21,7 +21,7 @@ export class ContentService {
   }
 
   allContents(contentTypeId: any): Observable<any> {
-    return this.http.get<any>(`${this.apiContents}/${contentTypeId}`, { observe: 'response' });
+    return this.http.get<any>(`${this.apiContents}?contentTypeId=${contentTypeId}`, { observe: 'response' });
   }
 
   create(data: any): Observable<any> {
@@ -29,7 +29,7 @@ export class ContentService {
   }
 
   find(id: any): Observable<any> {
-    return this.http.get<any>(`${this.apiContents}/find/${id}`, { observe: 'response' });
+    return this.http.get<any>(`${this.apiContents}/${id}`, { observe: 'response' });
   }
 
   update(id: any, data: any): Observable<any> {

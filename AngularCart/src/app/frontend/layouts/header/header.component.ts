@@ -68,6 +68,11 @@ export class HeaderComponent implements OnInit {
         label: 'Contact us',
         icon: 'pi pi-fw pi-phone',
         routerLink: '/'
+      },
+      {
+        label: 'Blogs',
+        icon: 'pi pi-fw pi-book',
+        routerLink: '/blogs'
       }
     ];
 

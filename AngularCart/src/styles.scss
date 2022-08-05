@@ -594,6 +594,20 @@ h2.with-line {
 	color: #495057;
 }
 
+.card-verticle {
+    margin-bottom: 25px;
+    .p-card-content {
+        padding: 0;
+        display: flex;
+        .card-image {
+            width: 300px;
+        }
+        .card-content {
+            width: calc(100% - 300px);
+            padding-left: 20px;
+        }
+    }
+}
 
 // Responsive
 

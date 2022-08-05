@@ -1,6 +1,6 @@
 <h2 *ngIf="!contentType" class="title">Un categorized</h2>
 
-<h2 *ngIf="contentType" class="title">{{contentType.name}}
+<h2 *ngIf="contentType" class="title">{{contentType.name}} ( <span class="contentTypeId">{{contentType._id}}</span> )
     <a class="title-icon ml-3 mr-2" [routerLink]="['/admin/content/editType', contentType._id]">
         <i class="fa fa-pencil"></i>
     </a>
@@ -35,7 +35,6 @@
                 <th>Image</th>
                 <th>Title</th>
                 <th>Sub title</th>
-                <th>Description</th>
                 <th>Slug</th>
                 <th style="width: 130px;"></th>
             </tr>
@@ -47,7 +46,6 @@
                 </td>
                 <td>{{content.title}}</td>
                 <td>{{content.subTitle}}</td>
-                <td>{{content.description}}</td>
                 <td>{{content.slug}}</td>
                 <td>
                     <button 

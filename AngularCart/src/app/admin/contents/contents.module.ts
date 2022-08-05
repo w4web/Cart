@@ -9,6 +9,7 @@ import { EditContentComponent } from './edit-content/edit-content.component';
 import { EditContentTypeComponent } from './edit-content-type/edit-content-type.component';
 import { contentTypeSelectComponent } from 'src/app/shared/components/formly/contentType-select.component';
 import { SlugValidator } from 'src/app/shared/formly-custom.module';
+import { EditorComponent } from 'src/app/shared/components/formly/editor.component';
 
 const routes: Routes = [
   { path: 'add', component: EditContentComponent },
@@ -24,7 +25,8 @@ const routes: Routes = [
     ContentsComponent,
     EditContentComponent,
     EditContentTypeComponent,
-    contentTypeSelectComponent
+    contentTypeSelectComponent,
+    EditorComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,8 @@ const routes: Routes = [
     FormlyModule.forRoot({
       types: [
         { name: 'file', component: fileUploadComponent },
-        { name: 'contentType-select', component: contentTypeSelectComponent, extends: 'input' }
+        { name: 'contentType-select', component: contentTypeSelectComponent, extends: 'input' },
+        { name: 'editor', component: EditorComponent, extends: 'input' }
       ],
       validators: [
         { name: 'slug', validation: SlugValidator }

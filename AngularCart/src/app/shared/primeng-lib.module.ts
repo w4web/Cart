@@ -28,6 +28,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { TreeModule } from 'primeng/tree';
 import { PaginatorModule } from 'primeng/paginator';
 import { ToastModule } from 'primeng/toast';
+import { EditorModule } from 'primeng/editor';
 
 @NgModule({
   exports: [
@@ -56,7 +57,8 @@ import { ToastModule } from 'primeng/toast';
     AccordionModule,
     TreeModule,
     PaginatorModule,
-    ToastModule
+    ToastModule,
+    EditorModule
   ]
 })
 export class PrimengLibModule { }

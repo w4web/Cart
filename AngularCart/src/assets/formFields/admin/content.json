@@ -21,7 +21,7 @@
       },
       {
         "key": "description",
-        "type": "textarea",
+        "type": "editor",
         "className": "col-12",
         "templateOptions": {
           "label": "Description",

@@ -104,4 +104,8 @@ export class EditContentTypeComponent implements OnInit {
     }
   }
 
+  previousState(): void {
+    window.history.back();
+  }
+
 }

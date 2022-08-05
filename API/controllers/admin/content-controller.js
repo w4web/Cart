@@ -6,8 +6,8 @@ exports.getContents = (req, res, next) => {
 
     const filter = {contentTypeId: undefined};
 
-    if (req.params.contentTypeId != "undefined") {
-        filter.contentTypeId = req.params.contentTypeId;
+    if (req.query.contentTypeId != "undefined") {
+        filter.contentTypeId = req.query.contentTypeId;
     }
 
     ContentModel.find(filter)

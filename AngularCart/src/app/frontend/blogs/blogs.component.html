@@ -1,0 +1,36 @@
+<div class="inner-page blog-listing">
+  <div class="container">
+    <h1 class="title">Blogs</h1>
+
+    <p-messages></p-messages>
+
+    <ng-container *ngFor="let blog of blogs; let i = index">
+
+      <p-card styleClass="shadow-1 card-verticle">
+
+        <div class="card-image">
+          <a [routerLink]="['/blogs', blog._id]">
+            <img src="{{blog.image}}" alt="img" />
+          </a>
+        </div>
+        <div class="card-content">
+          <h2 class="ellipsis">{{blog.title}}</h2>
+          <h4 class="ellipsis">{{blog.subTitle}}</h4>
+          <div class="ellipsis mb-3" [innerHtml]="blog.description"></div>
+          <div class="text-right">
+            <button 
+                pButton pRipple 
+                class="p-button-raised p-button-secondary p-button-text" 
+                [routerLink]="['/blogs', blog._id]"
+                label="Read more">
+            </button>
+          </div>
+        </div>
+        
+      </p-card>
+
+    </ng-container>
+    
+
+  </div>
+</div>
