@@ -87,6 +87,11 @@ export class SidebarComponent implements OnInit {
         items: []
       },
       {
+        label: 'Comments',
+        icon: 'pi pi-fw pi-comment',
+        routerLink: '/admin/comment'
+      },
+      {
         label: 'Logout',
         icon: 'pi pi-fw pi-sign-out',
         command: (event) => {

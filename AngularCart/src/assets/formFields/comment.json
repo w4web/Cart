@@ -1,0 +1,16 @@
+[
+  {
+    "fieldGroupClassName": "grid gutter-10",
+    "fieldGroup": [
+      {
+        "key": "commentText",
+        "type": "input",
+        "className": "col-12",
+        "templateOptions": {
+          "label": "Comment",
+          "required": true
+        }
+      }
+    ]
+  }
+]

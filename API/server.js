@@ -17,6 +17,7 @@ const orderRoutes = require('./routes/admin/order-route');
 const adminUserRoutes = require('./routes/admin/user-route');
 const contentTypeRoutes = require('./routes/admin/contentType-route');
 const contentRoutes = require('./routes/admin/content-route');
+const commentRoutes = require('./routes/admin/comment-route');
 
 const fileUploadController = require('./controllers/fileUpload-controller');
 const myFile = multer({ storage: fileUpload.fileStorage }).single('file');
@@ -38,6 +39,7 @@ server.use('/admin/orders', orderRoutes);
 server.use('/admin/users', adminUserRoutes);
 server.use('/admin/contentTypes', contentTypeRoutes);
 server.use('/admin/contents', contentRoutes);
+server.use('/admin/comments', commentRoutes);
 
 server.use('/user', userRoutes);
 server.use('/myAccount', myAccountRoutes);

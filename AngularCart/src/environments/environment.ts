@@ -16,7 +16,8 @@ export const environment = {
     orders: `${baseUrl}/admin/orders`,
     users: `${baseUrl}/admin/users`,
     contentTypes: `${baseUrl}/admin/contentTypes`,
-    contents: `${baseUrl}/admin/contents`
+    contents: `${baseUrl}/admin/contents`,
+    comments: `${baseUrl}/admin/comments`
   },
   apiKey : 'T^-jdUnRg9+f&G?5Z!y,)I Z(,B^_]LNQu+Jc<EeMxi9j9I~1+kD.keMGJ^6pxjl'
 };
