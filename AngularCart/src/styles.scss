@@ -594,6 +594,15 @@ h2.with-line {
 	color: #495057;
 }
 
+.pageTitle {
+	font-weight: 500;
+	letter-spacing: 0.5px;
+	color: #495057;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 25px;
+}
+
 .card-verticle {
     margin-bottom: 25px;
     .p-card-content {
@@ -605,6 +614,74 @@ h2.with-line {
         .card-content {
             width: calc(100% - 300px);
             padding-left: 20px;
+        }
+    }
+}
+
+.ellipsis2 {
+	overflow: hidden;
+	max-height: 2.8em;
+}
+
+.blog-page {
+    padding: 20px 0;
+    max-width: 900px;
+    margin: 0 auto;
+    h1 {
+        text-align: center;
+    }
+    h2 {
+        color: #64748B;
+        font-weight: 600;
+        margin-bottom: 12px;
+    }
+    h5 {
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #999;
+    }
+    .card-horizontal {
+        .p-card-content {
+            padding: 0;
+            .card-image {
+                margin-bottom: 25px;
+            }
+        }
+    }
+}
+
+.card-comment {
+    margin-bottom: 25px;
+    .p-card-content {
+        padding: 0;
+        display: flex;
+        .img-circle {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .card-content {
+            width: calc(100% - 50px);
+            padding-left: 20px;
+            .c-user {
+                margin-bottom: 10px;
+                .c-username {
+                    color: #2271b1;
+                    font-weight: 600;
+                    margin-right: 10px;
+                }
+                .c-date {
+                    font-size: 12px;
+                    color: #969DA7;
+                }
+            }
+        }
+    }
+    .reply {
+        i {
+            font-size: 12px;
         }
     }
 }

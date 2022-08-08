@@ -1,1 +1,24 @@
-<p>blog-detail works!</p>
+<div class="inner-page blog-page blog-detail">
+  <div class="container">
+
+    <h1 class="pageTitle">{{blog.title}}</h1>
+
+    <p-messages></p-messages>
+
+    <p-card styleClass="shadow-1 card-horizontal mb-4">
+
+      <div class="card-image">
+        <img src="{{blog.image}}" alt="img" />
+      </div>
+
+      <div class="card-content">
+        <h2>{{blog.subTitle}}</h2>
+        <div [innerHtml]="blog.description"></div>
+      </div>
+      
+    </p-card>
+
+    <app-comments></app-comments>
+
+  </div>
+</div>
