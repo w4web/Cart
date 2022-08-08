@@ -62,7 +62,7 @@ exports.addComment = (req, res, next) => {
     const commentText = req.body.commentText;
     const parentId = req.body.parentId;
     const contentId = req.body.contentId;
-    const userId = req.body.userId;
+    const userId = req.user.id;
 
     const commentModel = new CommentModel({
         commentText: commentText,

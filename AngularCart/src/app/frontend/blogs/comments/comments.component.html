@@ -1,27 +1,27 @@
 <h2 class="mt-5 mb-4"><i class="pi pi-comment mr-2"></i>Comments</h2>
 
-<p-card styleClass="shadow-1 card-comment mb-4">
-
-  <img 
-    src="./assets/images/avatar.png" 
-    onerror="this.src='./assets/images/avatar.png'" 
-    class="img-circle" />
-
-  <div class="card-content">
-    <div class="c-user">
-      <span class="c-username">Manish solanki</span>
-      <span class="c-date">08 aug 2022 11:00 am</span>
+<ng-container *ngFor="let comment of comments; let i = index">
+  <p-card styleClass="shadow-1 card-comment mb-4">
+    <img 
+      src="./assets/images/avatar.png" 
+      onerror="this.src='./assets/images/avatar.png'" 
+      class="img-circle" />
+    <div class="card-content">
+      <div class="c-user">
+        <span class="c-username">Manish solanki</span>
+        <span class="c-date">08 aug 2022 11:00 am</span>
+      </div>
+      <p>{{comment.commentText}}</p>
+      <div class="reply">
+        <i class="pi pi-reply mr-2"></i>Reply
+      </div>
     </div>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque ex iure culpa sapiente magnam. Nostrum alias ab
-      esse ut magni! Dolor nam voluptatibus quia saepe.</p>
-    <div class="reply">
-      <i class="pi pi-reply mr-2"></i>Reply
-    </div>
-  </div>
-
-</p-card>
+  </p-card>
+</ng-container>
 
 <div class="p-inputgroup">
-  <input type="text" pInputText placeholder="Your comment..">   
-  <button type="button" pButton icon="pi pi-send" styleClass="p-button-warn"></button>   
+  <input type="text" [(ngModel)]="commentText" pInputText placeholder="Your comment..">
+  <button type="button" (click)="submit()" pButton icon="pi pi-send" styleClass="p-button-warn"></button>   
 </div>
+
+<p-messages></p-messages>

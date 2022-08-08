@@ -18,7 +18,9 @@
       
     </p-card>
 
-    <app-comments></app-comments>
+    <ng-container *ngIf="blog">
+      <app-comments [contentId]="blog._id"></app-comments>
+    </ng-container>
 
   </div>
 </div>

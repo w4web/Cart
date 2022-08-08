@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 export class ContentService {
 
   private apiContents = environment.adminApi.contents;
+  private apiComment = environment.adminApi.comments;
 
   constructor( private http: HttpClient ) { }
 
@@ -19,6 +20,14 @@ export class ContentService {
 
   find(id: any): Observable<any> {
     return this.http.get<any>(`${this.apiContents}/${id}`, { observe: 'response' });
+  }
+
+  allComments(contentId?: any): Observable<any> {
+    return this.http.get<any>(`${this.apiComment}?contentId=${contentId}`, { observe: 'response' });
+  }
+
+  create(data: any): Observable<any> {
+    return this.http.post<any>(`${this.apiComment}/add`, data, { observe: 'response' });
   }
 
 }
