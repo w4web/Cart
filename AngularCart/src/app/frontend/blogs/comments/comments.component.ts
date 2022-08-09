@@ -11,7 +11,9 @@ export class CommentsComponent implements OnInit {
 
   @Input() contentId: any;
 
-  commentText = "";
+  commentText: any = "";
+
+  replyItem = -1;
 
   comments: any;
 
@@ -23,13 +25,18 @@ export class CommentsComponent implements OnInit {
     
   }
 
+  onReplyOpen(value: any): void {
+    this.replyItem = value;
+  }
+
+  onReplyClose(): void {
+    this.replyItem = -1;
+  }
+
   load() {
     this.contentService.allComments(this.contentId).subscribe({
       next: (res: any) => {
         this.comments = res['body']['tree'];
-        if(this.comments && this.comments.length < 1) {
-          this.msgService.msg('warn', 'Empty!', 'No comments available!');
-        }
       },
       error: (err: any) => {
         this.msgService.errorHandle(err);
@@ -37,8 +44,8 @@ export class CommentsComponent implements OnInit {
     });
   }
 
-  submit(parentId?: any): void {
-    this.contentService.create({commentText: this.commentText, contentId: this.contentId, parentId}).subscribe({
+  submit(commentText: any, parentId?: any): void {
+    this.contentService.create({commentText, contentId: this.contentId, parentId}).subscribe({
       next: (res: any) => {
         this.load();
         this.commentText = "";

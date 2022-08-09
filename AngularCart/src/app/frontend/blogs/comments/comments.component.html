@@ -13,15 +13,48 @@
       </div>
       <p>{{comment.commentText}}</p>
       <div class="reply">
-        <i class="pi pi-reply mr-2"></i>Reply
+        <a *ngIf="i !== replyItem" class="reply-btn" (click)="onReplyOpen(i)">
+          <i class="pi pi-reply mr-2"></i>Reply
+        </a>
+        <div *ngIf="i == replyItem" class="reply-form p-inputgroup">
+          <input type="text" #reply pInputText>
+          <button type="button" (click)="submit(reply.value, comment._id)" pButton icon="pi pi-send" class="p-button-warn"></button>   
+          <!-- <button type="button" (click)="onReplyClose()" pButton icon="pi pi-times" class="p-button-danger"></button> -->
+        </div>
       </div>
     </div>
   </p-card>
+  <ng-container *ngIf="comment.children && comment.children.length > 0">
+    <ng-container *ngFor="let comment1 of comment.children">
+      <p-card styleClass="shadow-1 card-comment ml-7 mb-4">
+        <img 
+          src="./assets/images/avatar.png" 
+          onerror="this.src='./assets/images/avatar.png'" 
+          class="img-circle" />
+        <div class="card-content">
+          <div class="c-user">
+            <span class="c-username">Manish solanki</span>
+            <span class="c-date">08 aug 2022 11:00 am</span>
+          </div>
+          <p>{{comment1.commentText}}</p>
+          <!-- <div class="reply">
+            <a class="reply-btn">
+              <i class="pi pi-reply mr-2"></i>Reply
+            </a>
+            <div class="reply-form p-inputgroup">
+              <input type="text" #reply1 pInputText>
+              <button type="button" (click)="submit(reply1.value, comment1._id)" pButton icon="pi pi-send" styleClass="p-button-warn"></button>   
+            </div>
+          </div> -->
+        </div>
+      </p-card>
+    </ng-container>
+  </ng-container>
 </ng-container>
 
 <div class="p-inputgroup">
-  <input type="text" [(ngModel)]="commentText" pInputText placeholder="Your comment..">
-  <button type="button" (click)="submit()" pButton icon="pi pi-send" styleClass="p-button-warn"></button>   
+  <input type="text" #comment [(ngModel)]="commentText" pInputText placeholder="Your comment..">
+  <button type="button" (click)="submit(comment.value)" pButton icon="pi pi-send" styleClass="p-button-warn"></button>   
 </div>
 
 <p-messages></p-messages>
