@@ -45,6 +45,31 @@ exports.getContent = (req, res, next) => {
 
 }
 
+// Get content by slug
+
+exports.getContentBySlug = (req, res, next) => {
+
+    const slug = req.params.slug;
+
+    ContentModel.findOne({slug}).then(content => {
+
+        if (!content) {
+            return res.status(409).json({ summary: 'Empty', detail: 'Content is not available!' });
+        }
+
+        res.status(200).json(content);
+
+    }).catch(err => {
+
+        if (!err.statusCode) {
+          err.statusCode = 500;
+        }
+        next(err);
+        
+    });
+
+}
+
 // Add content
 
 exports.addContent = (req, res, next) => {

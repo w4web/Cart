@@ -14,6 +14,8 @@ export class ContentService {
 
   constructor( private http: HttpClient ) { }
 
+  // For loop content
+
   allContents(contentTypeId: any): Observable<any> {
     return this.http.get<any>(`${this.apiContents}?contentTypeId=${contentTypeId}`, { observe: 'response' });
   }
@@ -21,6 +23,14 @@ export class ContentService {
   find(id: any): Observable<any> {
     return this.http.get<any>(`${this.apiContents}/${id}`, { observe: 'response' });
   }
+
+  // For single content
+
+  getContentBySlug(slug: any): Observable<any> {
+    return this.http.get<any>(`${this.apiContents}/bySlug/${slug}`, { observe: 'response' });
+  }
+
+  // Comments
 
   allComments(contentId?: any): Observable<any> {
     return this.http.get<any>(`${this.apiComment}?contentId=${contentId}`, { observe: 'response' });

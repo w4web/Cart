@@ -6,6 +6,7 @@ const { adminRole } = require('../../middlewares/role');
 
 router.get('/', contentController.getContents);
 router.get('/:contentId', contentController.getContent);
+router.get('/bySlug/:slug', contentController.getContentBySlug);
 router.post('/add', isAuth, adminRole, contentController.addContent);
 router.put('/edit/:contentId', isAuth, adminRole, contentController.editContent);
 router.post('/delete', isAuth, adminRole, contentController.deleteContent);
