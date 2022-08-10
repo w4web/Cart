@@ -70,6 +70,27 @@ export class HeaderComponent implements OnInit {
         routerLink: '/'
       },
       {
+        label: 'Pages',
+        icon: 'pi pi-fw pi-book',
+        items: [
+          [
+            {
+              label: 'content pages',
+              items: [
+                {
+                  label: 'content page 1',
+                  routerLink: '/'
+                }, 
+                {
+                  label: 'content page 2',
+                  routerLink: '/'
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
         label: 'Blogs',
         icon: 'pi pi-fw pi-book',
         routerLink: '/blogs'

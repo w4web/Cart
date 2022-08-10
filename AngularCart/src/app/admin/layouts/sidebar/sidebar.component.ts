@@ -82,6 +82,22 @@ export class SidebarComponent implements OnInit {
         ]
       },
       {
+        label: 'Pages',
+        icon: 'pi pi-fw pi-book',
+        items: [
+          {
+            label: 'Page list',
+            icon: 'pi pi-fw pi-list',
+            routerLink: '/admin/page'
+          },
+          {
+            label: 'Add new',
+            icon: 'pi pi-fw pi-plus',
+            routerLink: '/admin/page/add'
+          }
+        ]
+      },
+      {
         label: 'Content types',
         icon: 'pi pi-fw pi-sitemap',
         items: []
