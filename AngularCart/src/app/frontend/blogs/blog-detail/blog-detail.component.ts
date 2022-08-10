@@ -12,7 +12,7 @@ import { MsgService } from 'src/app/shared/services/msg.service';
 export class BlogDetailComponent implements OnInit {
 
   id: any;
-  blog!: any;
+  blog: any;
 
   breadcrumbItems!: MenuItem[];
   breadcrumbHome!: MenuItem;

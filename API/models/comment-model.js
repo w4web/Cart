@@ -15,10 +15,9 @@ const commentSchema = new Schema({
     required: true,
     ref: 'contents'
   },
-  userId: {
-    type: Schema.Types.ObjectId,
-    required: true,
-    ref: 'users'
+  user: {
+    type: Object,
+    required: true
   }
 }, { timestamps: true });
 

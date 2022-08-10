@@ -661,6 +661,7 @@ h2.with-line {
             width: 50px;
             border-radius: 50%;
             object-fit: cover;
+            border: 1px solid #DDD;
         }
         .card-content {
             width: calc(100% - 50px);

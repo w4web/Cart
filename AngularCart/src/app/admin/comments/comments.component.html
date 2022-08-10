@@ -12,14 +12,16 @@
         <ng-template pTemplate="header">
             <tr>
                 <th>Comment</th>
-                <th>User Id</th>
+                <th>User</th>
+                <th>Date</th>
                 <th style="width: 130px;"></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-comment>
             <tr class="font-bold">
                 <td>{{comment.commentText}}</td>
-                <td>{{comment.userId}}</td>
+                <td>{{comment.user.email}}</td>
+                <td>{{comment.createdAt | date:'MMM d, y, h:mm:ss a'}}</td>
                 <td>
                     <button 
                         pButton pRipple 

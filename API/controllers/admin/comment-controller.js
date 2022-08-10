@@ -1,4 +1,5 @@
 const CommentModel = require('../../models/comment-model');
+const UserModel = require('../../models/user-model');
 const { commentTreeView } = require("../../util/logic");
 
 // All comment
@@ -62,26 +63,41 @@ exports.addComment = (req, res, next) => {
     const commentText = req.body.commentText;
     const parentId = req.body.parentId;
     const contentId = req.body.contentId;
-    const userId = req.user.id;
+    const _id = req.user.id;
 
-    const commentModel = new CommentModel({
-        commentText: commentText,
-        parentId: parentId,
-        contentId: contentId,
-        userId: userId
-    });
+    UserModel.findById(_id).then(user => {
 
-    commentModel
-        .save()
-        .then(comment => {
-            res.status(201).json(comment);
-        })
-        .catch(err => {
-            if (!err.statusCode) {
-                err.statusCode = 500;
+        const commentModel = new CommentModel({
+            commentText: commentText,
+            parentId: parentId,
+            contentId: contentId,
+            user: {
+                _id: user._id, 
+                profileImage: user.profileImage, 
+                firstName: user.firstName, 
+                lastName: user.lastName, 
+                email: user.email
             }
-            next(err);
         });
+
+        commentModel
+            .save()
+            .then(comment => {
+                res.status(201).json(comment);
+            })
+            .catch(err => {
+                if (!err.statusCode) {
+                    err.statusCode = 500;
+                }
+                next(err);
+            });
+
+    }).catch(err => {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    });
 
 }
 

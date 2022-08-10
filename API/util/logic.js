@@ -42,7 +42,9 @@ const commentTreeView = (comments, parentId = null) => {
             commentText: comm.commentText,
             parentId: comm.parentId,
             contentId: comm.contentId,
-            userId: comm.userId,
+            user: comm.user,
+            createdAt: comm.createdAt,
+            updatedAt: comm.updatedAt,
             children: commentTreeView(comments, comm._id),
         });
     }

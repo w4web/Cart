@@ -3,13 +3,13 @@
 <ng-container *ngFor="let comment of comments; let i = index">
   <p-card styleClass="shadow-1 card-comment mb-4">
     <img 
-      src="./assets/images/avatar.png" 
+      [src]="comment.user.profileImage" 
       onerror="this.src='./assets/images/avatar.png'" 
       class="img-circle" />
     <div class="card-content">
       <div class="c-user">
-        <span class="c-username">Manish solanki</span>
-        <span class="c-date">08 aug 2022 11:00 am</span>
+        <span class="c-username">{{comment.user.firstName}} {{comment.user.lastName}}</span>
+        <span class="c-date">{{comment.createdAt | date:'MMM d, y, h:mm:ss a'}}</span>
       </div>
       <p>{{comment.commentText}}</p>
       <div class="reply">
@@ -28,13 +28,13 @@
     <ng-container *ngFor="let comment1 of comment.children">
       <p-card styleClass="shadow-1 card-comment ml-7 mb-4">
         <img 
-          src="./assets/images/avatar.png" 
+          [src]="comment1.user.profileImage" 
           onerror="this.src='./assets/images/avatar.png'" 
           class="img-circle" />
         <div class="card-content">
           <div class="c-user">
-            <span class="c-username">Manish solanki</span>
-            <span class="c-date">08 aug 2022 11:00 am</span>
+            <span class="c-username">{{comment1.user.firstName}} {{comment1.user.lastName}}</span>
+            <span class="c-date">{{comment1.createdAt | date:'MMM d, y, h:mm:ss a'}}</span>
           </div>
           <p>{{comment1.commentText}}</p>
           <!-- <div class="reply">

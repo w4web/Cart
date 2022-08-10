@@ -37,6 +37,7 @@ export class CommentsComponent implements OnInit {
     this.contentService.allComments(this.contentId).subscribe({
       next: (res: any) => {
         this.comments = res['body']['tree'];
+        console.log("this.comments", this.comments);
       },
       error: (err: any) => {
         this.msgService.errorHandle(err);
