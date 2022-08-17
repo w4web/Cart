@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/shared/models/product.model';
 import { ContentService } from 'src/app/shared/services/content.service';
+import { SeoService } from 'src/app/shared/services/SEO.service';
 import { ShopService } from 'src/app/shared/services/shop.service';
 
 @Component({
@@ -14,9 +16,23 @@ export class HomeComponent implements OnInit {
   products!: Product[];
   categories: any;
 
-  constructor( public shopService: ShopService, public contentService: ContentService ) { }
+  constructor( 
+    public shopService: ShopService, 
+    public contentService: ContentService, 
+    public seoService: SeoService, 
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+
+    // SEO ---
+    
+    const seoData = this.route.snapshot.data;
+    this.seoService.updateTitle(seoData['title']);
+    this.seoService.updateDescription(seoData['meta']['description']);
+
+    // SEO End ---
+
     this.loadBanner();
     this.loadProducts();
     this.loadCategories();

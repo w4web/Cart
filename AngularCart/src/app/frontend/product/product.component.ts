@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ShopService } from 'src/app/shared/services/shop.service';
+import { SeoService } from 'src/app/shared/services/SEO.service';
 
 @Component({
   selector: 'app-product',
@@ -24,9 +25,22 @@ export class ProductComponent implements OnInit {
   sortOrder!: number;
   sortField!: string;
 
-  constructor( public shopService: ShopService, private route: ActivatedRoute, private router: Router ) {}
+  constructor( 
+    public shopService: ShopService, 
+    private route: ActivatedRoute, 
+    public seoService: SeoService, 
+    private router: Router 
+  ) {}
 
   ngOnInit(): void {
+
+    // SEO ---
+    
+    const seoData = this.route.snapshot.data;
+    this.seoService.updateTitle(seoData['title']);
+    this.seoService.updateDescription(seoData['meta']['description']);
+
+    // SEO End ---
 
     this.route.queryParams.subscribe(params => {
       this.category = params['category'];
