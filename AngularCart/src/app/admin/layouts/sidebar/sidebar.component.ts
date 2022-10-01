@@ -108,6 +108,10 @@ export class SidebarComponent implements OnInit {
         routerLink: '/admin/comment'
       },
       {
+        label: 'Prime table',
+        routerLink: '/admin/primeTable'
+      },
+      {
         label: 'Logout',
         icon: 'pi pi-fw pi-sign-out',
         command: (event) => {

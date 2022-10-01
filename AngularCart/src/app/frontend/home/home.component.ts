@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/shared/models/product.model';
 import { ContentService } from 'src/app/shared/services/content.service';
-import { SeoService } from 'src/app/shared/services/SEO.service';
+import { SeoService } from 'src/app/shared/services/seo.service';
 import { ShopService } from 'src/app/shared/services/shop.service';
 
 @Component({
